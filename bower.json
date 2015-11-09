@@ -1,7 +1,15 @@
 {
   "name": "HelloIonic",
   "private": "true",
-  "devDependencies": {
-    "ionic": "driftyco/ionic-bower#1.1.1"
+  "devDependencies": {},
+  "dependencies": {
+    "ionic": "~1.1.1",
+    "ngCordova": "~0.1.20-alpha",
+    "bcrypt": "*",
+    "cryptojslib": "~3.1.2",
+    "angular-moment": "~0.10.3",
+    "cordova": "~3.4.0",
+    "angular-base64": "~2.0.5",
+    "ionic-material": "~0.4.2"
   }
 }

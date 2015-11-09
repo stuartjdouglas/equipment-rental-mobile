@@ -3,6 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
+
     <title></title>
 
     <link href="lib/ionic/css/ionic.css" rel="stylesheet">
@@ -14,16 +15,39 @@
 
     <!-- ionic/angularjs js -->
     <script src="lib/ionic/js/ionic.bundle.js"></script>
-
     <!-- cordova script (this will be a 404 during development) -->
     <script src="cordova.js"></script>
 
     <!-- your app's js -->
-    <script src="js/app.js"></script>
-    <script src="js/controllers.js"></script>
+    <script src="app.js"></script>
+    <script src="config.js"></script>
+
+    <!-- Controllers -->
+    <script src="views/home/homeController.js"></script>
+    <script src="views/timeline/timeline.js"></script>
+    <script src="views/login/login.js"></script>
+    <script src="views/logout/logout.js"></script>
+    <script src="views/imageUpload/imageUpload.js"></script>
+
+    <!-- Scanner -->
+    <script src="views/scanner/scanner.js"></script>
+    <script src="factory/scanner.js"></script>
+    <!-- User -->
+    <script src="views/user/profile/profile.js"></script>
+    <script src="views/user/user/user.js"></script>
+    <script src="views/user/users/users.js"></script>
+
+    <!-- Misc -->
+    <script src="views/about/about.js"></script>
+    <!-- Dependcies-->
+    <script src="lib/ngCordova/dist/ng-cordova.min.js"></script>
+    <script src="lib/moment/min/moment.min.js"></script>
+    <script src="lib/angular-moment/angular-moment.min.js"></script>
+    <script src="lib/cryptojslib/rollups/sha512.js"></script>
+    <script src="lib/angular-base64/angular-base64.min.js"></script>
   </head>
 
-  <body ng-app="starter">
+  <body ng-app="App">
     <ion-nav-view></ion-nav-view>
   </body>
 </html>

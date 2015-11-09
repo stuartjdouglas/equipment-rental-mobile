@@ -1,1 +1,62 @@
 /* Empty. Add your own CSS if you like */
+.home.title {
+  text-align:center;
+  padding-top:25px;
+}
+
+
+/* login CSS */
+
+.login.wrapper {
+  background: url("../img/home.gif") no-repeat top center fixed;
+  -webkit-background-size: contain;
+  -moz-background-size: contain;
+  -o-background-size: contain;
+  background-size: 200%;
+}
+
+.login {
+
+}
+
+.login.input {
+  width:500px;
+  margin: 0 auto;
+}
+
+.login.input .input-label, .login.input.text {
+  color:#000;
+}
+
+.login.submit{
+  width:200px;
+  margin: 0 auto;
+}
+
+.login.form {
+  padding-top:40px;
+  padding-bottom:10px;
+  background-color: rgba(255, 255, 255, 0.5);
+
+}
+
+
+/* About state */
+
+.about.wrapper {
+  position:absolute;
+  background: url("../img/about.gif") no-repeat center bottom fixed;
+  background-size: contain;
+  background-color:#14282E;
+}
+
+.about.content h1, .about.content h2, .about.content h3, .about.content p, .about.content i {
+  color:#fff;
+  text-align:center;
+}
+
+.about.content {
+
+  background-color: rgba(20, 20, 20, 0.5);
+  height:100%;
+}

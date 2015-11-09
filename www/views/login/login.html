@@ -1,0 +1,34 @@
+<ion-view view-title="Login">
+  <ion-content class="login wrapper">
+
+
+    <ion-spinner ng-show="processing" class="padding"></ion-spinner>
+
+    <div class="" ng-show="failed">
+      <b>Login Failed</b>
+    </div>
+
+    <form ng-submit="login(user)" ng-hide="processing" class="login form">
+
+
+      <div class="login input">
+        <label class="item-input item-floating-label">
+          <span class="input-label">Username</span>
+          <input type="text" placeholder="First Name" ng-model="user.name" class="text">
+        </label>
+        <label class="item-input item-floating-label">
+          <span class="input-label">Password</span>
+          <input type="password" placeholder="Last Name" ng-model="user.password" class="text">
+        </label>
+      </div>
+
+      <div class="login submit">
+        <button class="button button-block button-positive">
+          Login
+        </button>
+      </div>
+
+
+    </form>
+  </ion-content>
+</ion-view>
