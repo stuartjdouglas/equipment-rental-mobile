@@ -1,11 +1,11 @@
 <ion-side-menus enable-menu-with-back-views="false">
-  <ion-side-menu-content>
+  <ion-side-menu-content edge-drag-threshold="true" drag-content="true">
     <ion-nav-bar class="bar bar-header bar-calm">
 
       <ion-nav-back-button>
       </ion-nav-back-button>
 
-      <ion-nav-buttons side="left">
+      <ion-nav-buttons side="left" >
         <button class="button button-icon button-clear ion-navicon" menu-toggle="left">
         </button>
 
@@ -37,6 +37,9 @@
         </ion-item>
         <ion-item menu-close href="#/app/timeline"ng-show="loggedIn">
           Home
+        </ion-item>
+        <ion-item menu-close href="#/app/items" ng-show="loggedIn">
+          Items
         </ion-item>
         <ion-item menu-close href="#/app/scanner"  ng-show="loggedIn">
           Scan

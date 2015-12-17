@@ -1,0 +1,57 @@
+<ion-view view-title="{{message}}">
+  <ion-content>
+    <div class="home title padding-vertical">
+
+      <div class="list">
+
+        <div class="bar bar-header item-input-inset">
+          <label class="item-input-wrapper">
+            <i class="icon ion-ios-search placeholder-icon"></i>
+            <input type="search" placeholder="Search">
+          </label>
+          <button class="button button-clear">
+            Cancel
+          </button>
+        </div>
+
+      </div>
+
+      <div class="row">
+        <div class="col">
+          <i>
+            Showing results {{start}} - {{start + count}} from {{products.total}}.
+          </i>
+        </div>
+      </div>
+
+      <div class="list">
+        <a class="item item-avatar" href="#/app/item/{{product.id}}" ng-repeat="product in products.results.item">
+          <img src="{{data}}{{product.image.size.medium}}">
+          <h2>{{product.title}}</h2>
+          <p>{{product.description}}</p>
+        </a>
+      </div>
+
+      <div class="row">
+        <div class="col">
+          <a class="tab-item" ng-click="back()">
+            <i class="icon ion-arrow-left-c"></i>
+            Previous Page
+          </a>
+        </div>
+        <div class="col">
+
+        </div>
+        <div class="col">
+          <a class="tab-item" ng-click="forward()">
+            <i class="icon ion-arrow-right-c"></i>
+            Next Page
+          </a>
+        </div>
+      </div>
+    </div>
+
+
+  </ion-content>
+
+</ion-view>

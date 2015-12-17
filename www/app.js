@@ -14,6 +14,7 @@ angular.module('App',
     'App.user.users',
     'App.scanner',
     'App.timeline',
+    'App.items',
     // Factories
     'App.config',
     'App.factory.scanner',
@@ -72,6 +73,26 @@ angular.module('App',
         'menuContent': {
           templateUrl: 'views/timeline/timeline.html',
           controller: 'timelineCtrl'
+        }
+      }
+    })
+
+    .state('app.items', {
+      url: '/items',
+      views: {
+        'menuContent': {
+          templateUrl: 'views/items/items.html',
+          controller: 'itemsCtrl'
+        }
+      }
+    })
+
+    .state('app.item', {
+      url: '/item/:item',
+      views: {
+        'menuContent': {
+          templateUrl: 'views/items/item.html',
+          controller: 'itemCtrl'
         }
       }
     })
@@ -167,12 +188,15 @@ angular.module('App',
 })
 
 
-.controller('AppCtrl', ['$scope', '$rootScope', 'scanner', '$location', function($scope,$rootScope, scanner, $location) {
+.controller('AppCtrl', ['$scope', '$rootScope', 'scanner', '$location', '$ionicSideMenuDelegate', function($scope,$rootScope, scanner, $location,$ionicSideMenuDelegate) {
   $rootScope.loggedIn = window.localStorage.token != undefined;
 
     if (window.localStorage.auth) {
       $rootScope.auth = JSON.parse(window.localStorage.auth);
     }
+
+  $rootScope.api = backend;
+  $rootScope.data = data;
 
     $scope.scan = scanner.scan;
 
@@ -182,5 +206,7 @@ angular.module('App',
 
       $location.path('#/app/user/profile');
     }
+
+    $ionicSideMenuDelegate.canDragContent(false);
 
 }]);
