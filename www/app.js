@@ -8,6 +8,7 @@ angular.module('App',
     'App.about',
     'App.login',
     'App.logout',
+    'App.register',
     'App.image.upload',
     'App.user.profile',
     'App.user.user',
@@ -15,6 +16,7 @@ angular.module('App',
     'App.scanner',
     'App.timeline',
     'App.items',
+    'App.adminItemAdd',
     // Factories
     'App.config',
     'App.factory.scanner',
@@ -136,6 +138,16 @@ angular.module('App',
       }
     })
 
+    .state('app.register', {
+      url: '/register',
+      views: {
+        'menuContent': {
+          templateUrl: 'views/register/register.html',
+          controller: 'registerCtrl'
+        }
+      }
+    })
+
 
     // Image routes
 
@@ -182,6 +194,16 @@ angular.module('App',
       }
     })
 
+    .state('app.adminItemAdd', {
+      url: '/admin/item/add',
+      views: {
+        'menuContent': {
+          templateUrl: 'views/admin/item/add/add.html',
+          controller: 'adminItemAddCtrl'
+        }
+      }
+    })
+
 
   // if none of the above states are matched, use this as the fallback
   $urlRouterProvider.otherwise('/app/home');
@@ -194,6 +216,8 @@ angular.module('App',
     if (window.localStorage.auth) {
       $rootScope.auth = JSON.parse(window.localStorage.auth);
     }
+
+  console.log($rootScope.auth);
 
   $rootScope.api = backend;
   $rootScope.data = data;

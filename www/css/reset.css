@@ -1,0 +1,47 @@
+* {
+  font-family: 'Open Sans', Helvetica, Arial, sans-serif!important;
+}
+
+.bar-calm {
+  border:0!important;
+  height:50px!important;
+  background-color:#e3e3e3!important;
+
+}
+
+.bar-header {
+  border:0;
+  height:50px;
+}
+
+.bar-subheader {
+  top: 7px;
+}
+
+.button {
+  background:transparent;
+}
+
+.button.fillwidth {
+  width:100%;
+}
+
+.button.fillwidth.form {
+  width:40%;
+}
+
+.button.activated {
+  background:rgba(0,0,0,0.01);
+  box-shadow: none;
+}
+
+
+
+.row-bottom {
+  position:absolute;
+  bottom:0;
+}
+
+.scroll {
+  height:100%;
+}

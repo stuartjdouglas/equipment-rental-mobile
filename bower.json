@@ -10,6 +10,14 @@
     "angular-moment": "~0.10.3",
     "cordova": "~3.4.0",
     "angular-base64": "~2.0.5",
-    "ionic-material": "~0.4.2"
+    "ionic-material": "~0.4.2",
+    "skeleton": "~2.0.4",
+    "angular-ui-notification": "~0.1.0"
+  },
+  "resolutions": {
+    "angular-sanitize": "1.4.3",
+    "ionic": "~1.2.0",
+    "angular": "1.4.3",
+    "angular-animate": "1.4.3"
   }
 }

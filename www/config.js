@@ -1,7 +1,7 @@
 
 
-//var domain = 'http://localhost:3000/api'
-var domain = 'http://lemondev.xyz:3000'
+var domain = 'http://localhost'
+//var domain = 'http://lemondev.xyz:3000'
 var api = '/api';
 
 var backend = domain + api;

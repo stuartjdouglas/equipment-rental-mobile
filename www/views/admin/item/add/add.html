@@ -1,0 +1,40 @@
+<ion-view view-title="{{title}}">
+  <ion-content>
+    Title: {{product.title}}<br>
+    Description: {{product.description}}<br>
+    Days: {{product.days}}
+
+    <img src="data:image/jpeg;base64,{{product.image}}"/>
+
+    <form ng-submit="login(user)" ng-hide="processing" class="login form">
+
+
+      <label class="item item-input">
+        <span class="input-label">Title</span>
+        <input type="text" ng-model="product.title">
+      </label>
+      <label class="item item-input">
+        <span class="input-label">Description</span>
+        <input type="text" ng-model="product.description">
+      </label>
+      <label class="item item-input">
+        <span class="input-label">Days limit</span>
+        <input type="number" ng-model="product.days">
+      </label>
+      <label class="item item-input">
+        <span class="input-label">Image</span>
+        <button class="button border fillwidth form" ng-click="openImage()">
+          Select Image
+        </button>
+      </label>
+
+
+
+      <button class="button border fillwidth">
+        Login
+      </button>
+
+    </form>
+
+  </ion-content>
+</ion-view>

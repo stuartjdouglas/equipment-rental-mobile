@@ -1,44 +1,50 @@
 /* Empty. Add your own CSS if you like */
 .home.title {
   text-align:center;
-  padding-top:0px;
+  width:100%;
+  position:absolute;
+  bottom:60vh;
+
 }
 
 
 /* login CSS */
 
-.login.wrapper {
-  background: url("../img/home.gif") no-repeat top center fixed;
-  -webkit-background-size: contain;
-  -moz-background-size: contain;
-  -o-background-size: contain;
-  background-size: 200%;
-}
 
-.login {
 
-}
 
-.login.input {
-  width:500px;
-  margin: 0 auto;
-}
+/*.login.wrapper {*/
+  /*background: url("../img/home.gif") no-repeat top center fixed;*/
+  /*-webkit-background-size: contain;*/
+  /*-moz-background-size: contain;*/
+  /*-o-background-size: contain;*/
+  /*background-size: 200%;*/
+/*}*/
 
-.login.input .input-label, .login.input.text {
-  color:#000;
-}
+/*.login {*/
 
-.login.submit{
-  width:200px;
-  margin: 0 auto;
-}
+/*}*/
 
-.login.form {
-  padding-top:40px;
-  padding-bottom:10px;
-  background-color: rgba(255, 255, 255, 0.5);
+/*.login.input {*/
+  /*width:500px;*/
+  /*margin: 0 auto;*/
+/*}*/
 
-}
+/*.login.input .input-label, .login.input.text {*/
+  /*color:#000;*/
+/*}*/
+
+/*.login.submit{*/
+  /*width:200px;*/
+  /*margin: 0 auto;*/
+/*}*/
+
+/*.login.form {*/
+  /*padding-top:40px;*/
+  /*padding-bottom:10px;*/
+  /*background-color: rgba(255, 255, 255, 0.5);*/
+
+/*}*/
 
 
 /* About state */
@@ -59,4 +65,35 @@
 
   background-color: rgba(20, 20, 20, 0.5);
   height:100%;
+}
+
+
+.image.register {
+  height:200px;
+  width:100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-top:25px;
+  padding-bottom:25px;
+}
+.image.register img {
+  box-shadow: 0px 0px 10px 0px rgba(50, 50, 50, 0.25);
+}
+
+.register.subtext {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding:20px;
+}
+
+.register.error {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color:#C62828;
+  color:#fff;
+  padding:10px;
+  box-shadow: inset 0px 0px 10px 0px rgba(50, 50, 50, 0.65);
 }

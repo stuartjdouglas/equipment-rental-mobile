@@ -1,0 +1,49 @@
+<ion-view view-title="Register">
+  <ion-content class="register wrapper">
+    <form ng-submit="register(user)" ng-hide="processing" class="login form">
+      <div class="image register">
+        <img ng-cloak height="100%" width="auto" ng-src="https://secure.gravatar.com/avatar/{{gravatar}}?s=90&d=identicon" width="100%" height="auto"/>
+      </div>
+      <div class="register subtext">
+        <i>Profile Image (powered by Gravatar)</i>
+      </div>
+      <div class="login input">
+        <div class="register error" ng-show="error.global.active">
+          <i>{{error.global.text}}</i>
+        </div>
+        <div class="register error" ng-show="error.username.active">
+          <i>{{error.username.text}}</i>
+        </div>
+        <label class="item item-input">
+          <span class="input-label">Username</span>
+          <input type="text" ng-model="user.name">
+        </label>
+        <div class="register error" ng-show="error.email.active">
+          <i>{{error.email.text}}</i>
+        </div>
+        <label class="item item-input">
+          <span class="input-label">Email</span>
+          <input type="email" ng-model="user.email">
+        </label>
+        <div class="register error" ng-show="error.password.active">
+          <i>{{error.password.text}}</i>
+        </div>
+        <label class="item item-input">
+          <span class="input-label">Password</span>
+          <input type="password" ng-model="user.password">
+        </label>
+      </div>
+
+      <div class="login submit">
+        <button class="button button-block button-positive">
+          Register
+        </button>
+      </div>
+
+
+
+    </form>
+
+
+  </ion-content>
+</ion-view>
