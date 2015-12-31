@@ -1,12 +1,12 @@
 <ion-side-menus enable-menu-with-back-views="false">
   <ion-side-menu-content edge-drag-threshold="true" drag-content="true">
-    <ion-nav-bar class="bar bar-header bar-calm">
+    <ion-nav-bar class="bar bar-header bar-calm" ng-show="loggedIn">
 
       <ion-nav-back-button>
       </ion-nav-back-button>
 
-      <ion-nav-buttons side="left" >
-        <button class="button button-icon button-clear ion-navicon" menu-toggle="left">
+      <ion-nav-buttons side="left">
+        <button class="button button-icon button-clear ion-navicon" menu-toggle="left" ng-show="loggedIn">
         </button>
 
       </ion-nav-buttons>

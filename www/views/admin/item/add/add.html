@@ -1,40 +1,64 @@
 <ion-view view-title="{{title}}">
   <ion-content>
-    Title: {{product.title}}<br>
-    Description: {{product.description}}<br>
-    Days: {{product.days}}
 
-    <img src="data:image/jpeg;base64,{{product.image}}"/>
+    <div class="cover success" ng-show="success">
+      <i class="fa fa-check"></i>
+      Success
+    </div>
 
-    <form ng-submit="login(user)" ng-hide="processing" class="login form">
+    <div class="cover error" ng-show="error">
+      <i class="fa fa-times"></i>
+      Error
+    </div>
+
+    <div class="cover loading" ng-show="loading">
+      <div class="content">
+        <ion-spinner></ion-spinner>
+        <p>Loading</p>
+      </div>
+      <div class="subtitle">
+        <i>We are currently uploading your product...</i>
+      </div>
+    </div>
+
+    <div class="form">
+      <form ng-hide="processing" class="login form" ng-hide="success, loading, error">
 
 
-      <label class="item item-input">
-        <span class="input-label">Title</span>
-        <input type="text" ng-model="product.title">
-      </label>
-      <label class="item item-input">
-        <span class="input-label">Description</span>
-        <input type="text" ng-model="product.description">
-      </label>
-      <label class="item item-input">
-        <span class="input-label">Days limit</span>
-        <input type="number" ng-model="product.days">
-      </label>
-      <label class="item item-input">
-        <span class="input-label">Image</span>
-        <button class="button border fillwidth form" ng-click="openImage()">
-          Select Image
+        <label class="item item-input">
+          <span class="input-label">Title</span>
+          <input type="text" ng-model="product.title">
+        </label>
+        <label class="item item-input">
+          <span class="input-label">Description</span>
+          <input type="text" ng-model="product.description">
+        </label>
+        <label class="item item-input">
+          <span class="input-label">Days limit</span>
+          <input type="text" ng-model="product.days">
+        </label>
+        <label class="item item-input">
+          <span class="input-label">Image</span>
+          <button class="button border fillwidth form" ng-click="openImage()">
+            Select Image
+          </button>
+        </label>
+
+
+
+        <button class="button border fillwidth" ng-click="uploadProduct(product)">
+          Create
         </button>
-      </label>
 
+      </form>
 
+      Title: {{product.title}}<br>
+      Description: {{product.description}}<br>
+      Days: {{product.days}}
 
-      <button class="button border fillwidth">
-        Login
-      </button>
+      <img src="data:image/jpeg;base64,{{product.image}}" class="resImage"/>
 
-    </form>
+    </div>
 
   </ion-content>
 </ion-view>

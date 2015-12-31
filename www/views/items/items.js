@@ -58,7 +58,31 @@ angular.module('App.items', [])
     }
 
   })
-  .controller('itemCtrl', function($scope, $http, $rootScope, $stateParams) {
+  .controller('itemCtrl', function($scope, $http, $rootScope, $stateParams, $cordovaLocalNotification) {
+
+
+
+      $cordovaLocalNotification.schedule({
+        id: 1,
+        title: 'Title here',
+        text: 'Text here',
+        data: {
+          customProperty: 'custom value'
+        }
+      }).then(function (result) {
+        // ...
+      });
+
+      $cordovaLocalNotification.update({
+        id: 1,
+        title: 'Title - UPDATED',
+        text: 'Text - UPDATED'
+      }).then(function (result) {
+        // ...
+      });
+
+
+
     $http({
       url: backend + "/product/" + $stateParams.item,
       method: 'GET',

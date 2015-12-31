@@ -1,6 +1,7 @@
 
+var domain = 'http://192.168.1.99'
 
-var domain = 'http://localhost'
+//var domain = 'http://localhost'
 //var domain = 'http://lemondev.xyz:3000'
 var api = '/api';
 

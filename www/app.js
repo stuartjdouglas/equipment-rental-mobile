@@ -24,7 +24,8 @@ angular.module('App',
 
     //Dependencies
     'angularMoment',
-    'base64'
+    'base64',
+    'angularFileUpload'
   ]
 )
 
@@ -81,6 +82,7 @@ angular.module('App',
 
     .state('app.items', {
       url: '/items',
+      cache: false,
       views: {
         'menuContent': {
           templateUrl: 'views/items/items.html',

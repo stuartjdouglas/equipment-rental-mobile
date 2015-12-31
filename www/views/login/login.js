@@ -30,11 +30,15 @@ angular.module('App.login', [])
 
         window.localStorage.token = data.token;
 
-        window.localStorage.auth =  JSON.stringify({
-          'username' : data.username,
-          'gravatar' : 'https://secure.gravatar.com/avatar/3ff9db8df915f96059263edd63a05453?s=90&d=identicon',
-          'token': data.token
-          });
+
+        var auth = JSON.stringify({
+          username: data.username,
+          gravatar: data.gravatar,
+          token: data.token
+        })
+
+        window.localStorage.auth = auth;
+        $rootScope.auth = JSON.parse(window.localStorage.auth);
         $scope.error = false;
         $rootScope.loggedIn = true;
         $ionicHistory.nextViewOptions({
