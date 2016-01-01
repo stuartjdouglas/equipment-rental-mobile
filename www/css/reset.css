@@ -2,9 +2,16 @@
   font-family: 'Open Sans', Helvetica, Arial, sans-serif!important;
 }
 
+
+
+.scroll-content {
+  top:0;
+}
+
 .bar-calm {
   border:0!important;
-  /*height:50px!important;*/
+  background-color:rgba(2, 136, 209, 0.5)!important;
+  height:50px!important;
 
 }
 

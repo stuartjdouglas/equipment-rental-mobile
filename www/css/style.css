@@ -21,9 +21,9 @@
   /*background-size: 200%;*/
 /*}*/
 
-/*.login {*/
-
-/*}*/
+.login {
+  background-color: #fff!important;
+}
 
 /*.login.input {*/
   /*width:500px;*/
@@ -177,3 +177,74 @@
 }
 
 
+
+/*
+    ITEM
+*/
+
+.itembackground {
+  position:fixed;
+  background-color:#333;
+  width:100%;
+  height:100%;
+  margin:0;
+  padding:0;
+  background: none no-repeat center top fixed;
+  background-size: contain;
+}
+
+.transparent {
+  background-color: RGBA(255, 255, 255, 0);
+}
+
+.white {
+  color:#fff!important;
+  text-shadow: 0px 0px 7px rgba(0, 0, 0, 1);
+}
+
+.block {
+  overflow:hidden;
+  background:none!important;
+  margin:0!important;
+  padding: 0!important;
+}
+
+.dark {
+  margin-top:50px;
+}
+
+.background {
+  background: none no-repeat center center fixed;
+  background-size: cover;
+  -webkit-filter: blur(3px);
+  opacity:1;
+  filter: blur(5px);
+  width:200%;
+  height:auto;
+  /*overflow:hidden;*/
+  position:absolute;
+  top:-500%;
+  left:-10%;
+  z-index:2;
+}
+
+.product {
+  position:absolute;
+  background-color:#fff;
+  width:100%;
+  height:100%;
+  top:400px;
+  box-shadow: 0px 0px 20px 0px rgba(0, 0, 0, 0.75);
+}
+
+.product .status {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color:#e3e3e3;
+  height:40px;
+}
+
+.content {
+  padding:20px;
+}

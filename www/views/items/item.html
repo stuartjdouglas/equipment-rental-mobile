@@ -1,48 +1,77 @@
 <ion-view view-title="{{product.title}}">
+  <div class="scroll itembackground" id="itembackground">
+  </div>
   <ion-content>
-    <div class="list card">
 
-      <div class="item item-image">
-        <img src="{{data}}{{product.image.size.medium}}">
+
+    <div class="product">
+      <div class="status" id="status">
+        <div class="message">
+          {{availability}}
+        </div>
       </div>
-
-      <div class="item">
-        <img src="">
-        <p><i></i></p>
+      <div class="content">
         <h2>{{product.title}}</h2>
         <p>{{product.description}}</p>
-      </div>
+        <p>Available for {{product.product_rental_period_limit}} days.</p>
 
-      <a class="item item-icon-left assertive" href="#">
-        <i class="icon ion-bag"></i>
-        Rent now for <b>{{product.product_rental_period_limit}}</b> days.
-      </a>
 
-      <div class="item tabs tabs-secondary tabs-icon-left">
-        <a class="tab-item" href="#">
-          <i class="icon ion-heart"></i>
-          Like
-        </a>
-        <a class="tab-item" href="#">
-          <i class="icon ion-chatbox"></i>
-          Comment
-        </a>
-        <a class="tab-item" href="#">
-          <i class="icon ion-share"></i>
-          Share
-        </a>
-      </div>
-
-      <div class="item item-avatar">
-          <img ng-cloak ng-src="https://secure.gravatar.com/avatar/{{product.owner.gravatar}}?s=90&d=identicon" width="100%" height="auto"/>
-          <h2>
-            <a href="#/app/user/{{product.owner.username}}">@{{product.owner.username}}</a>
-            <h3><b>Date Added:</b> <span am-time-ago="product.date_added"></span></h3>
-            <h3><b>Date Updated:</b> <span am-time-ago="product.date_updated"></span></h3>
-          </h2>
+        <div class="owner">
+          <div class="item item-avatar">
+            <img ng-cloak ng-src="https://secure.gravatar.com/avatar/{{product.owner.gravatar}}?s=90&d=identicon" width="100%" height="auto"/>
+            <h2>
+              <a href="#/app/user/{{product.owner.username}}">@{{product.owner.username}}</a>
+              <h3><b>Date Added:</b> <span am-time-ago="product.date_added"></span></h3>
+              <h3><b>Date Updated:</b> <span am-time-ago="product.date_updated"></span></h3>
+             </h2>
+          </div>
+        </div>
       </div>
 
     </div>
+    <!--<div class="list card">-->
+
+      <!--<div class="item item-image">-->
+        <!--<img src="{{data}}{{product.image.size.medium}}">-->
+      <!--</div>-->
+
+      <!--<div class="item">-->
+        <!--<img src="">-->
+        <!--<p><i></i></p>-->
+        <!--<h2>{{product.title}}</h2>-->
+        <!--<p>{{product.description}}</p>-->
+      <!--</div>-->
+
+      <!--<a class="item item-icon-left assertive" href="#">-->
+        <!--<i class="icon ion-bag"></i>-->
+        <!--Rent now for <b>{{product.product_rental_period_limit}}</b> days.-->
+      <!--</a>-->
+
+      <!--<div class="item tabs tabs-secondary tabs-icon-left">-->
+        <!--<a class="tab-item" href="#">-->
+          <!--<i class="icon ion-heart"></i>-->
+          <!--Like-->
+        <!--</a>-->
+        <!--<a class="tab-item" href="#">-->
+          <!--<i class="icon ion-chatbox"></i>-->
+          <!--Comment-->
+        <!--</a>-->
+        <!--<a class="tab-item" href="#">-->
+          <!--<i class="icon ion-share"></i>-->
+          <!--Share-->
+        <!--</a>-->
+      <!--</div>-->
+
+      <!--<div class="item item-avatar">-->
+          <!--<img ng-cloak ng-src="https://secure.gravatar.com/avatar/{{product.owner.gravatar}}?s=90&d=identicon" width="100%" height="auto"/>-->
+          <!--<h2>-->
+            <!--<a href="#/app/user/{{product.owner.username}}">@{{product.owner.username}}</a>-->
+            <!--<h3><b>Date Added:</b> <span am-time-ago="product.date_added"></span></h3>-->
+            <!--<h3><b>Date Updated:</b> <span am-time-ago="product.date_updated"></span></h3>-->
+          <!--</h2>-->
+      <!--</div>-->
+
+    <!--</div>-->
 
   </ion-content>
 

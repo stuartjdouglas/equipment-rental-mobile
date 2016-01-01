@@ -1,5 +1,5 @@
 <ion-view view-title="{{message}}">
-  <ion-content>
+  <ion-content class="dark">
         <div class="bar bar-subheader item-input-inset">
           <label class="item-input-wrapper">
             <i class="icon ion-ios-search placeholder-icon"></i>
@@ -20,36 +20,39 @@
         </div>
       </div>
 
-      <div class="list">
-        <a class="item item-avatar" href="#/app/item/{{product.id}}" ng-repeat="product in products.results.item">
-          <img src="{{data}}{{product.image.size.medium}}">
-          <h2>{{product.title}}</h2>
-          <p>{{product.description}}</p>
+      <div class="list block" ng-repeat="product in products.results.item">
+           <!--ng-style="{'background-image':'url({{data}}{{product.image.size.large}})'}"-->
+        <img class="background" ng-src="{{data}}{{product.image.size.small}}">
+        <a class="item item-avatar transparent" href="#/app/item/{{product.id}}">
+          <img src="{{data}}{{product.image.size.small}}">
+          <h2 class="white">{{product.title}}</h2>
+          <p class="white">{{product.description}}</p>
         </a>
       </div>
 
-      <div class="row row-bottom">
-        <div class="col">
-          <a class="tab-item" ng-click="back()">
-            <i class="icon ion-arrow-left-c"></i>
-            Previous Page
-          </a>
-        </div>
-        <div class="col">
-          <a class="tab-item" href="#/app/admin/item/add">
-            <i class="icon ion-plus-circled"></i>
-            Add Product
-          </a>
-        </div>
-        <div class="col">
-          <a class="tab-item" ng-click="forward()">
-            <i class="icon ion-arrow-right-c"></i>
-            Next Page
-          </a>
-        </div>
-      </div>
+
 
 
   </ion-content>
+  <div class="row row-bottom">
+    <div class="col">
+      <a class="tab-item" ng-click="back()">
+        <i class="icon ion-arrow-left-c"></i>
+        Previous Page
+      </a>
+    </div>
+    <div class="col">
+      <a class="tab-item" href="#/app/admin/item/add">
+        <i class="icon ion-plus-circled"></i>
+        Add Product
+      </a>
+    </div>
+    <div class="col">
+      <a class="tab-item" ng-click="forward()">
+        <i class="icon ion-arrow-right-c"></i>
+        Next Page
+      </a>
+    </div>
+  </div>
 
 </ion-view>
