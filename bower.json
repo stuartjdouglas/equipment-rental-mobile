@@ -15,7 +15,8 @@
     "angular-ui-notification": "~0.1.0",
     "bower": "*",
     "install": "~1.0.4",
-    "angular-file-upload": "~2.2.0"
+    "angular-file-upload": "~2.2.0",
+    "animate.css": "~3.5.1"
   },
   "resolutions": {
     "angular-sanitize": "1.4.3",

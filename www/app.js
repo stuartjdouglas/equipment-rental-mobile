@@ -21,6 +21,8 @@ angular.module('App',
     'App.config',
     'App.factory.scanner',
 
+    // Components | Directives
+    'App.availability',
 
     //Dependencies
     'angularMoment',

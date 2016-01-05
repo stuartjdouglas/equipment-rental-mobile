@@ -52,6 +52,13 @@
   height:100%;
 }
 
-.item {
+.item.border {
   border-color: #e3e3e3!important;
+  border-style: solid;
+  border-top: thick solid #f1f2f3!important;
+}
+
+
+.activated {
+  background-color:#ECEFF1!important;
 }

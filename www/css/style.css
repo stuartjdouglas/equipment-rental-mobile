@@ -191,6 +191,8 @@
   padding:0;
   background: none no-repeat center top fixed;
   background-size: contain;
+  border-style: solid;
+  border-bottom: thick dotted #ff0000;
 }
 
 .transparent {
@@ -198,8 +200,8 @@
 }
 
 .white {
-  color:#fff!important;
-  text-shadow: 0px 0px 7px rgba(0, 0, 0, 1);
+  color:#333!important;
+  /*text-shadow: 0px 0px 7px rgba(0, 0, 0, 1);*/
 }
 
 .block {
@@ -214,18 +216,18 @@
 }
 
 .background {
-  background: none no-repeat center center fixed;
-  background-size: cover;
-  -webkit-filter: blur(3px);
-  opacity:1;
-  filter: blur(5px);
-  width:200%;
-  height:auto;
-  /*overflow:hidden;*/
-  position:absolute;
-  top:-500%;
-  left:-10%;
-  z-index:2;
+  /*background: none no-repeat center center fixed;*/
+  /*background-size: cover;*/
+  /*-webkit-filter: blur(3px);*/
+  /*opacity:1;*/
+  /*filter: blur(5px);*/
+  /*width:200%;*/
+  /*height:auto;*/
+  /*!*overflow:hidden;*!*/
+  /*position:absolute;*/
+  /*top:-500%;*/
+  /*left:-10%;*/
+  /*z-index:2;*/
 }
 
 .product {
@@ -247,4 +249,74 @@
 
 .content {
   padding:20px;
+}
+
+.item .left {
+  background-color: #e3e3e3;
+  width:70%;
+  float:left;
+}
+
+.item .right{
+  background-color:#0a9dc7;
+  width:30%;
+
+}
+availability {
+
+}
+
+.item .status {
+  position:absolute;
+  top:10px;
+  right:10px;
+}
+
+.status.icon {
+  top:25%;
+  right:20px;
+  font-size:30px;
+}
+
+.background.white {
+  background-color:rgba(255, 255, 255, 0.97);
+
+  box-shadow: 0px 0px 40px 0px rgba(50, 50, 50, 0.25);
+}
+
+.itempadding {
+  padding-bottom: 100px;
+}
+
+.navi {
+  transition: 0.1s;
+}
+
+.navi ion-item{
+  background-color:#222!important;
+}
+
+.navi .item-complex{
+  margin:0!important;
+  padding:0!important;
+  border:none!important;
+}
+
+.navi .item-content {
+  background-color: #F5F5F5;
+  color:#333;
+  border-bottom: thin none transparent!important;
+  border-top: thin none transparent!important;
+  margin:0;
+  border:none;
+
+}
+.item-content {
+  border-bottom: thin none transparent!important;
+  border-top: thin none transparent!important;
+}
+
+.darkbk {
+  background-color:#fff;
+
 }

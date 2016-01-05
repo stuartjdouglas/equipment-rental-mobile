@@ -26,11 +26,30 @@
 
 
     <ion-content>
+      <div class="item item-avatar darkbk" ng-click="profiletoggle = !profiletoggle">
 
-      <div class="item item-avatar">
-        <img ng-src="https://secure.gravatar.com/avatar/{{auth.gravatar}}?s=90&d=identicon" width="100%" height="auto" ng-click="goto('user/profile')"/>
-        <h2 ng-click="goto('user/profile')">@{{auth.username}}</h2>
+          <img ng-src="https://secure.gravatar.com/avatar/{{auth.gravatar}}?s=90&d=identicon" width="100%" height="auto"/>
+          <h2>@{{auth.username}}</h2>
+          <i class="ion-ios-gear status icon"></i>
       </div>
+
+<div class="navi" ng-show="profiletoggle" class="animated bounceOutLeft">
+      <ion-list>
+        <ion-item menu-close href="#/app/user/profile" ng-show="loggedIn">
+          View profile
+        </ion-item>
+        <ion-item menu-close href="" ng-show="loggedIn">
+          Account Settings
+        </ion-item>
+        <ion-item menu-close href="" ng-show="loggedIn">
+          Application Settings
+        </ion-item>
+        <ion-item menu-close href="#/app/logout" ng-show="loggedIn">
+          Logout
+        </ion-item>
+      </ion-list>
+</div>
+
       <ion-list>
         <ion-item menu-close href="#/app/home" ng-hide="loggedIn">
           Home
@@ -39,24 +58,20 @@
           Home
         </ion-item>
         <ion-item menu-close href="#/app/items" ng-show="loggedIn">
-          Items
+          Listing
         </ion-item>
-        <ion-item menu-close href="#/app/scanner"  ng-show="loggedIn">
-          Scan
-        </ion-item>
-        <ion-item menu-close href="#/app/users"  ng-show="loggedIn">
-          Users
-        </ion-item>
-        <ion-item menu-close href="#/app/upload/image"  ng-show="loggedIn">
-          Upload Image
-        </ion-item>
-        <ion-item menu-close href="#/app/user/profile"  ng-show="loggedIn">
-          My Profile
-        </ion-item>
-
-        <ion-item menu-close href="#/app/logout" ng-show="loggedIn">
-          Logout
-        </ion-item>
+        <!--<ion-item menu-close href="#/app/scanner"  ng-show="loggedIn">-->
+          <!--Scan-->
+        <!--</ion-item>-->
+        <!--<ion-item menu-close href="#/app/users"  ng-show="loggedIn">-->
+          <!--Users-->
+        <!--</ion-item>-->
+        <!--<ion-item menu-close href="#/app/upload/image"  ng-show="loggedIn">-->
+          <!--Upload Image-->
+        <!--</ion-item>-->
+        <!--<ion-item menu-close href="#/app/user/profile"  ng-show="loggedIn">-->
+          <!--My Profile-->
+        <!--</ion-item>-->
 
         <ion-item menu-close href="#/app/login" ng-hide="loggedIn">
           Login
@@ -68,4 +83,16 @@
       </ion-list>
     </ion-content>
   </ion-side-menu>
+
+  <ion-side-menu side="right">
+
+
+
+    <ion-content>
+      <h1>Right side</h1>
+      <br><br>
+      <br>      <b>Insert QR HERE</b>
+    </ion-content>
+
+    </ion-side-menu>
 </ion-side-menus>
