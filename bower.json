@@ -16,7 +16,9 @@
     "bower": "*",
     "install": "~1.0.4",
     "angular-file-upload": "~2.2.0",
-    "animate.css": "~3.5.1"
+    "animate.css": "~3.5.1",
+    "ngColorThief": "angular-colorthief#~0.1.0",
+    "color-thief": "~2.0.1"
   },
   "resolutions": {
     "angular-sanitize": "1.4.3",

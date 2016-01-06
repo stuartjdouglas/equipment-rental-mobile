@@ -235,15 +235,15 @@
   background-color:#fff;
   width:100%;
   height:100%;
-  top:400px;
-  box-shadow: 0px 0px 20px 0px rgba(0, 0, 0, 0.75);
+  top: 50px;
+  /*box-shadow: 0px 0px 20px 0px rgba(0, 0, 0, 0.75);*/
 }
 
 .product .status {
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color:#e3e3e3;
+  background-color:#eee;
   height:40px;
 }
 
@@ -252,7 +252,7 @@
 }
 
 .item .left {
-  background-color: #e3e3e3;
+  background-color: #eee;
   width:70%;
   float:left;
 }
@@ -318,5 +318,42 @@ availability {
 
 .darkbk {
   background-color:#fff;
+
+}
+
+.ani.ng-enter {
+  -webkit-animation: fadeInLeft 0.2s;
+  animation: fadeInLeft 0.2s;
+}
+
+.ani.ng-enter-stagger {
+  -webkit-animation-delay:100ms;
+  animation-delay:100ms;
+
+  /* override to make sure it's not inherited from other styles */
+  -webkit-animation-duration:0;
+  animation-duration:0;
+}
+
+
+
+
+/*
+
+          ITEM
+
+
+*/
+
+.ownerplane {
+  margin-top:10px;
+  background-color: transparent;
+  width:100%;
+  padding:15px;
+  border-radius: 5px;
+   border: 1px solid #d7d1d1;
+}
+
+.movemebuttonright {
 
 }

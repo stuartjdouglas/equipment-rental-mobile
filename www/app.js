@@ -23,11 +23,13 @@ angular.module('App',
 
     // Components | Directives
     'App.availability',
+    'App.imagepreview',
+    'App.rentbutton',
 
     //Dependencies
     'angularMoment',
     'base64',
-    'angularFileUpload'
+    'ngColorThief'
   ]
 )
 
@@ -225,9 +227,7 @@ angular.module('App',
 
   $rootScope.api = backend;
   $rootScope.data = data;
-
-    $scope.scan = scanner.scan;
-
+  $scope.scan = scanner.scan;
 
     $scope.goto = function(state) {
       console.log(state);

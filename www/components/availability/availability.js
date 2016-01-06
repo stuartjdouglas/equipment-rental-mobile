@@ -15,10 +15,9 @@ angular.module('App.availability', ['App.config'])
         $scope.$watch(
           "datasource",
           function handleFooChange( ) {
-            if ($attrs.datasource != "{{product.id}}") {
+            if ($attrs.datasource != "{{product.id}}" && $attrs.datasource != "") {
               $scope.showLoading = false;
               $scope.datasource =  $attrs.datasource;
-               //console.log('/p/' + $attrs.datasource + '/availability');
 
               $http({
                 url: backend + '/p/' + $attrs.datasource + '/availability',
@@ -42,6 +41,16 @@ angular.module('App.availability', ['App.config'])
       },
       link: function(scope, elem, attrs) {
         // Just for altering the DOM
+        //scope.watch($scope.availability, function() {
+        //  debugger;
+        //  if (scope.availability === 'Available') {
+        //    elem.addClass("available");
+        //  } else if (scope.availability === 'UnAvailable') {
+        //    elem.addClass("unavailable");
+        //  } else {
+        //    elem.addClass("error");
+        //  }
+        //})
       }
     };
   });

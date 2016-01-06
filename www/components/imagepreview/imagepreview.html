@@ -1,0 +1,22 @@
+<div class="image-icon" ng-hide="imageloaded" ng-click="tap()">
+  <div class="icon">
+    <ion-spinner></ion-spinner>
+  </div>
+</div>
+<div class="image">
+  <div class="image-preview" ng-click="tap()" ng-style="style" ng-show="imageloaded">
+
+
+  </div>
+
+  <div class="banner" ng-style="bannerstyle" ng-click="tap()" ng-show="imageloaded">
+
+  </div>
+</div>
+
+
+<div class="preview" ng-show="tapped" ng-click="tap()">
+  <div class="image animated" ng-class="imagestyle" >
+    <img src="{{url}}"/>
+  </div>
+</div>
