@@ -17,6 +17,7 @@ angular.module('App',
     'App.timeline',
     'App.items',
     'App.adminItemAdd',
+    'App.my.items',
     // Factories
     'App.config',
     'App.factory.scanner',
@@ -196,6 +197,16 @@ angular.module('App',
         'menuContent': {
           templateUrl: 'views/user/users/users.html',
           controller: 'userUsersCtrl'
+        }
+      }
+    })
+
+    .state('app.myItems', {
+      url: '/my/items',
+      views: {
+        'menuContent': {
+          templateUrl: 'views/user/my/items/myitems.html',
+          controller: 'myItemsCtrl'
         }
       }
     })

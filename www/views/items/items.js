@@ -58,7 +58,7 @@ angular.module('App.items', [])
     }
 
   })
-  .controller('itemCtrl', function($scope, $http, $rootScope, $stateParams, $timeout, $ionicActionSheet, $cordovaSocialSharing) {
+  .controller('itemCtrl', function($scope, $http, $rootScope, $stateParams, $timeout, $ionicActionSheet, $cordovaSocialSharing, $ionicModal) {
     var background = angular.element(document.getElementById('itembackground'));
     $http({
       url: backend + "/product/" + $stateParams.item,
@@ -239,5 +239,46 @@ angular.module('App.items', [])
        $scope.error = true;
       });
     }
+
+    $ionicModal.fromTemplateUrl('my-modal.html', {
+    scope: $scope,
+    animation: 'slide-in-up'
+  }).then(function(modal) {
+    $scope.modal = modal;
+  });
+  $scope.openModal = function() {
+    $http({
+      url: backend + "/identify/qr/listing",
+      method: 'GET',
+      headers: {
+        'width': 300,
+        'height': 300,
+        'code': product.id
+      }
+    }).success(function(data, status, headers, config) {
+
+      $scope.qr = data;
+      $scope.modal.show();
+    }).
+      error(function(data, status, headers, config) {
+        $scope.error = true;
+      });
+
+  };
+  $scope.closeModal = function() {
+    $scope.modal.hide();
+  };
+  //Cleanup the modal when we're done with it!
+  $scope.$on('$destroy', function() {
+    $scope.modal.remove();
+  });
+  // Execute action on hide modal
+  $scope.$on('modal.hidden', function() {
+    // Execute action
+  });
+  // Execute action on remove modal
+  $scope.$on('modal.removed', function() {
+    // Execute action
+  });
 
   });
