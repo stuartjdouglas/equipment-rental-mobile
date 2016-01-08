@@ -20,15 +20,15 @@
         </div>
       </div>
 
-      <div class="list ani block" ng-repeat="product in products.results.item">
+      <div class="list ani block" ng-repeat="product in products.items">
            <!--ng-style="{'background-image':'url({{data}}{{product.image.size.large}})'}"-->
         <!--<img class="background" ng-src="{{data}}{{product.image.size.small}}">-->
         <a class="item item-avatar transparent border large-avatar" href="#/app/item/{{product.id}}">
-          <img src="{{data}}{{product.image.size.thumb}}">
+          <img ng-src="{{data}}{{product.images.size.thumb}}">
           <h2 class="white">{{product.title}}</h2>
           <p class="white">{{product.description}}</p>
 
-          <availability datasource={{product.id}} class="status"></availability>
+          <p class="status"> Due {{product.due | amCalendar}}</p>
         </a>
       </div>
 
