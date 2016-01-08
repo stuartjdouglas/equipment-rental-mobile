@@ -1,8 +1,8 @@
 
 //var domain = 'http://192.168.1.99:3000'
 
-//var domain = 'http://localhost'
-var domain = 'http://lemondev.xyz:8080'
+var domain = 'http://localhost:3000'
+// var domain = 'http://lemondev.xyz:8080'
 var api = '/api';
 
 var backend = domain + api;

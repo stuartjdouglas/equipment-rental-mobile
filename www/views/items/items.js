@@ -246,9 +246,10 @@ angular.module('App.items', [])
   }).then(function(modal) {
     $scope.modal = modal;
   });
-  $scope.openModal = function() {
+  $scope.openModal = function(product) {
+    console.log(product)
     $http({
-      url: backend + "/identify/qr/listing",
+      url: backend + "/identify/qr/product",
       method: 'GET',
       headers: {
         'width': 300,

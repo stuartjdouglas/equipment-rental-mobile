@@ -357,3 +357,19 @@ availability {
 .movemebuttonright {
 
 }
+
+
+/*
+      QR Code
+*/
+
+.QR.padding {
+  padding:20px;
+  margin-top:10%;
+}
+
+.QR img {
+  /*width:100%;*/
+  /*height:100%;*/
+  max-width:200px;
+}
