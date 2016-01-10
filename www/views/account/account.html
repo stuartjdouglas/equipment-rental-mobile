@@ -1,0 +1,33 @@
+<ion-view view-title="Account Settings" >
+  <ion-content class="wrapper top acc" has-bouncing="true">
+    <div class="list">
+      <div class="item item-divider">
+        Details
+      </div>
+      <h1>{{profile.username}}</h1>
+
+
+      <div class="item item-divider">
+        Editable
+      </div>
+      <a class="item item-icon-left item-icon-right" href="#">
+        <input type="text" ng-model="profile.first_name">
+      </a>
+
+      <a class="item item-icon-left item-icon-right" href="#">
+        <input type="text" ng-model="profile.last_name">
+      </a>
+
+      <a class="item item-icon-left item-icon-right" href="#">
+        <i class="icon ion-email"></i>
+        <input type="text" ng-model="profile.email">
+      </a>
+
+
+<!-- ion-paper-airplane -->
+
+
+</div>
+
+  </ion-content>
+</ion-view>

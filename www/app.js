@@ -18,6 +18,8 @@ angular.module('App',
     'App.items',
     'App.adminItemAdd',
     'App.my.items',
+    'App.account.settings',
+    'App.settings',
     // Factories
     'App.config',
     'App.factory.scanner',
@@ -47,7 +49,20 @@ angular.module('App',
       // org.apache.cordova.statusbar required
       //StatusBar.styleDefault();
       if (ionic.Platform.isAndroid()) {
-        window.StatusBar.backgroundColorByHexString('#039BE5');
+        // window.StatusBar.backgroundColorByHexString('#039BE5');
+        var colour = window.localStorage.themeColour;
+        if (colour != "") {
+          if (colour != "") {
+window.StatusBar.backgroundColorByHexString('#039BE5');
+            // window.StatusBar.backgroundColorByHexString(colour);
+          } else {
+            window.StatusBar.backgroundColorByHexString('#039BE5');
+          }
+        } else {
+          window.localStorage.themeColour = '#039BE5';
+          window.StatusBar.backgroundColorByHexString('#039BE5');
+        }
+
       } else {
         StatusBar.styleLightContent();
       }
@@ -203,10 +218,33 @@ angular.module('App',
 
     .state('app.myItems', {
       url: '/my/items',
+      cache: false,
       views: {
         'menuContent': {
           templateUrl: 'views/user/my/items/myitems.html',
           controller: 'myItemsCtrl'
+        }
+      }
+    })
+
+    .state('app.accountSettings', {
+      url: '/account/settings',
+      cache: false,
+      views: {
+        'menuContent': {
+          templateUrl: 'views/account/account.html',
+          controller: 'accountSettingsCtrl'
+        }
+      }
+    })
+
+    .state('app.settings', {
+      url: '/settings',
+      cache: true,
+      views: {
+        'menuContent': {
+          templateUrl: 'views/application/settings/settings.html',
+          controller: 'settingsCtrl'
         }
       }
     })
@@ -235,6 +273,9 @@ angular.module('App',
     }
 
   console.log($rootScope.auth);
+  $scope.theme = {
+    color: 'pink'
+  }
 
   $rootScope.api = backend;
   $rootScope.data = data;

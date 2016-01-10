@@ -25,7 +25,7 @@
 
 
 
-    <ion-content>
+    <ion-content has-bouncing="true">
       <div class="item item-avatar darkbk" ng-click="profiletoggle = !profiletoggle">
 
           <img ng-src="https://secure.gravatar.com/avatar/{{auth.gravatar}}?s=90&d=identicon" width="100%" height="auto"/>
@@ -38,10 +38,10 @@
         <ion-item menu-close href="#/app/user/profile" ng-show="loggedIn">
           View profile
         </ion-item>
-        <ion-item menu-close href="" ng-show="loggedIn">
+        <ion-item menu-close href="#/app/account/settings" ng-show="loggedIn">
           Account Settings
         </ion-item>
-        <ion-item menu-close href="" ng-show="loggedIn">
+        <ion-item menu-close href="#/app/settings" ng-show="loggedIn">
           Application Settings
         </ion-item>
         <ion-item menu-close href="#/app/logout" ng-show="loggedIn">

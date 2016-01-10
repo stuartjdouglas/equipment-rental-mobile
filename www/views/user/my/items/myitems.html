@@ -1,5 +1,5 @@
 <ion-view view-title="My Items">
-  <ion-content class="dark">
+  <ion-content class="dark" has-bouncing="true">
         <div class="bar bar-subheader item-input-inset">
           <label class="item-input-wrapper">
             <i class="icon ion-ios-search placeholder-icon"></i>
@@ -20,6 +20,11 @@
         </div>
       </div>
 
+      <ion-refresher
+        pulling-text="Pull to refresh..."
+        on-refresh="doRefresh()">
+      </ion-refresher>
+
       <div class="list ani block" ng-repeat="product in products.items">
            <!--ng-style="{'background-image':'url({{data}}{{product.image.size.large}})'}"-->
         <!--<img class="background" ng-src="{{data}}{{product.image.size.small}}">-->
@@ -36,10 +41,9 @@
 
     </div>
 
-
-
-
   </ion-content>
+
+
   <div class="row row-bottom background white">
     <div class="col">
       <a class="tab-item" ng-click="back()">

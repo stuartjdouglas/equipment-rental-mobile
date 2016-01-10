@@ -8,6 +8,10 @@
 }
 
 
+.wrapper.top {
+  margin-top:50px;
+}
+
 /* login CSS */
 
 
@@ -372,4 +376,8 @@ availability {
   /*width:100%;*/
   /*height:100%;*/
   max-width:200px;
+}
+
+.acc .item-input {
+  border: 0px solid #333;
 }

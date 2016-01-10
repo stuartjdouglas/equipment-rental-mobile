@@ -9,7 +9,7 @@ angular.module('App.my.items', [])
 
 
     if ($rootScope.loggedIn) {
-      updateResults();
+      // updateResults();
     } else {
       $scope.view = false;
     }
@@ -19,6 +19,10 @@ angular.module('App.my.items', [])
       window.localStorage.setItem("product_count", newValue);
       updateResults();
     });
+
+    $scope.doRefresh = function() {
+      updateResults();
+    }
 
     $scope.back = function() {
       if ($scope.start - $scope.count < 0) {
@@ -51,9 +55,12 @@ angular.module('App.my.items', [])
         }
       }).success(function(data, status, headers, config) {
         $scope.products = data;
+        console.log(data);
       }).
       error(function(data, status, headers, config) {
         $scope.error = true;
+      }).finally(function() {
+        $scope.$broadcast('scroll.refreshComplete');
       });
     }
 

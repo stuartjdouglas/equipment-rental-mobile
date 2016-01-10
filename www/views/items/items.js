@@ -9,9 +9,13 @@ angular.module('App.items', [])
 
 
     if ($rootScope.loggedIn) {
-      updateResults();
+      // updateResults();
     } else {
       $scope.view = false;
+    }
+
+    $scope.doRefresh = function() {
+      updateResults();
     }
 
     $scope.$watch("count", function(newValue) {
@@ -54,6 +58,8 @@ angular.module('App.items', [])
       }).
       error(function(data, status, headers, config) {
         $scope.error = true;
+      }).finally(function() {
+        $scope.$broadcast('scroll.refreshComplete');
       });
     }
 

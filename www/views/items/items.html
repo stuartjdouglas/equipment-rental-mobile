@@ -1,5 +1,5 @@
 <ion-view view-title="Listing">
-  <ion-content class="dark">
+  <ion-content class="dark" has-bouncing="true">
         <div class="bar bar-subheader item-input-inset">
           <label class="item-input-wrapper">
             <i class="icon ion-ios-search placeholder-icon"></i>
@@ -19,6 +19,11 @@
           </i>
         </div>
       </div>
+
+      <ion-refresher
+        pulling-text="Pull to refresh..."
+        on-refresh="doRefresh()">
+      </ion-refresher>
 
       <div class="list ani block" ng-repeat="product in products.results.item">
            <!--ng-style="{'background-image':'url({{data}}{{product.image.size.large}})'}"-->
