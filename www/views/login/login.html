@@ -1,31 +1,36 @@
 <ion-view view-title="Login">
   <ion-content class="login wrapper" has-bouncing="true">
-    <form ng-submit="login(user)" ng-hide="processing" class="login form">
 
-
-      <div class="login input">
-        <label class="item item-input">
-          <span class="input-label">Username</span>
-          <input type="text" ng-model="user.name">
-        </label>
-        <label class="item item-input">
-          <span class="input-label">Password</span>
-          <input type="password" ng-model="user.password">
-        </label>
-      </div>
-
-
-
-      <div class="row row-bottom">
-        <div class="login submit">
-          <button class="button button-block button-positive">
-            Login
-          </button>
+    <div class="container">
+      <div class="title">
+        <h1 class="centerstage">Login</h1>
+        <div class="error" ng-show="error" ng-cloak>
+          <p>{{error}}</p>
         </div>
+        <i>Enter your username and password</i>
+        <form ng-submit="login(user)"  class="login form">
+          <div class="login input">
+            <label class="item item-input">
+              <span class="input-label">Username</span>
+              <input type="text" ng-model="user.name">
+            </label>
+            <label class="item item-input">
+              <span class="input-label">Password</span>
+              <input type="password" ng-model="user.password">
+            </label>
+          </div>
+          <div class="login submit">
+            <button class="button button-block button-positive">
+              <span ng-hide="processing">login</span>
+              <span ng-show="processing">logging in</span>
+            </button>
+          </div>
+        </form>
+        <button class="button" ng-click="forgotPassword()">
+          Forgotten Password
+        </button>
       </div>
-
-
-    </form>
+    </div>
 
 
   </ion-content>

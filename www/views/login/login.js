@@ -1,6 +1,6 @@
 angular.module('App.login', [])
   .controller('loginCtrl', function($scope, $http, $rootScope, $location, $ionicHistory, $state) {
-
+    $scope.processing = false;
     $scope.login = function(user) {
       if (user != null) {
         performLogin(user);
@@ -13,6 +13,7 @@ angular.module('App.login', [])
 
     function performLogin(user) {
       $scope.processing = true;
+      $scope.error = false;
       var hash = CryptoJS.SHA512(user.password).toString();
 
       $http({
@@ -40,6 +41,7 @@ angular.module('App.login', [])
         window.localStorage.auth = auth;
         $rootScope.auth = JSON.parse(window.localStorage.auth);
         $scope.error = false;
+        $scope.processing = false;
         $rootScope.loggedIn = true;
         $ionicHistory.nextViewOptions({
           disableBack: true
@@ -48,8 +50,8 @@ angular.module('App.login', [])
         $state.go('app.timeline');
       }).error(function(data, status, headers, config) {
           $scope.error = data.message;
-        $scope.processing = false;
-        });
+          $scope.processing = false;
+      });
     }
 
 

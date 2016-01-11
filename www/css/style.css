@@ -29,10 +29,52 @@
   background-color: #fff!important;
 }
 
-/*.login.input {*/
-  /*width:500px;*/
-  /*margin: 0 auto;*/
-/*}*/
+
+.login .container {
+  display: -ms-flexbox;
+	display: -webkit-flex;
+	display: flex;
+
+	-ms-flex-align: center;
+	-webkit-align-items: center;
+	-webkit-box-align: center;
+
+	align-items: center;
+  width:100%;
+  height:100%;
+}
+
+.login .container .title {
+  width:100%;
+  text-align:center;
+}
+
+.login .container .title .centerstage {
+  padding-bottom:30px;
+}
+
+.login.input {
+
+}
+
+.login .error {
+  padding:20px;
+  margin-top:10px;
+  margin-bottom:10px;
+  background: #e53935;
+  color:#fff;
+}
+
+.login .processing {
+
+}
+
+.login .processing .text {
+  width:100%;
+  text-align: center;
+  font-size:2em;
+  font-weight:600;
+}
 
 /*.login.input .input-label, .login.input.text {*/
   /*color:#000;*/
