@@ -1,4 +1,4 @@
-<ion-view view-title="Listing">
+<ion-view view-title="My Listings">
   <ion-content class="dark" has-bouncing="true">
         <div class="bar bar-subheader item-input-inset">
           <label class="item-input-wrapper">
@@ -25,7 +25,7 @@
         on-refresh="doRefresh()">
       </ion-refresher>
 
-      <div class="list ani block" ng-repeat="product in products.results.items">
+      <div class="list ani block" ng-repeat="product in products.items">
            <!--ng-style="{'background-image':'url({{data}}{{product.image.size.large}})'}"-->
         <!--<img class="background" ng-src="{{data}}{{product.image.size.small}}">-->
         <a class="item item-avatar transparent border large-avatar" href="#/app/item/{{product.id}}">
@@ -33,7 +33,7 @@
           <h2 class="white">{{product.title}}</h2>
           <p class="white">{{product.description}}</p>
 
-          <availability datasource={{product.id}} class="status"></availability>
+          <availability datasource={{product.id}} isowner="true" class="status"></availability>
         </a>
       </div>
 

@@ -11,7 +11,11 @@
         </div>
 
 
-
+        <div class="no results" ng-show="noResults">
+          <div class="text">
+            No Results :(
+          </div>
+        </div>
       <div class="row ">
         <div class="col">
           <i>
@@ -46,7 +50,7 @@
 
   <div class="row row-bottom background white">
     <div class="col">
-      <a class="tab-item" ng-click="back()">
+      <a class="tab-item" ng-click="back()" ng-hide="noResults">
         <i class="icon ion-arrow-left-c"></i>
         Previous Page
       </a>
@@ -58,7 +62,7 @@
       </a>
     </div>
     <div class="col">
-      <a class="tab-item" ng-click="forward()">
+      <a class="tab-item" ng-click="forward()" ng-hide="noResults">
         <i class="icon ion-arrow-right-c"></i>
         Next Page
       </a>

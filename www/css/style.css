@@ -381,3 +381,27 @@ availability {
 .acc .item-input {
   border: 0px solid #333;
 }
+
+
+.no.results {
+
+  height:100%;
+  width:100%;
+  background-color:#fff;
+  display: -ms-flexbox;
+	display: -webkit-flex;
+	display: flex;
+
+	-ms-flex-align: center;
+	-webkit-align-items: center;
+	-webkit-box-align: center;
+
+	align-items: center;
+}
+.no.results .text {
+  width:100%;
+  margin-top:-60px;
+  font-size:30px;
+  font-weight:900;
+  text-align:center;
+}

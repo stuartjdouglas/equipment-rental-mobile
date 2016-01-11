@@ -53,7 +53,7 @@ angular.module('App.items', [])
           'Count':$scope.count
         }
       }).success(function(data, status, headers, config) {
-        // console.log(data);
+        console.log(data);
         $scope.products = data;
       }).
       error(function(data, status, headers, config) {
@@ -64,6 +64,13 @@ angular.module('App.items', [])
     }
 
   })
+
+  /*
+
+          Item Controller
+
+  */
+
   .controller('itemCtrl', function($scope, $http, $rootScope, $stateParams, $timeout, $ionicActionSheet, $cordovaSocialSharing, $ionicModal) {
     var background = angular.element(document.getElementById('itembackground'));
     $http({
@@ -74,30 +81,21 @@ angular.module('App.items', [])
         'Count':$scope.count
       }
     }).success(function(result, status, headers, config) {
-      // console.log(result.item[0]);
-      $scope.product = result.item[0];
-      // console.log(data);
+      $scope.product = result.items[0];
+      $scope.isOwner = (result.items[0].owner.username === $rootScope.auth.username)
+      console.log($scope.isOwner)
       background.css({
         'background-image': 'url(' + data + $scope.product.image.size.large + ')'
       });
-
       //Call if the item is available
       checkAva();
-
-
-      //debugger
-
     }).
     error(function(data, status, headers, config) {
       $scope.error = true;
     });
-    //filter: blur(5px);
-
     var statusbar = angular.element(document.getElementById('status'));
 
-
     $scope.showAction = function() {
-
       // Show the action sheet
       var hideSheet = $ionicActionSheet.show({
         buttons: [
@@ -113,7 +111,7 @@ angular.module('App.items', [])
         buttonClicked: function(index) {
           if (index === 0) {
             $cordovaSocialSharing
-              .shareViaTwitter($scope.product.title, data + $scope.product.image.size.large, "http://lemondev.xyz:8080/#/listing/" + $scope.product.id)
+              .shareViaTwitter($scope.product.title, data + $scope.product.image.size.large, "http://lemondev.xyz:3000/#/listing/" + $scope.product.id)
               .then(function(result) {
                 // console.log(result);
               }, function(err) {
@@ -121,7 +119,7 @@ angular.module('App.items', [])
               });
           } else if (index === 1) {
             $cordovaSocialSharing
-              .shareViaFacebook($scope.product.title + "  http://lemondev.xyz:8080/#/listing/" + $scope.product.id, data + $scope.product.image.size.large)
+              .shareViaFacebook($scope.product.title + "  http://lemondev.xyz:3000/#/listing/" + $scope.product.id, data + $scope.product.image.size.large)
               .then(function(result) {
                 // Success!
               }, function(err) {
@@ -129,7 +127,7 @@ angular.module('App.items', [])
               });
           } else {
             $cordovaSocialSharing
-              .share($scope.product.title, $scope.product.title, data + $scope.product.image.size.large, "http://lemondev.xyz:8080/#/listing/" + $scope.product.id) // Share via native share sheet
+              .share($scope.product.title, $scope.product.title, data + $scope.product.image.size.large, "http://lemondev.xyz:3000/#/listing/" + $scope.product.id) // Share via native share sheet
               .then(function(result) {
                 // Success!
               }, function(err) {
@@ -157,7 +155,27 @@ angular.module('App.items', [])
 
     $scope.return = function() {
       console.log("returning");
-      returnItem();
+      if ($scope.isOwner) {
+        ownerReturn();
+      } else {
+        returnItem();
+      }
+    }
+
+    function ownerReturn() {
+      $http({
+          url: backend + '/p/' + $scope.product.id + '/return',
+          method: 'POST',
+          headers: {
+              'token': window.localStorage.token
+          },
+      }).success(function (data, status, headers, config) {
+          checkAva();
+          $scope.owner = false;
+      }).
+      error(function (data, status, headers, config) {
+          $scope.error = true;
+      });
     }
 
     function returnItem() {
@@ -203,7 +221,10 @@ angular.module('App.items', [])
     $scope.rentbuttonclass = {};
 
     function checkAva() {
-
+      if ($scope.isOwner) {
+        console.log("checking owner stats")
+        checkOwnerStatus();
+      }
       $http({
        url: backend + '/p/' + $stateParams.item + '/availability',
        method: 'GET',
@@ -243,7 +264,31 @@ angular.module('App.items', [])
       }).
       error(function (data, status, headers, config) {
        $scope.error = true;
+      }).finally(function() {
+        $scope.$broadcast('scroll.refreshComplete');
       });
+    }
+
+    function checkOwnerStatus() {
+      if ($rootScope.loggedIn) {
+        $http({
+            url: backend + '/owner/products/' + $stateParams.item + '/availability',
+            method: 'GET',
+            headers: {
+                'token': window.localStorage.token
+            },
+        }).success(function (data, status, headers, config) {
+            $scope.ownerAva = data;
+            console.log(data);
+        }).
+        error(function (data, status, headers, config) {
+            $scope.error = true;
+        });
+    }
+  }
+
+    $scope.doRefresh = function() {
+      checkAva();
     }
 
     $ionicModal.fromTemplateUrl('my-modal.html', {

@@ -2,7 +2,10 @@
   <!--<div class="scroll itembackground" id="itembackground">-->
   <!--</div>-->
   <ion-content has-bouncing="true">
-
+    <ion-refresher
+      pulling-text="Pull to refresh..."
+      on-refresh="doRefresh()">
+    </ion-refresher>
 
     <div class="product">
       <imagepreview image={{product.image.size.large}}></imagepreview>
@@ -46,6 +49,24 @@
             </div>
             <div class="col">
               <button class="button movemebuttonright" ng-click="return()">Return</button>
+            </div>
+          </div>
+
+        </div>
+
+        <br>
+
+        <div class="ownerplane" ng-show="isOwner">
+          <h4><b>You Own this</b></h4>
+          <div class="row">
+            <div class="col">
+              <p>Current holding by {{ownerAva.owner}}</p>
+
+                  <p><b>Issued: </b>{{ownerAva.date_taken | amCalendar}}</p>
+                  <p><b>Due: </b>{{ownerAva.date_due | amCalendar}}</p>
+            </div>
+            <div class="col">
+              <button class="button movemebuttonright" ng-click="return()">Mark Returned</button>
             </div>
           </div>
 

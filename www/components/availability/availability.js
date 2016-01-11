@@ -5,7 +5,8 @@ angular.module('App.availability', ['App.config'])
     return {
       restrict: 'AEC',
       scope: {
-        datasource: '@'
+        datasource: '@',
+        isowner: '@'
       },
       templateUrl: 'components/availability/availability.html',
       controller: function($scope, $http, $rootScope, $location, $attrs) {
@@ -18,20 +19,45 @@ angular.module('App.availability', ['App.config'])
             if ($attrs.datasource != "{{product.id}}" && $attrs.datasource != "") {
               $scope.showLoading = false;
               $scope.datasource =  $attrs.datasource;
+              console.log($attrs.isowner);
+              if ($attrs.isowner === 'true') {
+                console.log("weee owner")
+                $http({
+                  url: backend + '/owner/products/' + $attrs.datasource + '/availability',
+                  method: 'GET',
+                  headers: {
+                    token: window.localStorage.token
+                  }
+                }).success(function(data, status, headers, config) {
+                  console.log(data)
+                  if (data.available) {
+                    $scope.availability = "Available";
+                    $scope.isDate = false;
+                  } else {
+                    $scope.isDate = true;
+                    $scope.availability = data.date_due;
+                  }
+                }).
+                error(function(data, status, headers, config) {
+                  $scope.error = true;
+                });
+              } else {
+                $http({
+                  url: backend + '/p/' + $attrs.datasource + '/availability',
+                  method: 'GET',
+                }).success(function(data, status, headers, config) {
+                  if (data.available) {
+                    $scope.availability = "Available";
+                  } else {
+                    $scope.availability = "Unavailable";
+                  }
+                }).
+                error(function(data, status, headers, config) {
+                  $scope.error = true;
+                });
+              }
 
-              $http({
-                url: backend + '/p/' + $attrs.datasource + '/availability',
-                method: 'GET',
-              }).success(function(data, status, headers, config) {
-                if (data.available) {
-                  $scope.availability = "Available";
-                } else {
-                  $scope.availability = "Unavailable";
-                }
-              }).
-              error(function(data, status, headers, config) {
-                $scope.error = true;
-              });
+
             } else {
               $scope.showLoading = true;
             }

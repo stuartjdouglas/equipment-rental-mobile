@@ -1,34 +1,41 @@
 angular.module('App.adminItemAdd', [])
-  .controller('adminItemAddCtrl', function($scope, $http, $cordovaFile, $rootScope, $ionicHistory, $state, $cordovaCamera) {
+  .controller('adminItemAddCtrl', function($scope, $http, $cordovaFile, $rootScope, $ionicHistory, $state,$cordovaImagePicker) {
     $scope.title = "New item";
     console.log("hello");
     $scope.product = {};
 
-    $scope.loading = true;
+    $scope.loading = false;
 
     var options = {
-      quality: 100,
-      destinationType: Camera.DestinationType.DATA_URL,
-      sourceType: Camera.PictureSourceType.SAVEDPHOTOALBUM,
-      allowEdit: true,
-      encodingType: Camera.EncodingType.JPEG,
-      popoverOptions: CameraPopoverOptions,
-      saveToPhotoAlbum: false
+      quality: 100
     };
 
     $scope.openImage = function() {
-      $cordovaCamera.getPicture(options).then(function(imageData) {
-        var image = document.getElementById('myImage');
+      var image;
+      var url;
+      $cordovaImagePicker.getPictures(options)
+    .then(function (results) {
+      for (var i = 0; i < results.length; i++) {
+        console.log('Image URI: ' + results[i]);
+        url = results[0];
+      }
 
-        $scope.product.image = imageData;
-
-        //$scope.images = "data:image/jpeg;base64," + imageData;
-
-
-        debugger;
-      }, function(err) {
-        // error
-      });
+      var img = new Image();
+      img.crossOrigin = 'Anonymous';
+      img.onload = function(){
+          var canvas = document.createElement('CANVAS'),
+          ctx = canvas.getContext('2d'), dataURL;
+          canvas.height = this.height;
+          canvas.width = this.width;
+          ctx.drawImage(this, 0, 0);
+          dataURL = canvas.toDataURL('jpg');
+          $scope.product.image = dataURL;
+          canvas = null;
+      };
+      img.src = url;
+    }, function(error) {
+      // error getting photos
+    });
     }
 
     $scope.uploadProduct = function(product) {
@@ -39,6 +46,7 @@ angular.module('App.adminItemAdd', [])
         fd.append('title', product.title);
         fd.append('description', product.description);
         fd.append('rental_period_limit', product.days);
+        // fd.append('filetype', product.image.split(',')[0].split(':')[1].split(';')[0]);
         fd.append('image', product.image);
         $http({
           url: backend + "/p",
@@ -51,21 +59,11 @@ angular.module('App.adminItemAdd', [])
             'token': window.localStorage.token,
           }
         }).success(function (data, status, headers, config) {
-          $scope.success = true;
-          $cordovaLocalNotification.schedule({
-            id: 1,
-            title: 'Title here',
-            text: 'Text here',
-            data: {
-              customProperty: 'custom value'
-            }
-          }).then(function (result) {
-            // ...
-          });
+          // $scope.success = true;
         }).
         error(function (data, status, headers, config) {
 
-          $scope.success = false;
+          // $scope.success = false;
 
         });
       }

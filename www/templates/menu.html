@@ -33,36 +33,54 @@
           <i class="ion-ios-gear status icon"></i>
       </div>
 
-<div class="navi" ng-show="profiletoggle" class="animated bounceOutLeft">
-      <ion-list>
-        <ion-item menu-close href="#/app/user/profile" ng-show="loggedIn">
-          View profile
-        </ion-item>
-        <ion-item menu-close href="#/app/account/settings" ng-show="loggedIn">
-          Account Settings
-        </ion-item>
-        <ion-item menu-close href="#/app/settings" ng-show="loggedIn">
-          Application Settings
-        </ion-item>
-        <ion-item menu-close href="#/app/logout" ng-show="loggedIn">
-          Logout
-        </ion-item>
-      </ion-list>
-</div>
+      <div class="navi" ng-show="profiletoggle" class="animated bounceOutLeft">
+            <ion-list>
+              <ion-item menu-close href="#/app/user/profile" ng-show="loggedIn" class="animated fadeIn" ng-click="profileToggle = false">
+                View profile
+              </ion-item>
+              <ion-item menu-close href="#/app/account/settings" ng-show="loggedIn" class="animated fadeIn" ng-click="profileToggle = false">
+                Account Settings
+              </ion-item>
+              <ion-item menu-close href="#/app/settings" ng-show="loggedIn" class="animated fadeIn" ng-click="profileToggle = false">
+                Application Settings
+              </ion-item>
+              <ion-item menu-close href="#/app/logout" ng-show="loggedIn" class="animated fadeIn" ng-click="profileToggle = false">
+                Logout
+              </ion-item>
+            </ion-list>
+      </div>
 
       <ion-list>
-        <ion-item menu-close href="#/app/home" ng-hide="loggedIn">
-          Home
+        <ion-item menu-close href="#/app/home" class="item-icon-left" ng-hide="loggedIn">
+          <i class="icon ion-home"></i>Home
         </ion-item>
-        <ion-item menu-close href="#/app/timeline" ng-show="loggedIn">
-          Home
+        <ion-item menu-close href="#/app/timeline" class="item-icon-left" ng-show="loggedIn">
+          <i class="icon ion-home"></i>Home
         </ion-item>
-        <ion-item menu-close href="#/app/items" ng-show="loggedIn">
-          Listing
+        <ion-item menu-close href="#/app/items" class="item-icon-left" ng-show="loggedIn">
+          <i class="icon ion-ios-pricetag"></i>Listing
         </ion-item>
-        <ion-item menu-close href="#/app/my/items" ng-show="loggedIn">
-          My Items
+        <ion-item menu-close href="#/app/my/items" class="item-icon-left" ng-show="loggedIn">
+          <i class="icon ion-android-folder"></i>My Items
         </ion-item>
+        <div ng-click="ownerToggle = !ownerToggle">
+        <ion-item ng-show="loggedIn" class="item-icon-right">
+          <i class="icon ion-android-arrow-dropdown" ng-hide="ownerToggle"></i>
+            <i class="icon ion-android-arrow-dropup" ng-show="ownerToggle">
+          </i>Owner Menu
+        </ion-item>
+      </div>
+
+        <div class="navi" ng-show="ownerToggle" class="animated bounceOutLeft">
+              <ion-list>
+                <ion-item menu-close href="#/app/owner/items" class="animated fadeIn" ng-show="loggedIn" ng-click="ownerToggle = false">
+                  My items
+                </ion-item>
+                <ion-item menu-close href="#/app/owner/requests" class="animated fadeIn" ng-show="loggedIn" ng-click="ownerToggle = false">
+                  Requests
+                </ion-item>
+              </ion-list>
+        </div>
         <!--<ion-item menu-close href="#/app/scanner"  ng-show="loggedIn">-->
           <!--Scan-->
         <!--</ion-item>-->

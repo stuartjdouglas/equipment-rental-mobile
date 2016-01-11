@@ -1,5 +1,5 @@
 angular.module('App.timeline', [])
-  .controller('timelineCtrl', function($scope, $http, $rootScope) {
+  .controller('timelineCtrl', function($scope, $http, $rootScope, $state) {
     if ($rootScope.loggedIn) {
       $scope.viewSplash = false;
       $http({
@@ -14,7 +14,9 @@ angular.module('App.timeline', [])
       }).error(function(data, status, headers, config) {
       });
     } else {
+      // console.log("we are not logged in")
       $scope.viewSplash = true;
+      $state.go('app.home')
     }
 
   });

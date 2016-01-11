@@ -1,1 +1,6 @@
-{{availability}}
+<span ng-hide="isDate">
+  {{availability}}
+</span>
+<span ng-show="isDate">
+  Due {{availability | amCalendar}}
+</span>
