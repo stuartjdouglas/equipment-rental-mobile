@@ -25,7 +25,7 @@
         on-refresh="doRefresh()">
       </ion-refresher>
 
-      <div class="list ani block" ng-repeat="product in products.results.items">
+      <div class="list ani block" ng-repeat="product in products.items">
            <!--ng-style="{'background-image':'url({{data}}{{product.image.size.large}})'}"-->
         <!--<img class="background" ng-src="{{data}}{{product.image.size.small}}">-->
         <a class="item item-avatar transparent border large-avatar" href="#/app/item/{{product.id}}">
