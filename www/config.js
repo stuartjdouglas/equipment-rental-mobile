@@ -11,6 +11,9 @@ data = domain;
 angular.module('App.config', [])
 
 .factory('Configuration', function() {
+
+
+
     return {
       backend: domain + api,
       data: domain + data
