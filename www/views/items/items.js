@@ -71,7 +71,7 @@ angular.module('App.items', [])
 
   */
 
-  .controller('itemCtrl', function($scope, $http, $rootScope, $stateParams, $timeout, $ionicActionSheet, $cordovaSocialSharing, $ionicModal) {
+  .controller('itemCtrl', function($scope, $http, $rootScope, $stateParams, $timeout, $ionicActionSheet, $cordovaSocialSharing, $ionicModal, $ionicPopup) {
     var background = angular.element(document.getElementById('itembackground'));
     $http({
       url: backend + "/product/" + $stateParams.item,
@@ -177,6 +177,34 @@ angular.module('App.items', [])
           $scope.error = true;
       });
     }
+
+    $scope.deleteItem = function() {
+      var confirmPopup = $ionicPopup.confirm({
+        title: 'Delete item',
+        template: 'Are you sure you want to delete this item?'
+      });
+
+      confirmPopup.then(function(res) {
+        if(res) {
+          $http({
+            url: backend + '/product/' + $scope.product.id + '/delete',
+            method: 'DELETE',
+            headers: {
+              'token': window.localStorage.token
+            },
+          }).success(function (data, status, headers, config) {
+            $location.path('/owner/listing');
+          }).
+          error(function (data, status, headers, config) {
+            $scope.error = true;
+          });
+        } else {
+          console.log('You are not sure');
+        }
+      });
+
+
+    };
 
     function returnItem() {
       $http({

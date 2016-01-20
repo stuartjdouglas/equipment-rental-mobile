@@ -65,8 +65,12 @@
                   <p><b>Issued: </b>{{ownerAva.date_taken | amCalendar}}</p>
                   <p><b>Due: </b>{{ownerAva.date_due | amCalendar}}</p>
             </div>
-            <div class="col">
-              <button class="button movemebuttonright" ng-click="return()">Mark Returned</button>
+
+          </div>
+          <div class="row">
+            <div class="button-bar">
+              <button class="button button-minor" ng-click="return()">Mark Available</button>
+              <button class="button button-assertive icon-right ion-trash-a" ng-click="deleteItem()">Delete</button>
             </div>
           </div>
 
