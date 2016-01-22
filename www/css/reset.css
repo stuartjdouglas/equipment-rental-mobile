@@ -52,10 +52,18 @@
   height:100%;
 }
 
+.item {
+  /*border: none;*/
+}
+
 .item.border {
   border-color: #e3e3e3!important;
   border-style: solid;
-  border-top: thick solid #f1f2f3!important;
+  /*border-top: thick solid #f1f2f3!important;*/
+}
+
+.listing.block {
+  border-bottom: 0.5px solid rgba(105, 105, 105, 0.08)!important;
 }
 
 

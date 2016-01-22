@@ -250,6 +250,19 @@
   /*text-shadow: 0px 0px 7px rgba(0, 0, 0, 1);*/
 }
 
+.tags {
+  padding: 10px;
+  /*background: #FAFAFA;*/
+
+}
+
+.tag {
+  border: 1px solid #e3e3e3;
+  padding: 5px;
+  margin: 2px;
+  border-radius: 10px;
+}
+
 .block {
   overflow:hidden;
   background:none!important;
