@@ -252,6 +252,7 @@
 
 .tags {
   padding: 10px;
+  display: flex;
   /*background: #FAFAFA;*/
 
 }
@@ -326,9 +327,11 @@ availability {
 }
 
 .item .status {
-  position:absolute;
-  top:10px;
-  right:10px;
+  position:relative;
+  width: 100%;
+  text-align: right;
+  /*top:10px;*/
+  /*right:10px;*/
 }
 
 .status.icon {

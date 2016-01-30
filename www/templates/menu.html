@@ -12,7 +12,8 @@
       </ion-nav-buttons>
 
       <ion-nav-buttons side="right">
-        <button class="button button-icon button-clear ion-qr-scanner"  ng-click="scan()" ng-show="loggedIn"> Scan</button>
+        <button class="button button-icon button-clear ion-qr-scanner" ng-click="scan()" ng-show="loggedIn"> Scan
+        </button>
       </ion-nav-buttons>
 
     </ion-nav-bar>
@@ -24,30 +25,33 @@
   <ion-side-menu side="left">
 
 
-
     <ion-content has-bouncing="true">
       <div class="item item-avatar darkbk" ng-click="profiletoggle = !profiletoggle">
 
-          <img ng-src="https://secure.gravatar.com/avatar/{{auth.gravatar}}?s=90&d=identicon" width="100%" height="auto"/>
-          <h2>@{{auth.username}}</h2>
-          <i class="ion-ios-gear status icon"></i>
+        <img ng-src="https://secure.gravatar.com/avatar/{{auth.gravatar}}?s=90&d=identicon" width="100%" height="auto"/>
+        <h2>@{{auth.username}}</h2>
+        <i class="ion-ios-gear status icon"></i>
       </div>
 
       <div class="navi" ng-show="profiletoggle" class="animated bounceOutLeft">
-            <ion-list>
-              <ion-item menu-close href="#/app/user/profile" ng-show="loggedIn" class="animated fadeIn" ng-click="profileToggle = false">
-                View profile
-              </ion-item>
-              <ion-item menu-close href="#/app/account/settings" ng-show="loggedIn" class="animated fadeIn" ng-click="profileToggle = false">
-                Account Settings
-              </ion-item>
-              <ion-item menu-close href="#/app/settings" ng-show="loggedIn" class="animated fadeIn" ng-click="profileToggle = false">
-                Application Settings
-              </ion-item>
-              <ion-item menu-close href="#/app/logout" ng-show="loggedIn" class="animated fadeIn" ng-click="profileToggle = false">
-                Logout
-              </ion-item>
-            </ion-list>
+        <ion-list>
+          <ion-item menu-close href="#/app/user/profile" ng-show="loggedIn" class="animated fadeIn"
+                    ng-click="profileToggle = false">
+            View profile
+          </ion-item>
+          <ion-item menu-close href="#/app/account/settings" ng-show="loggedIn" class="animated fadeIn"
+                    ng-click="profileToggle = false">
+            Account Settings
+          </ion-item>
+          <ion-item menu-close href="#/app/settings" ng-show="loggedIn" class="animated fadeIn"
+                    ng-click="profileToggle = false">
+            Application Settings
+          </ion-item>
+          <ion-item menu-close href="#/app/logout" ng-show="loggedIn" class="animated fadeIn"
+                    ng-click="profileToggle = false">
+            Logout
+          </ion-item>
+        </ion-list>
       </div>
 
       <ion-list>
@@ -64,34 +68,36 @@
           <i class="icon ion-android-folder"></i>My Items
         </ion-item>
         <div ng-click="ownerToggle = !ownerToggle">
-        <ion-item ng-show="loggedIn" class="item-icon-right">
-          <i class="icon ion-android-arrow-dropdown" ng-hide="ownerToggle"></i>
+          <ion-item ng-show="loggedIn" class="item-icon-right">
+            <i class="icon ion-android-arrow-dropdown" ng-hide="ownerToggle"></i>
             <i class="icon ion-android-arrow-dropup" ng-show="ownerToggle">
-          </i>Owner Menu
-        </ion-item>
-      </div>
+            </i>Owner Menu
+          </ion-item>
+        </div>
 
         <div class="navi" ng-show="ownerToggle" class="animated bounceOutLeft">
-              <ion-list>
-                <ion-item menu-close href="#/app/owner/items" class="animated fadeIn" ng-show="loggedIn" ng-click="ownerToggle = false">
-                  My items
-                </ion-item>
-                <ion-item menu-close href="#/app/owner/requests" class="animated fadeIn" ng-show="loggedIn" ng-click="ownerToggle = false">
-                  Requests
-                </ion-item>
-              </ion-list>
+          <ion-list>
+            <ion-item menu-close href="#/app/owner/items" class="animated fadeIn" ng-show="loggedIn"
+                      ng-click="ownerToggle = false">
+              My items
+            </ion-item>
+            <ion-item menu-close href="#/app/owner/requests" class="animated fadeIn" ng-show="loggedIn"
+                      ng-click="ownerToggle = false">
+              Requests
+            </ion-item>
+          </ion-list>
         </div>
         <!--<ion-item menu-close href="#/app/scanner"  ng-show="loggedIn">-->
-          <!--Scan-->
+        <!--Scan-->
         <!--</ion-item>-->
         <!--<ion-item menu-close href="#/app/users"  ng-show="loggedIn">-->
-          <!--Users-->
+        <!--Users-->
         <!--</ion-item>-->
         <!--<ion-item menu-close href="#/app/upload/image"  ng-show="loggedIn">-->
-          <!--Upload Image-->
+        <!--Upload Image-->
         <!--</ion-item>-->
         <!--<ion-item menu-close href="#/app/user/profile"  ng-show="loggedIn">-->
-          <!--My Profile-->
+        <!--My Profile-->
         <!--</ion-item>-->
 
         <ion-item menu-close href="#/app/login" ng-hide="loggedIn">
@@ -108,12 +114,12 @@
   <ion-side-menu side="right">
 
 
-
     <ion-content>
       <h1>Right side</h1>
       <br><br>
-      <br>      <b>Insert QR HERE</b>
+      <br> <b>Insert QR HERE</b>
     </ion-content>
 
-    </ion-side-menu>
+  </ion-side-menu>
 </ion-side-menus>
+

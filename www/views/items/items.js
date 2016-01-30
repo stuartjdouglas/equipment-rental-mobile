@@ -44,6 +44,10 @@ angular.module('App.items', [])
       }
     }
 
+    $scope.search = function(term) {
+      console.log('>' + term)
+    }
+
     function updateResults() {
       $http({
         url: backend + "/p",
@@ -71,7 +75,7 @@ angular.module('App.items', [])
 
   */
 
-  .controller('itemCtrl', function($scope, $http, $rootScope, $stateParams, $timeout, $ionicActionSheet, $cordovaSocialSharing, $ionicModal, $ionicPopup) {
+  .controller('itemCtrl', function($scope, $http, $rootScope, $stateParams, $timeout, $ionicActionSheet, $cordovaSocialSharing, $ionicModal, $ionicPopup, nfcService) {
     var background = angular.element(document.getElementById('itembackground'));
     $http({
       url: backend + "/product/" + $stateParams.item,
@@ -94,6 +98,11 @@ angular.module('App.items', [])
       $scope.error = true;
     });
     var statusbar = angular.element(document.getElementById('status'));
+
+    $scope.writeToNFC = function(id) {
+      nfcService.writeTag("product", $scope.product.id);
+    }
+
 
     $scope.showAction = function() {
       // Show the action sheet

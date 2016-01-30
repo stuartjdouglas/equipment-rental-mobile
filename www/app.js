@@ -26,6 +26,9 @@ angular.module('App', [
     // Factories
     'App.config',
     'App.factory.scanner',
+    'App.nfcHandler',
+
+    // Filters
 
 
     // Components | Directives
@@ -286,8 +289,9 @@ angular.module('App', [
   })
 
 
-  .controller('AppCtrl', ['$scope', '$rootScope', 'scanner', '$location', '$ionicSideMenuDelegate', function ($scope, $rootScope, scanner, $location, $ionicSideMenuDelegate, $watch) {
+  .controller('AppCtrl', ['$scope', '$rootScope', 'scanner', '$location', '$ionicSideMenuDelegate', 'nfcService', function ($scope, $rootScope, scanner, $location, $ionicSideMenuDelegate, nfcService, $watch) {
     $rootScope.loggedIn = window.localStorage.token != undefined;
+
 
     if (window.localStorage.auth) {
       $rootScope.auth = JSON.parse(window.localStorage.auth);
@@ -315,8 +319,9 @@ angular.module('App', [
       if (type === 'product') {
         $location.path('app/item/' + id)
       }
-
     }
+
+
     $ionicSideMenuDelegate.canDragContent(false);
 
   }]);

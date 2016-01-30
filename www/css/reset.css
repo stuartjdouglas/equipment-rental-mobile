@@ -5,7 +5,7 @@
 
 
 .scroll-content {
-  top:0;
+  top:1px;
 }
 
 .bar-calm {
@@ -54,12 +54,13 @@
 
 .item {
   /*border: none;*/
+  /*border-top: 3px solid #f1f2f3!important;*/
 }
 
 .item.border {
   border-color: #e3e3e3!important;
   border-style: solid;
-  /*border-top: thick solid #f1f2f3!important;*/
+  border-top: thick solid #f1f2f3!important;
 }
 
 .listing.block {

@@ -1,51 +1,54 @@
 <ion-view view-title="Listing">
   <ion-content class="dark" has-bouncing="true">
-        <div class="bar bar-subheader item-input-inset">
-          <label class="item-input-wrapper">
-            <i class="icon ion-ios-search placeholder-icon"></i>
-            <input type="search" placeholder="Search">
-          </label>
-          <button class="button button-clear">
-            Cancel
-          </button>
-        </div>
+    <div class="bar bar-subheader item-input-inset">
+      <!-- <form ng-submit="search(term)"> -->
+      <label class="item-input-wrapper">
+        <i class="icon ion-ios-search placeholder-icon"></i>
+        <input type="search" ng-model="term" placeholder="Search" ng-enter="search(term)">
+      </label>
+      <button class="button button-clear" ng-click="search(term)">
+        Search
+      </button>
+      <!-- </form> -->
+    </div>
 
 
-
-      <div class="row ">
-        <div class="col">
-          <i>
-            Showing results {{start}} - {{start + count}} from {{products.total}}.
-          </i>
-        </div>
+    <div class="row ">
+      <div class="col">
+        <i>
+          Showing results {{start}} - {{start + count}} from {{products.total}}.
+        </i>
       </div>
+    </div>
 
-      <ion-refresher
-        pulling-text="Pull to refresh..."
-        on-refresh="doRefresh()">
-      </ion-refresher>
+    <ion-refresher
+      pulling-text="Pull to refresh..."
+      on-refresh="doRefresh()">
+    </ion-refresher>
 
-      <div class="list ani block" ng-repeat="product in products.items">
-           <!--ng-style="{'background-image':'url({{data}}{{product.image.size.large}})'}"-->
-        <!--<img class="background" ng-src="{{data}}{{product.image.size.small}}">-->
-        <a class="item item-avatar transparent large-avatar" href="#/app/item/{{product.id}}">
-          <img ng-src="{{data}}{{product.image.size.thumb}}">
-          <h2 class="white">{{product.title}}</h2>
-          <p class="white">{{product.description}}</p>
+    <div class="ion-item ani" ng-repeat="product in products.items">
+      <!--ng-style="{'background-image':'url({{data}}{{product.image.size.large}})'}"-->
+      <!--<img class="background" ng-src="{{data}}{{product.image.size.small}}">-->
 
 
-          <availability datasource={{product.id}} class="status"></availability>
-        </a>
-        <div class="tags" ng-show="{{product.tags.length > 0}}">
-          <span class="tag" ng-repeat="tag in product.tags">{{tag.tag}}</span>
+      <a class="item item-avatar transparent large-avatar" href="#/app/item/{{product.id}}">
+        <img ng-src="{{data}}{{product.image.size.thumb}}">
+        <h2 class="white"><b>{{product.title}}</b></h2>
+        <p class="white">{{product.description}}</p>
+        <div class="tags">
+          <availability datasource={{product.id}} class="tag"></availability>
         </div>
-      </div>
+
+        <!--<div class="tags" ng-show="{{product.tags.length > 0}}">-->
+          <!--<span class="tag" ng-repeat="tag in product.tags | limitTo:3">{{tag.tag}}</span>-->
+        <!--</div>-->
+      </a>
+
+    </div>
 
     <div class="itempadding">
 
     </div>
-
-
 
 
   </ion-content>

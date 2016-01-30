@@ -1,7 +1,7 @@
 
-// var domain = 'http://192.168.1.99:3000'
+//var domain = 'http://192.168.1.99:3000'
 
-// var domain = 'http://localhost:3000'
+ // var domain = 'http://localhost:3000'
 var domain = 'https://karite.xyz'
 var api = '/api';
 
