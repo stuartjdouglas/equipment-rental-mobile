@@ -67,6 +67,9 @@
         <ion-item menu-close href="#/app/my/items" class="item-icon-left" ng-show="loggedIn">
           <i class="icon ion-android-folder"></i>My Items
         </ion-item>
+        <ion-item menu-close href="#/app/my/requests" class="item-icon-left" ng-show="loggedIn">
+          <i class="icon ion-ios-folder"></i>My Requests
+        </ion-item>
         <div ng-click="ownerToggle = !ownerToggle">
           <ion-item ng-show="loggedIn" class="item-icon-right">
             <i class="icon ion-android-arrow-dropdown" ng-hide="ownerToggle"></i>
@@ -81,7 +84,7 @@
                       ng-click="ownerToggle = false">
               My items
             </ion-item>
-            <ion-item menu-close href="#/app/requests" class="animated fadeIn" ng-show="loggedIn"
+            <ion-item menu-close href="#/app/owner/requests" class="animated fadeIn" ng-show="loggedIn"
                       ng-click="ownerToggle = false">
               Requests
             </ion-item>

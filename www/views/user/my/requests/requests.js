@@ -1,9 +1,9 @@
-angular.module('App.requests', [])
-  .controller('requestsCtrl', function ($scope, $http, $rootScope, $stateParams) {
+angular.module('App.userrequests', [])
+  .controller('userRequestsCtrl', function ($scope, $http, $rootScope, $stateParams) {
 
     $scope.count = 15;
     $scope.start = 0;
-  console.log("hello")
+    console.log("hello")
 
     if ($rootScope.loggedIn) {
       // updateResults();
@@ -13,7 +13,7 @@ angular.module('App.requests', [])
 
     $scope.doRefresh = function () {
       updateResults();
-    }
+    };
 
     $scope.$watch("count", function (newValue) {
       window.localStorage.setItem("product_count", newValue);
@@ -28,7 +28,7 @@ angular.module('App.requests', [])
         $scope.start = $scope.start - $scope.count;
         updateResults();
       }
-    }
+    };
 
     $scope.forward = function () {
       if ($scope.start >= $scope.products.total - $scope.count) {
@@ -38,14 +38,35 @@ angular.module('App.requests', [])
         $scope.start = $scope.start + $scope.count;
         updateResults();
       }
+    };
+
+
+    function cancelRequest(id, index) {
+    console.log(id);
+      $http({
+        url: backend + '/product/' + id + '/request/cancel',
+        method: 'POST',
+        headers: {
+          'token': window.localStorage.token
+        },
+      }).success(function (data, status, headers, config) {
+        //getRequestStatus();
+        $scope.products.requests.splice(index, 1);
+        $scope.hasRequest = false;
+      }).error(function (data, status, headers, config) {
+        $scope.error = true;
+      });
     }
 
-    $scope.search = function (term) {
-      console.log('>' + term)
+    $scope.cancel = function(id, index) {
+      if ($rootScope.loggedIn) {
+        cancelRequest(id, index);
+      }
     }
+
 
     function updateResults() {
-      var url = backend + "/owner/requests";
+      var url = backend + "/requests";
       $http({
         url: url,
         method: 'GET',
@@ -55,7 +76,7 @@ angular.module('App.requests', [])
           'token': window.localStorage.token
         }
       }).success(function (data, status, headers, config) {
-        //console.log(data)
+        console.log(data)
         if (data.total === 0) {
           $scope.noRequests = true;
         }

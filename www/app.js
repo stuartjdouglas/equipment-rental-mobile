@@ -22,6 +22,7 @@ angular.module('App', [
     'App.tag',
     'App.requests',
     'App.request',
+    'App.userrequests',
 
     // Owner views
     'App.ownerItems',
@@ -312,11 +313,21 @@ angular.module('App', [
       })
 
       .state('app.requests', {
-        url: '/requests',
+        url: '/owner/requests',
         views: {
           'menuContent': {
             templateUrl: 'views/requests/requests/requests.html',
             controller: 'requestsCtrl'
+          }
+        }
+      })
+
+      .state('app.userrequests', {
+        url: '/my/requests',
+        views: {
+          'menuContent': {
+            templateUrl: 'views/user/my/requests/requests.html',
+            controller: 'userRequestsCtrl'
           }
         }
       })
