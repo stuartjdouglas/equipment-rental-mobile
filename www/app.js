@@ -13,11 +13,15 @@ angular.module('App', [
     'App.user.users',
     'App.scanner',
     'App.timeline',
+    'App.item',
     'App.items',
     'App.adminItemAdd',
     'App.my.items',
     'App.account.settings',
     'App.settings',
+    'App.tag',
+    'App.requests',
+    'App.request',
 
     // Owner views
     'App.ownerItems',
@@ -117,7 +121,7 @@ angular.module('App', [
 
       .state('app.items', {
         url: '/items',
-        cache: false,
+        cache: true,
         views: {
           'menuContent': {
             templateUrl: 'views/items/items.html',
@@ -130,7 +134,7 @@ angular.module('App', [
         url: '/item/:item',
         views: {
           'menuContent': {
-            templateUrl: 'views/items/item.html',
+            templateUrl: 'views/item/item.html',
             controller: 'itemCtrl'
           }
         }
@@ -233,7 +237,7 @@ angular.module('App', [
 
       .state('app.myItems', {
         url: '/my/items',
-        cache: false,
+        cache: true,
         views: {
           'menuContent': {
             templateUrl: 'views/user/my/items/myitems.html',
@@ -244,7 +248,7 @@ angular.module('App', [
 
       .state('app.accountSettings', {
         url: '/account/settings',
-        cache: false,
+        cache: true,
         views: {
           'menuContent': {
             templateUrl: 'views/account/account.html',
@@ -279,6 +283,40 @@ angular.module('App', [
           'menuContent': {
             templateUrl: 'views/owner/ownerItems/ownerItems.html',
             controller: 'ownerItemsCtrl'
+          }
+        }
+      })
+
+      // Tag route
+
+      .state('app.tag', {
+        url: '/tag/:tag',
+        views: {
+          'menuContent': {
+            templateUrl: 'views/tag/tag.html',
+            controller: 'tagCtrl'
+          }
+        }
+      })
+
+      // Requests
+
+      .state('app.request', {
+        url: '/request/:request',
+        views: {
+          'menuContent': {
+            templateUrl: 'views/requests/request/request.html',
+            controller: 'requestCtrl'
+          }
+        }
+      })
+
+      .state('app.requests', {
+        url: '/requests',
+        views: {
+          'menuContent': {
+            templateUrl: 'views/requests/requests/requests.html',
+            controller: 'requestsCtrl'
           }
         }
       })

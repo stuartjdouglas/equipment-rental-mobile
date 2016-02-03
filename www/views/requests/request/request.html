@@ -1,0 +1,99 @@
+<ion-view view-title="Showing requests">
+  <ion-content class="dark" has-bouncing="true">
+    <div class="row" ng-show="!noRequests">
+      <div class="col">
+        <i>
+          Showing results {{start}} - {{start + count}} from {{requests.total}}.
+        </i>
+      </div>
+    </div>
+
+    <ion-refresher
+      pulling-text="Pull to refresh..."
+      on-refresh="doRefresh()">
+    </ion-refresher>
+
+
+    <div class="errormessage" ng-show="noRequests">
+      <i class="ion-ios-information-outline"></i>
+      <p>
+        Sorry, there seems to be no requests.
+      </p>
+      <p>
+        Refresh and try again later.
+      </p>
+    </div>
+
+    <ion-list>
+      <ion-item  ng-repeat="request in requests.requests" ng-show="!noRequests">
+        <div class="item-avatar ani">
+          <img ng-cloak ng-src="https://secure.gravatar.com/avatar/{{request.gravatar}}?s=90&d=identicon" width="30px"
+               height="auto"/>
+          <h2>{{request.username}}</h2>
+          <p>{{request.date_requested | amCalendar}}</p>
+        </div>
+
+        <p></p>
+        <ion-option-button class="button-assertive" ng-click="deny(request.username, $index)">Deny</ion-option-button>
+        <ion-option-button class="button-balanced" ng-click="approve(request.username, $index)">Approve</ion-option-button>
+      </ion-item>
+    </ion-list>
+
+
+    <ion-item class="listinfo" ng-show="!noRequests">
+      <i class="ion-ios-information-outline"></i>
+      <p>
+        <p>Swipe left on a user to accept or deny there request</p>
+      </p>
+    </ion-item>
+    <!--<div class="ion-item ani" ng-repeat="request in requests.requests">-->
+    <!--&lt;!&ndash;ng-style="{'background-image':'url({{data}}{{product.image.size.large}})'}"&ndash;&gt;-->
+    <!--&lt;!&ndash;<img class="background" ng-src="{{data}}{{product.image.size.small}}">&ndash;&gt;-->
+
+
+    <!--<h2 class="white"><img ng-cloak ng-src="https://secure.gravatar.com/avatar/{{request.gravatar}}?s=90&d=identicon" width="50px"-->
+    <!--height="auto"/><b> {{request.username}}</b></h2>-->
+    <!--<div class="button-row">-->
+    <!--<button class="button">-->
+    <!--Accept-->
+    <!--</button>-->
+    <!--<button class="button">-->
+    <!--Disapprove-->
+    <!--</button>-->
+    <!--</div>-->
+
+    <!--&lt;!&ndash;<div class="tags" ng-show="{{product.tags.length > 0}}">&ndash;&gt;-->
+    <!--&lt;!&ndash;<span class="tag" ng-repeat="tag in product.tags | limitTo:3">{{tag.tag}}</span>&ndash;&gt;-->
+    <!--&lt;!&ndash;</div>&ndash;&gt;-->
+    <!--</a>-->
+
+    </div>
+
+    <div class="itempadding">
+
+    </div>
+
+
+  </ion-content>
+  <div class="row row-bottom background white">
+    <div class="col">
+      <a class="tab-item" ng-click="back()">
+        <i class="icon ion-arrow-left-c"></i>
+        Previous Page
+      </a>
+    </div>
+    <div class="col">
+      <a class="tab-item" href="#/app/admin/item/add">
+        <i class="icon ion-plus-circled"></i>
+        Add Product
+      </a>
+    </div>
+    <div class="col">
+      <a class="tab-item" ng-click="forward()">
+        <i class="icon ion-arrow-right-c"></i>
+        Next Page
+      </a>
+    </div>
+  </div>
+
+</ion-view>

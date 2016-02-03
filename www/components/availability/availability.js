@@ -19,7 +19,7 @@ angular.module('App.availability', ['App.config'])
             if ($attrs.datasource != "{{product.id}}" && $attrs.datasource != "") {
               $scope.showLoading = false;
               $scope.datasource =  $attrs.datasource;
-              console.log($attrs.isowner);
+              //console.log($attrs.isowner);
               if ($attrs.isowner === 'true') {
                 console.log("weee owner")
                 $http({
@@ -29,7 +29,7 @@ angular.module('App.availability', ['App.config'])
                     token: window.localStorage.token
                   }
                 }).success(function(data, status, headers, config) {
-                  console.log(data)
+                  //console.log(data)
                   if (data.available) {
                     $scope.availability = "Available";
                     $scope.isDate = false;

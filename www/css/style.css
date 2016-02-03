@@ -1,56 +1,55 @@
-/* Empty. Add your own CSS if you like */
+/* NG-clock hider */
+[ng\:cloak], [ng-cloak], .ng-cloak {
+  display: none;
+}
+
 .home.title {
-  text-align:center;
-  width:100%;
-  position:absolute;
-  bottom:60vh;
+  text-align: center;
+  width: 100%;
+  position: absolute;
+  bottom: 60vh;
 
 }
 
-
 .wrapper.top {
-  margin-top:50px;
+  margin-top: 50px;
 }
 
 /* login CSS */
 
-
-
-
 /*.login.wrapper {*/
-  /*background: url("../img/home.gif") no-repeat top center fixed;*/
-  /*-webkit-background-size: contain;*/
-  /*-moz-background-size: contain;*/
-  /*-o-background-size: contain;*/
-  /*background-size: 200%;*/
+/*background: url("../img/home.gif") no-repeat top center fixed;*/
+/*-webkit-background-size: contain;*/
+/*-moz-background-size: contain;*/
+/*-o-background-size: contain;*/
+/*background-size: 200%;*/
 /*}*/
 
 .login {
-  background-color: #fff!important;
+  background-color: #fff !important;
 }
-
 
 .login .container {
   display: -ms-flexbox;
-	display: -webkit-flex;
-	display: flex;
+  display: -webkit-flex;
+  display: flex;
 
-	-ms-flex-align: center;
-	-webkit-align-items: center;
-	-webkit-box-align: center;
+  -ms-flex-align: center;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
 
-	align-items: center;
-  width:100%;
-  height:100%;
+  align-items: center;
+  width: 100%;
+  height: 100%;
 }
 
 .login .container .title {
-  width:100%;
-  text-align:center;
+  width: 100%;
+  text-align: center;
 }
 
 .login .container .title .centerstage {
-  padding-bottom:30px;
+  padding-bottom: 30px;
 }
 
 .login.input {
@@ -58,11 +57,11 @@
 }
 
 .login .error {
-  padding:20px;
-  margin-top:10px;
-  margin-bottom:10px;
+  padding: 20px;
+  margin-top: 10px;
+  margin-bottom: 10px;
   background: #e53935;
-  color:#fff;
+  color: #fff;
 }
 
 .login .processing {
@@ -70,59 +69,58 @@
 }
 
 .login .processing .text {
-  width:100%;
+  width: 100%;
   text-align: center;
-  font-size:2em;
-  font-weight:600;
+  font-size: 2em;
+  font-weight: 600;
 }
 
 /*.login.input .input-label, .login.input.text {*/
-  /*color:#000;*/
+/*color:#000;*/
 /*}*/
 
 /*.login.submit{*/
-  /*width:200px;*/
-  /*margin: 0 auto;*/
+/*width:200px;*/
+/*margin: 0 auto;*/
 /*}*/
 
 /*.login.form {*/
-  /*padding-top:40px;*/
-  /*padding-bottom:10px;*/
-  /*background-color: rgba(255, 255, 255, 0.5);*/
+/*padding-top:40px;*/
+/*padding-bottom:10px;*/
+/*background-color: rgba(255, 255, 255, 0.5);*/
 
 /*}*/
-
 
 /* About state */
 
 .about.wrapper {
-  position:absolute;
+  position: absolute;
   background: url("../img/about.gif") no-repeat center bottom fixed;
   background-size: contain;
-  background-color:#14282E;
+  background-color: #14282E;
 }
 
 .about.content h1, .about.content h2, .about.content h3, .about.content p, .about.content i {
-  color:#fff;
-  text-align:center;
+  color: #fff;
+  text-align: center;
 }
 
 .about.content {
 
   background-color: rgba(20, 20, 20, 0.5);
-  height:100%;
+  height: 100%;
 }
 
-
 .image.register {
-  height:200px;
-  width:100%;
+  height: 200px;
+  width: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
-  padding-top:25px;
-  padding-bottom:25px;
+  padding-top: 25px;
+  padding-bottom: 25px;
 }
+
 .image.register img {
   box-shadow: 0px 0px 10px 0px rgba(50, 50, 50, 0.25);
 }
@@ -131,45 +129,43 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  padding:20px;
+  padding: 20px;
 }
 
 .register.error {
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color:#C62828;
-  color:#fff;
-  padding:10px;
+  background-color: #C62828;
+  color: #fff;
+  padding: 10px;
   box-shadow: inset 0px 0px 10px 0px rgba(50, 50, 50, 0.65);
 }
 
-
-
 /* Responsive image viewing */
 
-@media (min-width:0px) {
+@media (min-width: 0px) {
   .resImage {
-    max-width:100px;
+    max-width: 100px;
   }
 }
 
-@media (min-width:300px) {
+@media (min-width: 300px) {
   .resImage {
-    max-width:250px;
+    max-width: 250px;
   }
 }
 
-@media (min-width:500px) {
+@media (min-width: 500px) {
   .resImage {
-    max-width:500px;
+    max-width: 500px;
   }
 }
 
 .resImage {
-  width:100%;
-  margin:0 auto;
-  padding:10px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 10px;
 }
 
 /* center */
@@ -180,13 +176,12 @@
   justify-content: center;
 }
 
-
 .cover {
-  position:absolute;
-  top:0;
-  height:100%;
-  width:100%;
-  z-index:100;
+  position: absolute;
+  top: 0;
+  height: 100%;
+  width: 100%;
+  z-index: 100;
 }
 
 .cover.loading {
@@ -195,7 +190,7 @@
 }
 
 .cover.loading .content {
-  margin-top:30%;
+  margin-top: 30%;
   display: flex;
   align-items: center;
   justify-content: space-around;
@@ -203,9 +198,9 @@
 }
 
 .cover.loading .subtitle {
-  margin-top:10%;
-  color:#333;
-  font-weight:400;
+  margin-top: 10%;
+  color: #333;
+  font-weight: 400;
   display: flex;
   align-items: center;
   justify-content: space-around;
@@ -213,28 +208,26 @@
 }
 
 .cover.loading svg {
-  height:100px;
-  width:100px;
+  height: 100px;
+  width: 100px;
 }
 
 .cover.loading p {
-  font-weight:800;
-  font-size:2em;
+  font-weight: 800;
+  font-size: 2em;
 }
-
-
 
 /*
     ITEM
 */
 
 .itembackground {
-  position:fixed;
-  background-color:#333;
-  width:100%;
-  height:100%;
-  margin:0;
-  padding:0;
+  position: fixed;
+  background-color: #333;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
   background: none no-repeat center top fixed;
   background-size: contain;
   border-style: solid;
@@ -246,7 +239,7 @@
 }
 
 .white {
-  color:#333!important;
+  color: #333 !important;
   /*text-shadow: 0px 0px 7px rgba(0, 0, 0, 1);*/
 }
 
@@ -265,14 +258,14 @@
 }
 
 .block {
-  overflow:hidden;
-  background:none!important;
-  margin:0!important;
-  padding: 0!important;
+  overflow: hidden;
+  background: none !important;
+  margin: 0 !important;
+  padding: 0 !important;
 }
 
 .dark {
-  margin-top:50px;
+  margin-top: 50px;
 }
 
 .background {
@@ -291,10 +284,10 @@
 }
 
 .product {
-  position:absolute;
-  background-color:#fff;
-  width:100%;
-  height:100%;
+  position: absolute;
+  background-color: #fff;
+  width: 100%;
+  height: 100%;
   top: 50px;
   /*box-shadow: 0px 0px 20px 0px rgba(0, 0, 0, 0.75);*/
 }
@@ -303,31 +296,32 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color:#eee;
-  height:40px;
+  background-color: #eee;
+  height: 40px;
 }
 
 .content {
-  padding:20px;
+  padding: 20px;
 }
 
 .item .left {
   background-color: #eee;
-  width:70%;
-  float:left;
+  width: 70%;
+  float: left;
 }
 
-.item .right{
-  background-color:#0a9dc7;
-  width:30%;
+.item .right {
+  background-color: #0a9dc7;
+  width: 30%;
 
 }
+
 availability {
 
 }
 
 .item .status {
-  position:relative;
+  position: relative;
   width: 100%;
   text-align: right;
   /*top:10px;*/
@@ -335,13 +329,13 @@ availability {
 }
 
 .status.icon {
-  top:25%;
-  right:20px;
-  font-size:30px;
+  top: 25%;
+  right: 20px;
+  font-size: 30px;
 }
 
 .background.white {
-  background-color:rgba(255, 255, 255, 0.97);
+  background-color: rgba(255, 255, 255, 0.97);
 
   box-shadow: 0px 0px 40px 0px rgba(50, 50, 50, 0.25);
 }
@@ -354,32 +348,33 @@ availability {
   transition: 0.1s;
 }
 
-.navi ion-item{
-  background-color:#222!important;
+.navi ion-item {
+  background-color: #222 !important;
 }
 
-.navi .item-complex{
-  margin:0!important;
-  padding:0!important;
-  border:none!important;
+.navi .item-complex {
+  margin: 0 !important;
+  padding: 0 !important;
+  border: none !important;
 }
 
 .navi .item-content {
   background-color: #F5F5F5;
-  color:#333;
-  border-bottom: thin none transparent!important;
-  border-top: thin none transparent!important;
-  margin:0;
-  border:none;
+  color: #333;
+  border-bottom: thin none transparent !important;
+  border-top: thin none transparent !important;
+  margin: 0;
+  border: none;
 
 }
+
 .item-content {
-  border-bottom: thin none transparent!important;
-  border-top: thin none transparent!important;
+  border-bottom: thin none transparent !important;
+  border-top: thin none transparent !important;
 }
 
 .darkbk {
-  background-color:#fff;
+  background-color: #fff;
 
 }
 
@@ -389,16 +384,13 @@ availability {
 }
 
 .ani.ng-enter-stagger {
-  -webkit-animation-delay:100ms;
-  animation-delay:100ms;
+  -webkit-animation-delay: 100ms;
+  animation-delay: 100ms;
 
   /* override to make sure it's not inherited from other styles */
-  -webkit-animation-duration:0;
-  animation-duration:0;
+  -webkit-animation-duration: 0;
+  animation-duration: 0;
 }
-
-
-
 
 /*
 
@@ -408,58 +400,75 @@ availability {
 */
 
 .ownerplane {
-  margin-top:10px;
+  margin-top: 10px;
   background-color: transparent;
-  width:100%;
-  padding:15px;
+  width: 100%;
+  padding: 15px;
   border-radius: 5px;
-   border: 1px solid #d7d1d1;
+  border: 1px solid #d7d1d1;
 }
 
 .movemebuttonright {
 
 }
 
-
 /*
       QR Code
 */
 
 .QR.padding {
-  padding:20px;
-  margin-top:10%;
+  padding: 20px;
+  margin-top: 10%;
 }
 
 .QR img {
   /*width:100%;*/
   /*height:100%;*/
-  max-width:200px;
+  max-width: 200px;
 }
 
 .acc .item-input {
   border: 0px solid #333;
 }
 
-
 .no.results {
 
-  height:100%;
-  width:100%;
-  background-color:#fff;
+  height: 100%;
+  width: 100%;
+  background-color: #fff;
   display: -ms-flexbox;
-	display: -webkit-flex;
-	display: flex;
+  display: -webkit-flex;
+  display: flex;
 
-	-ms-flex-align: center;
-	-webkit-align-items: center;
-	-webkit-box-align: center;
+  -ms-flex-align: center;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
 
-	align-items: center;
+  align-items: center;
 }
+
 .no.results .text {
-  width:100%;
-  margin-top:-60px;
-  font-size:30px;
-  font-weight:900;
-  text-align:center;
+  width: 100%;
+  margin-top: -60px;
+  font-size: 30px;
+  font-weight: 900;
+  text-align: center;
+}
+
+.listinfo {
+  background-color: #fafafa;
+}
+
+.listinfo i {
+  font-size: 3rem;
+}
+
+.errormessage {
+  margin-top: 50px;
+  text-align: center;
+}
+
+.errormessage i {
+  font-size: 3rem;
+  font-weight: bold;
 }

@@ -1,0 +1,76 @@
+<ion-view view-title="Show results for tag">
+  <ion-content class="dark" has-bouncing="true">
+    <div class="bar bar-subheader item-input-inset">
+      <!-- <form ng-submit="search(term)"> -->
+      <label class="item-input-wrapper">
+        <i class="icon ion-ios-search placeholder-icon"></i>
+        <input type="search" ng-model="term" placeholder="Search" ng-enter="search(term)">
+      </label>
+      <button class="button button-clear" ng-click="search(term)">
+        Search
+      </button>
+      <!-- </form> -->
+    </div>
+
+
+    <div class="row ">
+      <div class="col">
+        <i>
+          Showing results {{start}} - {{start + count}} from {{products.total}}.
+        </i>
+      </div>
+    </div>
+
+    <ion-refresher
+      pulling-text="Pull to refresh..."
+      on-refresh="doRefresh()">
+    </ion-refresher>
+
+    <div class="ion-item ani" ng-repeat="product in products.items">
+      <!--ng-style="{'background-image':'url({{data}}{{product.image.size.large}})'}"-->
+      <!--<img class="background" ng-src="{{data}}{{product.image.size.small}}">-->
+
+
+      <a class="item item-avatar transparent large-avatar" href="#/app/item/{{product.id}}">
+        <img ng-src="{{data}}{{product.image.size.thumb}}">
+        <h2 class="white"><b>{{product.title}}</b></h2>
+        <p class="white">{{product.description}}</p>
+        <div class="tags">
+          <availability datasource={{product.id}} class="tag"></availability>
+        </div>
+
+        <!--<div class="tags" ng-show="{{product.tags.length > 0}}">-->
+        <!--<span class="tag" ng-repeat="tag in product.tags | limitTo:3">{{tag.tag}}</span>-->
+        <!--</div>-->
+      </a>
+
+    </div>
+
+    <div class="itempadding">
+
+    </div>
+
+
+  </ion-content>
+  <div class="row row-bottom background white">
+    <div class="col">
+      <a class="tab-item" ng-click="back()">
+        <i class="icon ion-arrow-left-c"></i>
+        Previous Page
+      </a>
+    </div>
+    <div class="col">
+      <a class="tab-item" href="#/app/admin/item/add">
+        <i class="icon ion-plus-circled"></i>
+        Add Product
+      </a>
+    </div>
+    <div class="col">
+      <a class="tab-item" ng-click="forward()">
+        <i class="icon ion-arrow-right-c"></i>
+        Next Page
+      </a>
+    </div>
+  </div>
+
+</ion-view>

@@ -1,22 +1,20 @@
 * {
-  font-family: 'Open Sans', Helvetica, Arial, sans-serif!important;
+  font-family: 'Open Sans', Helvetica, Arial, sans-serif !important;
 }
 
-
-
 .scroll-content {
-  top:1px;
+  top: 0;
 }
 
 .bar-calm {
-  border:0!important;
-  background-color:rgba(2, 136, 209, 0.5)!important;
-  height:50px!important;
+  border: 0 !important;
+  background-color: rgba(2, 136, 209, 0.5) !important;
+  height: 50px !important;
 
 }
 
 .bar-header {
-  border:0;
+  border: 0;
   /*height:50px;*/
 }
 
@@ -25,31 +23,29 @@
 }
 
 .button {
-  background:transparent;
+  background: transparent;
 }
 
 .button.fillwidth {
-  width:100%;
+  width: 100%;
 }
 
 .button.fillwidth.form {
-  width:40%;
+  width: 40%;
 }
 
 .button.activated {
-  background:rgba(0,0,0,0.01);
+  background: rgba(0, 0, 0, 0.01);
   box-shadow: none;
 }
 
-
-
 .row-bottom {
-  position:absolute;
-  bottom:0;
+  position: absolute;
+  bottom: 0;
 }
 
 .scroll {
-  height:100%;
+  height: 100%;
 }
 
 .item {
@@ -58,16 +54,15 @@
 }
 
 .item.border {
-  border-color: #e3e3e3!important;
+  border-color: #e3e3e3 !important;
   border-style: solid;
-  border-top: thick solid #f1f2f3!important;
+  border-top: thick solid #f1f2f3 !important;
 }
 
 .listing.block {
-  border-bottom: 0.5px solid rgba(105, 105, 105, 0.08)!important;
+  border-bottom: 0.5px solid rgba(105, 105, 105, 0.08) !important;
 }
 
-
 .activated {
-  background-color:#ECEFF1!important;
+  background-color: #ECEFF1 !important;
 }
