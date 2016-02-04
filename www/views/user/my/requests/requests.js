@@ -3,7 +3,6 @@ angular.module('App.userrequests', [])
 
     $scope.count = 15;
     $scope.start = 0;
-    console.log("hello")
 
     if ($rootScope.loggedIn) {
       // updateResults();

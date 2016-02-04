@@ -1,6 +1,9 @@
 angular.module('App', [
     'ionic',
     'ngCordova',
+    'ionic.service.core',
+    'App.pushCtrl',
+
     // Views
     'App.home',
     'App.about',
@@ -23,6 +26,7 @@ angular.module('App', [
     'App.requests',
     'App.request',
     'App.userrequests',
+
 
     // Owner views
     'App.ownerItems',
@@ -47,7 +51,7 @@ angular.module('App', [
     'ngColorThief'
   ])
 
-  .run(function ($ionicPlatform, $window, $state) {
+  .run(function ($ionicPlatform, $window) {
     $ionicPlatform.ready(function () {
       // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
       // for form inputs)
@@ -79,7 +83,6 @@ angular.module('App', [
         }
       }
 
-
       $window.addEventListener('SamklUrl', function (e) {
         if (e.detail.url === 'letskarite://') {
           console.log(e)
@@ -89,6 +92,72 @@ angular.module('App', [
 
     });
   })
+  //.run(function($cordovaPush) {
+  //
+  //  var config = null;
+  //
+  //  if (ionic.platform.isAndroid()) {
+  //    config = {
+  //      "senderID": "replace_with_sender_id"
+  //    }
+  //  } else if (ionic.platform.isIos()) {
+  //    config = {
+  //      "badge": "true",
+  //      "sound": "true",
+  //      "alert": "true"
+  //    }
+  //  }
+  //
+  //  document.addEventListener("deviceready", function(){
+  //    $cordovaPush.register(androidConfig).then(function(result) {
+  //      // Success
+  //      console.log(result);
+  //    }, function(err) {
+  //      console.log(err);
+  //      // Error
+  //    })
+  //
+  //    $rootScope.$on('$cordovaPush:notificationReceived', function(event, notification) {
+  //      switch(notification.event) {
+  //        case 'registered':
+  //          if (notification.regid.length > 0 ) {
+  //            alert('registration ID = ' + notification.regid);
+  //          }
+  //          break;
+  //
+  //        case 'message':
+  //          // this is the actual push notification. its format depends on the data model from the push server
+  //          alert('message = ' + notification.message + ' msgCount = ' + notification.msgcnt);
+  //          break;
+  //
+  //        case 'error':
+  //          alert('GCM error = ' + notification.msg);
+  //          break;
+  //
+  //        default:
+  //          alert('An unknown GCM event has occurred');
+  //          break;
+  //      }
+  //    });
+  //
+  //
+  //    //// WARNING: dangerous to unregister (results in loss of tokenID)
+  //    //$cordovaPush.unregister(options).then(function(result) {
+  //    //  // Success!
+  //    //}, function(err) {
+  //    //  // Error
+  //    //})
+  //
+  //  }, false);
+  //})
+  .config(['$ionicAppProvider', function($ionicAppProvider) {
+    $ionicAppProvider.identify({
+      app_id: 'db428b22',
+      api_key: '22ee5b3d6e19516fce11a5d436715e9f20588a17e7268543',
+      dev_push: true,
+    })
+
+  }])
 
   .config(function ($stateProvider, $urlRouterProvider, $httpProvider) {
     $stateProvider

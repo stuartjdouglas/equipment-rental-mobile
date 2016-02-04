@@ -8,8 +8,8 @@
 
   <!--<link href="lib/ionic-material/dist/ionic.material.min.css">-->
 
-
-  <link href="lib/ionic/css/ionic.min.css" rel="stylesheet">
+  <link href="lib/ionic/release/css/ionic.min.css" rel="stylesheet">
+  <!--<link href="lib/ionic/css/ionic.min.css" rel="stylesheet">-->
   <link href="lib/skeleton/css/skeleton.css">
   <link href="css/style.css" rel="stylesheet">
   <link href="css/reset.css" rel="stylesheet">
@@ -17,13 +17,16 @@
   <link href="components/imagepreview/imagepreview.min.css" rel="stylesheet">
 
   <!-- ionic/angularjs js -->
-  <script src="lib/ionic/js/ionic.bundle.min.js"></script>
+  <script src="lib/ionic/release/js/ionic.bundle.min.js"></script>
   <!-- cordova script (this will be a 404 during development) -->
-  <script src="cordova.js"></script>
+  <!-- Cordova is bootstrapped by ionic-platform-web-client, uncomment this if you remove ionic-platform-web-client... -->
+<!-- <script src="cordova.js"></script> -->
 
   <!-- your app's js -->
   <script src="app.js"></script>
   <script src="config.js"></script>
+  <script src="lib/ionic/release/js/ionic.min.js"></script>
+  <script src="lib/ionic/release/js/ionic-angular.min.js"></script>
 
   <!-- Controllers -->
   <script src="views/home/homeController.js"></script>
@@ -42,6 +45,7 @@
   <script src="views/requests/request/request.js"></script>
   <script src="views/requests/requests/requests.js"></script>
   <script src="views/user/my/requests/requests.js"></script>
+  <script src="controllers/pushCtrl.js"></script>
   <!-- Scanner -->
   <script src="views/scanner/scanner.js"></script>
   <script src="factory/nfcHandler.js"></script>
@@ -65,7 +69,10 @@
 
   <!-- Filters -->
   <!-- Dependcies-->
+
+  <script src="lib/ionic-service-core/ionic-core.js"></script>
   <script src="lib/ngCordova/dist/ng-cordova.min.js"></script>
+  <script src="lib/angular-websocket/angular-websocket.js"></script>
   <script src="lib/moment/min/moment.min.js"></script>
   <script src="lib/angular-moment/angular-moment.min.js"></script>
   <script src="lib/cryptojslib/rollups/sha512.js"></script>
@@ -73,9 +80,9 @@
   <script src="lib/angular-base64/angular-base64.min.js"></script>
   <script src="lib/color-thief/dist/color-thief.min.js"></script>
   <script src="lib/ngColorThief/angular-colorthief.min.js"></script>
-</head>
 
-<body ng-app="App">
+<body ng-app="App" ng-controller="pushCtrl">
+<!--<body ng-app="App">-->
 <ion-nav-view></ion-nav-view>
 </body>
 

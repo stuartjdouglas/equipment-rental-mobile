@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <widget id="com.ionicframework.myapp737564" version="0.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
-  <name>Kiki Rental</name>
+  <name>Karite</name>
   <description>
         An Ionic Framework and Cordova project.
     </description>
-  <author email="hi@ionicframework" href="http://ionicframework.com/">
-      Ionic Framework Team
+  <author email="s.u.douglas@dundee.ac.uk" href="http://ionicframework.com/">
+      Stuart Douglas
     </author>
   <content src="index.html"/>
   <access origin="*"/>

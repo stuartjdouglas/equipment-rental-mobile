@@ -1,7 +1,12 @@
 {
   "name": "HelloIonic",
   "private": "true",
-  "devDependencies": {},
+  "devDependencies": {
+    "ionic-service-core": "^0.1.10",
+    "ionic-service-push": "^0.1.13",
+    "angular-websocket": "^1.0.14",
+    "ionic-platform-web-client": "^0.2.1"
+  },
   "dependencies": {
     "ionic": "~1.2.0",
     "ngCordova": "~0.1.20-alpha",
