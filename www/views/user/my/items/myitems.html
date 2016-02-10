@@ -33,7 +33,7 @@
            <!--ng-style="{'background-image':'url({{data}}{{product.image.size.large}})'}"-->
         <!--<img class="background" ng-src="{{data}}{{product.image.size.small}}">-->
         <a class="item item-avatar transparent border large-avatar" href="#/app/item/{{product.id}}">
-          <img ng-src="{{data}}{{product.images.size.thumb}}">
+          <img ng-src="{{data}}{{product.images[0].size.thumb}}">
           <h2 class="white">{{product.title}}</h2>
           <p class="white">{{product.description}}</p>
 

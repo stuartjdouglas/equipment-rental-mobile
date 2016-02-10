@@ -1,34 +1,42 @@
-<ion-view view-title="Account Settings" >
+<ion-view view-title="Account Settings">
   <ion-content class="wrapper top acc" has-bouncing="true">
     <div class="list">
       <div class="item item-divider">
         Details
       </div>
       <h1>{{profile.username}}</h1>
-
+      {{settings}}
 
       <div class="item item-divider">
-        Theme Colour
+        Notifications
       </div>
 
-      <div ng-style="{
-        'background-color': themeColour,
-        'height': '20px',
-        'width': '100%'
-      }">
-      </div>
-
-        <input class="item" type="text" ng-model="themeColour">
-
-        <button class="button" ng-click=(updateColour(themeColour))>Change</button>
+      <ion-toggle ng-model="settings.notification.enable" toggle-class="toggle-calm">
+        Enable Notifications
+      </ion-toggle>
 
 
 
+      <!--<div class="item item-divider">-->
+      <!--Theme Colour-->
+      <!--</div>-->
 
-<!-- ion-paper-airplane -->
+      <!--<div ng-style="{-->
+      <!--'background-color': themeColour,-->
+      <!--'height': '20px',-->
+      <!--'width': '100%'-->
+      <!--}">-->
+      <!--</div>-->
+
+      <!--<input class="item" type="text" ng-model="themeColour">-->
+
+      <!--<button class="button" ng-click=(updateColour(themeColour))>Change</button>-->
 
 
-</div>
+      <!-- ion-paper-airplane -->
+
+
+    </div>
 
   </ion-content>
 </ion-view>

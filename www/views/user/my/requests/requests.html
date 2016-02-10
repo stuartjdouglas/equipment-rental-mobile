@@ -27,7 +27,7 @@
     <ion-list>
       <ion-item ng-repeat="product in products.requests" ng-show="!noRequests">
         <div class="item-avatar ani">
-          <img ng-src="{{data}}{{product.images.size.thumb}}">
+          <img ng-src="{{data}}{{product.images[0].size.thumb}}">
           <h2>{{product.title}}</h2>
           <p>Created {{product.date_requested | amCalendar}}</p>
         </div>

@@ -29,7 +29,7 @@ angular.module('App.availability', ['App.config'])
                     token: window.localStorage.token
                   }
                 }).success(function(data, status, headers, config) {
-                  //console.log(data)
+                  console.log(data)
                   if (data.available) {
                     $scope.availability = "Available";
                     $scope.isDate = false;
@@ -39,6 +39,7 @@ angular.module('App.availability', ['App.config'])
                   }
                 }).
                 error(function(data, status, headers, config) {
+                  console.log(data)
                   $scope.error = true;
                 });
               } else {

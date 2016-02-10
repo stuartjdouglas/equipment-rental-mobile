@@ -3,6 +3,7 @@ angular.module('App', [
     'ngCordova',
     'ionic.service.core',
     'App.pushCtrl',
+    'App.currentRentalCtrl',
 
     // Views
     'App.home',
@@ -44,6 +45,7 @@ angular.module('App', [
     'App.availability',
     'App.imagepreview',
     'App.rentbutton',
+    'App.image',
 
     //Dependencies
     'angularMoment',
@@ -65,18 +67,21 @@ angular.module('App', [
         //StatusBar.styleDefault();
         if (ionic.Platform.isAndroid()) {
           // window.StatusBar.backgroundColorByHexString('#039BE5');
+          //window.localStorage.themeColour = '#3498DB'
           var colour = window.localStorage.themeColour;
           if (colour != "") {
             if (colour != "") {
-              window.StatusBar.backgroundColorByHexString('#039BE5');
+              window.StatusBar.backgroundColorByHexString('#3498DB');
               // window.StatusBar.backgroundColorByHexString(colour);
             } else {
-              window.StatusBar.backgroundColorByHexString('#039BE5');
+              window.StatusBar.backgroundColorByHexString('#3498DB');
             }
           } else {
-            window.localStorage.themeColour = '#039BE5';
-            window.StatusBar.backgroundColorByHexString('#039BE5');
+            window.localStorage.themeColour = '#3498DB';
+            window.StatusBar.backgroundColorByHexString('#3498DB');
           }
+
+
 
         } else {
           StatusBar.styleLightContent();
@@ -92,64 +97,6 @@ angular.module('App', [
 
     });
   })
-  //.run(function($cordovaPush) {
-  //
-  //  var config = null;
-  //
-  //  if (ionic.platform.isAndroid()) {
-  //    config = {
-  //      "senderID": "replace_with_sender_id"
-  //    }
-  //  } else if (ionic.platform.isIos()) {
-  //    config = {
-  //      "badge": "true",
-  //      "sound": "true",
-  //      "alert": "true"
-  //    }
-  //  }
-  //
-  //  document.addEventListener("deviceready", function(){
-  //    $cordovaPush.register(androidConfig).then(function(result) {
-  //      // Success
-  //      console.log(result);
-  //    }, function(err) {
-  //      console.log(err);
-  //      // Error
-  //    })
-  //
-  //    $rootScope.$on('$cordovaPush:notificationReceived', function(event, notification) {
-  //      switch(notification.event) {
-  //        case 'registered':
-  //          if (notification.regid.length > 0 ) {
-  //            alert('registration ID = ' + notification.regid);
-  //          }
-  //          break;
-  //
-  //        case 'message':
-  //          // this is the actual push notification. its format depends on the data model from the push server
-  //          alert('message = ' + notification.message + ' msgCount = ' + notification.msgcnt);
-  //          break;
-  //
-  //        case 'error':
-  //          alert('GCM error = ' + notification.msg);
-  //          break;
-  //
-  //        default:
-  //          alert('An unknown GCM event has occurred');
-  //          break;
-  //      }
-  //    });
-  //
-  //
-  //    //// WARNING: dangerous to unregister (results in loss of tokenID)
-  //    //$cordovaPush.unregister(options).then(function(result) {
-  //    //  // Success!
-  //    //}, function(err) {
-  //    //  // Error
-  //    //})
-  //
-  //  }, false);
-  //})
   .config(['$ionicAppProvider', function($ionicAppProvider) {
     $ionicAppProvider.identify({
       app_id: 'db428b22',
@@ -417,6 +364,19 @@ angular.module('App', [
 
     $scope.theme = {
       color: 'pink'
+    };
+
+    if (window.localStorage.settings != undefined) {
+    } else {
+      var defaultSettings = {
+        "notification": {
+          "mute": false,
+          "enable": true
+        }
+      };
+
+      window.localStorage.settings = JSON.stringify(defaultSettings);
+      $rootScope.settings = defaultSettings;
     }
 
     $rootScope.api = backend;
@@ -427,7 +387,7 @@ angular.module('App', [
       console.log(state);
 
       $location.path('#/app/user/profile');
-    }
+    };
 
     // This function is called when we scan a nfc tag or access the app through the custom url
     $rootScope.NFCurlAccess = function (url) {

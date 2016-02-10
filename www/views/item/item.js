@@ -1,6 +1,34 @@
 angular.module('App.item', [])
   .controller('itemCtrl', function ($scope, $http, $rootScope, $stateParams, $timeout, $ionicActionSheet, $cordovaSocialSharing, $ionicModal, $ionicPopup, nfcService) {
+    $scope.message = {
+      'processing': false
+    }
+
+    $scope.comment = {
+      'processing': false
+    }
     var background = angular.element(document.getElementById('itembackground'));
+    $scope.domain = $rootScope.domain;
+    //$scope.options = {
+    //  direction: 'horizontal',
+    //  loop: true,
+    //  effect: 'fade',
+    //  autoplay: 2000
+    //};
+
+    $scope.options = {
+      direction: 'horizontal',
+      slidesPerView: '1',
+      paginationClickable: true,
+      showNavButtons: false
+    };
+
+    $scope.data = {};
+
+    $scope.$watch('data.slider',function(slider){
+      console.log('My slider object is ', slider);
+      // Your custom logic here
+    });
 
     function getItem() {
       $http({
@@ -11,11 +39,12 @@ angular.module('App.item', [])
           'Count': $scope.count
         }
       }).success(function (result, status, headers, config) {
+        console.log(result)
         $scope.product = result.items[0];
         $scope.isOwner = (result.items[0].owner.username === $rootScope.auth.username)
         console.log('owner: ' + $scope.isOwner)
         background.css({
-          'background-image': 'url(' + data + $scope.product.image.size.large + ')'
+          'background-image': 'url(' + data + $scope.product.image[0].size.large + ')'
         });
         //Call if the item is available
         checkAva();
@@ -86,6 +115,8 @@ angular.module('App.item', [])
         console.log(data)
         $scope.hasRequested = data.requested;
       }).error(function (data, status, headers, config) {
+        console.log(data)
+
         $scope.error = true;
       });
     }
@@ -125,7 +156,7 @@ angular.module('App.item', [])
       if ($rootScope.loggedIn) {
         cancelRequest();
       }
-    }
+    };
 
 
     $scope.rentbuttonclick = function () {
@@ -237,7 +268,6 @@ angular.module('App.item', [])
         checkOwnerStatus();
       }
 
-
       $http({
         url: backend + '/p/' + $stateParams.item + '/availability',
         method: 'GET',
@@ -246,7 +276,7 @@ angular.module('App.item', [])
         },
       }).success(function (data, status, headers, config) {
         $scope.ava = data;
-        //  console.log(data);
+          console.log(data);
         $scope.gotRes = true;
 
 
@@ -281,6 +311,7 @@ angular.module('App.item', [])
         $scope.error = true;
       }).finally(function () {
         $scope.$broadcast('scroll.refreshComplete');
+
       });
     }
 
@@ -304,6 +335,72 @@ angular.module('App.item', [])
     $scope.doRefresh = function () {
       checkAva();
     }
+
+    $scope.addComment = function (comment) {
+
+      console.log(comment)
+      $scope.message.processing = true;
+      if (comment.message.length > 5) {
+        $scope.product.comments.push({
+          "message": comment.message,
+          "date_added": Date(),
+          'author' : {
+            'username': $scope.auth.username,
+            'gravatar': $scope.auth.gravatar,
+          }
+        });
+
+        sendComment(comment.message);
+
+        $scope.comment.message = "";
+      }
+    };
+
+    $scope.deleteComment = function(cid, index) {
+      deleteComment(cid, index);
+    }
+
+    function sendComment(comment) {
+      //    /product/:pid/comment
+      $http({
+        url: backend + "/product/" + $stateParams.item + '/comment',
+        method: 'POST',
+        headers: {
+          'token': window.localStorage.token,
+          'comment': comment
+        }
+      }).success(function (data, status, headers, config) {
+        //$scope.comment.success = true;
+      }).error(function (data, status, headers, config) {
+        console.log('error');
+        //$scope.comment.success = true;
+      }).finally(function () {
+        console.log("its over")
+        $scope.message.processing = false;
+      });
+    }
+
+    function deleteComment(cid, index) {
+      //    /product/:pid/comment
+      $http({
+        url: backend + "/product/" + $stateParams.item + '/comment/' + cid,
+        method: 'DELETE',
+        headers: {
+          'token': window.localStorage.token
+        }
+      }).success(function (data, status, headers, config) {
+        $scope.product.comments.splice(index, 1);
+      }).error(function (data, status, headers, config) {
+        console.log('error');
+        $scope.comment.success = true;
+      }).finally(function () {
+        console.log("its over")
+        $scope.message.processing = false;
+      });
+    }
+
+
+
 
     $ionicModal.fromTemplateUrl('my-modal.html', {
       scope: $scope,

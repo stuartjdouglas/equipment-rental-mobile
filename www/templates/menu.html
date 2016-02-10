@@ -1,21 +1,22 @@
 <ion-side-menus enable-menu-with-back-views="false">
   <ion-side-menu-content edge-drag-threshold="true" drag-content="true">
+
     <ion-nav-bar class="bar bar-header bar-calm" ng-show="loggedIn">
+      <div class="root">
+        <ion-nav-back-button>
+        </ion-nav-back-button>
 
-      <ion-nav-back-button>
-      </ion-nav-back-button>
+        <ion-nav-buttons side="left">
+          <button class="button button-icon button-clear ion-navicon" menu-toggle="left" ng-show="loggedIn">
+          </button>
 
-      <ion-nav-buttons side="left">
-        <button class="button button-icon button-clear ion-navicon" menu-toggle="left" ng-show="loggedIn">
-        </button>
+        </ion-nav-buttons>
 
-      </ion-nav-buttons>
-
-      <ion-nav-buttons side="right">
-        <button class="button button-icon button-clear ion-qr-scanner" ng-click="scan()" ng-show="loggedIn"> Scan
-        </button>
-      </ion-nav-buttons>
-
+        <ion-nav-buttons side="right">
+          <button class="button button-icon button-clear ion-qr-scanner" ng-click="scan()" ng-show="loggedIn"> Scan
+          </button>
+        </ion-nav-buttons>
+      </div>
     </ion-nav-bar>
 
     <ion-nav-view name="menuContent"></ion-nav-view>
@@ -114,13 +115,29 @@
     </ion-content>
   </ion-side-menu>
 
-  <ion-side-menu side="right">
+  <ion-side-menu side="right" ng-controller="currentRentalCtrl">
 
 
-    <ion-content>
-      <h1>Right side</h1>
-      <br><br>
-      <br> <b>Insert QR HERE</b>
+    <ion-content class="holding">
+      <h1>Holding</h1>
+      <p class="subtitle">Items your currently hold</p>
+      <div>
+        <ul class="timeline">
+          <li ng-repeat="product in products.items" menu-close>
+            <a href="#/app/item/{{product.id}}">
+              <div class="tmicon tmicon-calm"><img src="{{imagedataurl}}{{product.images[0].size.thumb}}"></div>
+              <div class="tmlabel tmlabel-calm">
+                <h4><b>{{product.title}}</b></h4>
+                <br>
+                <p>
+                  <medium><i class="icon ion-ios-clock"></i> {{product.due | amCalendar}}</medium>
+                </p>
+                <img class="timelineimg" ng-if='item.img' src="{{item.img}}"/>
+              </div>
+            </a>
+          </li>
+        </ul>
+      </div>
     </ion-content>
 
   </ion-side-menu>

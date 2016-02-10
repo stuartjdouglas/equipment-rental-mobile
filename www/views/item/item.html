@@ -8,7 +8,15 @@
     </ion-refresher>
 
     <div class="product">
-      <imagepreview image={{product.image.size.large}}></imagepreview>
+      <ion-slides class="boxes" options="options" slider="data.slider">
+        <ion-slide-page ng-repeat="image in product.image">
+          <!--<imageview image={{image.size.medium}}></imageview>-->
+          <imagepreview image={{image.size.large}}></imagepreview>
+        </ion-slide-page>
+
+
+      </ion-slides>
+      <!--<imagepreview image={{product.image[0].size.large}}></imagepreview>-->
       <div class="status" id="status">
         <div class="message">
           <availability datasource={{product.id}}></availability>
@@ -16,17 +24,29 @@
       </div>
       <div class="content">
         <h2>{{product.title}}</h2>
+        <!--<ion-scroll direction="x" zooming="false" delegate-handle="horizontal" horizontal-scroll-fix="mainScroll" has-bouncing="true">-->
+        <!--<div class="image-views">-->
+        <!--<div ng-repeat="image in product.image">-->
+        <!--<imageview class="itemimage" image={{image.size.medium}}></imageview>-->
+        <!--</div>-->
+        <!--</div>-->
+
+        <!--</ion-scroll>-->
 
 
         <div class="row">
 
           <div class="col">
-            <h4>Description</h4>
+            <h4><b>Description</b></h4>
             <div class="row">
               <p>{{product.description}}</p>
             </div>
+            <h4><b>Condition</b></h4>
+            <div class="row">
+              <p>{{product.condition}}</p>
+            </div>
 
-            <h4>Availability</h4>
+            <h4><b>Availability</b></h4>
             <div class="row">
               <p>Available for {{product.product_rental_period_limit}} days.</p>
             </div>
@@ -58,7 +78,11 @@
 
 
         <div class="row">
-          <h4>Tags</h4>
+
+          <h4><b>Tags</b></h4>
+        </div>
+        <div class="row">
+
           <ion-scroll direction="x" scrollbar-y="false" scrollbar-x="false" has-bouncing="true">
             <div class="tags">
               <a class="tag" href="#/app/tag/{{tag.tag}}" ng-repeat="tag in product.tags">{{tag.tag}}</a>
@@ -121,6 +145,30 @@
               <h3><b>Date Updated:</b> <span am-time-ago="product.date_updated"></span></h3>
             </h2>
           </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <form ng-submit="addComment(comment)">
+          <div class="item item-input-inset commentadd">
+            <label class="item-input-wrapper">
+              <input type="text" ng-model="comment.message" placeholder="Comment">
+            </label>
+            <button class="button button-small">
+              Add Comment
+            </button>
+
+          </div>
+        </form>
+
+        <h3>Comments</h3>
+        <div class="item item-avatar comment" ng-repeat="comment in product.comments | orderBy:'-date_added'">
+          <img ng-cloak ng-src="https://secure.gravatar.com/avatar/{{comment.author.gravatar}}?s=90&d=identicon"
+               width="100%" height="auto"/>
+          <h2>
+            <a href="#/app/user/{{comment.author.username}}">@{{comment.author.username}}</a>
+          </h2>
+          <p>{{comment.message}}</p>
         </div>
       </div>
 

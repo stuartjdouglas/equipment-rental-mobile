@@ -1,9 +1,23 @@
 angular.module('App.pushCtrl', [])
-  .controller('pushCtrl', function ($scope, $cordovaPush, $cordovaDialogs, $cordovaMedia, $cordovaToast, $ionicPlatform, $http, $cordovaLocalNotification) {
+  .controller('pushCtrl', function ($scope, $cordovaPush, $cordovaDialogs, $cordovaMedia, $cordovaToast, $ionicPlatform, $http, $cordovaLocalNotification, $rootScope) {
     console.log("hello from push");
+    var settings = $rootScope.settings;
+
+    if (settings === undefined) {
+      settings = JSON.parse(window.localStorage.settings);
+    }
+
+    console.log("notifications are enabled: " + settings.notification.enable)
+    console.log("notifications are muted: " + settings.notification.mute)
+
+    //var
+
     $scope.notifications = [];
     $ionicPlatform.ready(function () {
-      registerDevice();
+
+      if (settings.notification.enable) {
+        registerDevice();
+      }
     });
 
     function registerDevice() {
@@ -28,10 +42,32 @@ angular.module('App.pushCtrl', [])
       })
     }
 
+    function uploadRegID(regID, type) {
+      $http({
+        url: backend + '/notification/register',
+        method: 'POST',
+        headers: {
+          'token': window.localStorage.token,
+          'type': type,
+          'regid': regID
+        }
+      }).success(function (data, status, headers, config) {
+        console.log(data)
+      }).error(function (data, status, headers, config) {
+        $scope.error = true;
+      }).finally(function () {
+        //$scope.$broadcast('scroll.refreshComplete');
+      });
+    }
+
     $scope.$on('$cordovaPush:notificationReceived', function (event, notification) {
-      console.log(JSON.stringify([notification]));
       if (ionic.Platform.isAndroid()) {
-        console.log(notification.regid)
+        if (notification.event == 'registered') {
+          uploadRegID(notification.regid, "android")
+        } else {
+          //displayNotification(notification);
+        }
+        //console.log(notification.regid)
         //handleAndroid(notification);
       }
       else if (ionic.Platform.isIOS()) {
@@ -40,25 +76,24 @@ angular.module('App.pushCtrl', [])
           $scope.notifications.push(JSON.stringify(notification.alert));
         })
       }
-      displayNotification(notification);
+
+
     });
 
     function displayNotification(notification) {
       //debugger
-        $cordovaLocalNotification.schedule({
-          id: 1,
-          title: notification.title,
-          text: notification.message,
-          //data: {
-          //  customProperty: 'custom value'
-          //}
-        }).then(function (result) {
-          // ...
-        });
+      $cordovaLocalNotification.schedule({
+        id: 1,
+        title: notification.title,
+        text: notification.message,
+        //data: {
+        //  customProperty: 'custom value'
+        //}
+      }).then(function (result) {
+        // ...
+      });
 
     }
-
-
 
 
     //function handleAndroid(notification) {
@@ -82,7 +117,6 @@ angular.module('App.pushCtrl', [])
 
 
   });
-
 
 
 //.controller('pushCtrl', function($scope, $rootScope, $ionicUser, $ionicPush) {
