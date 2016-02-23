@@ -44,7 +44,7 @@ angular.module('App.item', [])
         $scope.isOwner = (result.items[0].owner.username === $rootScope.auth.username)
         console.log('owner: ' + $scope.isOwner)
         background.css({
-          'background-image': 'url(' + data + $scope.product.image[0].size.large + ')'
+          'background-image': 'url(' + data + $scope.product.images[0].size.large + ')'
         });
         //Call if the item is available
         checkAva();

@@ -3,8 +3,19 @@ angular.module('App.pushCtrl', [])
     console.log("hello from push");
     var settings = $rootScope.settings;
 
-    if (settings === undefined) {
+    if (window.localStorage.settings != undefined) {
       settings = JSON.parse(window.localStorage.settings);
+    } else {
+      var defaultSettings = {
+        "notification": {
+          "mute": false,
+          "enable": true
+        }
+      };
+
+      window.localStorage.settings = JSON.stringify(defaultSettings);
+
+      settings = defaultSettings;
     }
 
     console.log("notifications are enabled: " + settings.notification.enable)
@@ -14,9 +25,17 @@ angular.module('App.pushCtrl', [])
 
     $scope.notifications = [];
     $ionicPlatform.ready(function () {
+      var deviceInformation = ionic.Platform.device();
+      var isWebView = ionic.Platform.isWebView();
 
-      if (settings.notification.enable) {
-        registerDevice();
+      console.warn(deviceInformation)
+
+
+      if (isWebView) {
+        console.warn('not mobile')
+        if (settings.notification.enable) {
+          registerDevice();
+        }
       }
     });
 

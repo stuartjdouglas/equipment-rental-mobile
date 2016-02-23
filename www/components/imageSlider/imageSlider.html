@@ -1,0 +1,61 @@
+<div class="productSliderBase">
+  <!--<div class="products">-->
+  <!--<div class="left-arrow tab" ng-show="step > 0" ng-click="getPrevious()">-->
+  <!--<i class="fa fa-arrow-left"></i>-->
+  <!--</div>-->
+
+  <ion-scroll direction="x" class="thumbs">
+    <div class="thumbs">
+    <!--<ion-list>-->
+    <a href="#/app/item/{{item.id}}" ng-repeat="item in products.items" class="thumb ani" ng-style="zgetClass(item)">
+      <!--<div class="piece" >-->
+        <!--s-->
+        <!--<p ng-click="goToPage()">{{ $index }}. item {{ item.id }}</p>-->
+
+      <!--</div>-->
+      <!--{{domain}}-->
+      <img ng-src="{{domain}}{{item.images[0].size.thumb}}" height="100%" width="auto"/>
+      <p class="context" ng-hide="type == 'holding'">{{item.title}}</p>
+      <p class="context due" ng-show="type == 'holding'">{{item.title}}<br>
+        Due: {{item.due | amCalendar}}</p>
+
+      </a>
+    </div>
+    <!--</ion-list>-->
+
+    <ion-infinite-scroll class="scroll" ng-if="!nomoreright" icon="ion-loading-c"
+                         on-infinite="loadMore()" distance="1%"></ion-infinite-scroll>
+  </ion-scroll>
+
+
+  <!--<ion-scroll  direction="x"  class="item wide-item go-side">-->
+  <!--<ion-list>-->
+  <!--<ion-item  ng-repeat="item in products.items">-->
+  <!--<p ng-click="goToPage()">{{ $index }}. item {{ item.id }}</p>-->
+  <!--</ion-item>-->
+  <!--</ion-list>-->
+  <!--</ion-scroll>-->
+  <!--<ion-infinite-scroll ng-if="!nomoreright" icon="ion-loading-c" on-infinite="loadMore()" distance="10%"></ion-infinite-scroll>-->
+  <!--<a href="#/listing/{{product.id}}" class="product" ng-repeat="product in products.items track by $index">-->
+  <!--&lt;!&ndash;<ion-infinite-scroll&ndash;&gt;-->
+  <!--&lt;!&ndash;on-infinite="loadMore()"&ndash;&gt;-->
+  <!--&lt;!&ndash;distance="1%">&ndash;&gt;-->
+  <!--<div class="thumb animated fadeIn" ng-mouseover="changeImage($index)" ng-style="getClass(product)">-->
+  <!--<div class="title">-->
+  <!--<p ng-show="type == 'holding'"><b>{{product.title}}</b><br>-->
+  <!--Due: {{product.due | amCalendar}}</p>-->
+  <!--<p ng-hide="type == 'holding'"><b>{{product.title}}</b></p>-->
+  <!--</div>-->
+
+  <!--</div>-->
+  <!--&lt;!&ndash;</ion-infinite-scroll>&ndash;&gt;-->
+  <!--</a>-->
+
+  <!--<div class="right-arrow tab" ng-click="getNext()" ng-hide="nomoreright">-->
+  <!--<i class="fa fa-arrow-right"></i>-->
+  <!--</div>-->
+  <!--</div>-->
+
+
+</div>
+

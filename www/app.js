@@ -46,6 +46,7 @@ angular.module('App', [
     'App.imagepreview',
     'App.rentbutton',
     'App.image',
+    'App.imageSlider',
 
     //Dependencies
     'angularMoment',
@@ -71,16 +72,15 @@ angular.module('App', [
           var colour = window.localStorage.themeColour;
           if (colour != "") {
             if (colour != "") {
-              window.StatusBar.backgroundColorByHexString('#3498DB');
+              window.StatusBar.backgroundColorByHexString('#2C3E50');
               // window.StatusBar.backgroundColorByHexString(colour);
             } else {
-              window.StatusBar.backgroundColorByHexString('#3498DB');
+              window.StatusBar.backgroundColorByHexString('#2C3E50');
             }
           } else {
-            window.localStorage.themeColour = '#3498DB';
-            window.StatusBar.backgroundColorByHexString('#3498DB');
+            window.localStorage.themeColour = '#2C3E50';
+            window.StatusBar.backgroundColorByHexString('#2C3E50');
           }
-
 
 
         } else {
@@ -97,7 +97,7 @@ angular.module('App', [
 
     });
   })
-  .config(['$ionicAppProvider', function($ionicAppProvider) {
+  .config(['$ionicAppProvider', function ($ionicAppProvider) {
     $ionicAppProvider.identify({
       app_id: 'db428b22',
       api_key: '22ee5b3d6e19516fce11a5d436715e9f20588a17e7268543',

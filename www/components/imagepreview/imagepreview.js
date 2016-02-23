@@ -53,12 +53,12 @@ angular.module('App.imagepreview', ['App.config', 'ngColorThief'])
                 setTimeout(function(){
                   scope.imageloaded = true;
 
-                  scope.bannerstyle['-webkit-animation'] = 'slideInDown 0.5s';
-                  scope.bannerstyle.animation =  'slideInDown 0.5s';
+                  //scope.bannerstyle['-webkit-animation'] = 'fadeIn 0.5s';
+                  //scope.bannerstyle.animation =  'fadeIn 0.5s';
 
-                  scope.style['-webkit-animation'] = 'slideInDown 0.5s';
-                  scope.style.animation =  'slideInDown 0.5s';
-                  scope.$apply();
+                  //scope.style['-webkit-animation'] = 'fadeIn 0.5s';
+                  //scope.style.animation =  'fadeIn 0.5s';
+                  //scope.$apply();
                 }, 1);
 
 

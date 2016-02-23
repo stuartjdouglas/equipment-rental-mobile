@@ -5,11 +5,14 @@
 /*.scroll-content {*/
   /*top: 0;*/
 /*}*/
+.item-input-inset {
+  margin-top: -44px
+}
 
 .bar-calm {
   border: 0 !important;
-  background-color: rgba(2, 136, 209, 0.5) !important;
-
+  /*background-color: rgba(2, 136, 209, 0.5) !important;*/
+  background: #2C3E50!important;
 }
 
 /*.bar-header {*/

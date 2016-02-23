@@ -15,7 +15,7 @@ angular.module('App.currentRentalCtrl', [])
           'token': window.localStorage.token
         }
       }).success(function(data, status, headers, config) {
-        console.log(data)
+        //console.log(data)
         $scope.products = data;
         if (data.total === 0) {
           $scope.noResults = true;
@@ -25,7 +25,7 @@ angular.module('App.currentRentalCtrl', [])
         $scope.error = true;
         console.log(data)
       }).finally(function() {
-        console.log("complete")
+        //console.log("complete")
         $scope.$broadcast('scroll.refreshComplete');
       });
 

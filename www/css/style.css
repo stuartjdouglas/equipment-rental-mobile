@@ -2,18 +2,26 @@
 [ng\:cloak], [ng-cloak], .ng-cloak {
   display: none;
 }
+.home {
+  height: 50vh;
+}
+
+/*.pane, ion-content, .darkbk {*/
+  /*background: #F2F1EF!important;*/
+/*}*/
 
 .home.title {
   text-align: center;
   width: 100%;
-  position: absolute;
-  bottom: 60vh;
 
 }
-
 .wrapper.top {
   margin-top: 50px;
 }
+
+/*.body {*/
+  /*background: #F2F1EF!important;*/
+/*}*/
 
 /* login CSS */
 
@@ -103,6 +111,11 @@
 .about.content h1, .about.content h2, .about.content h3, .about.content p, .about.content i {
   color: #fff;
   text-align: center;
+}
+
+
+.item {
+  background: white!important;
 }
 
 .about.content {
@@ -378,13 +391,13 @@ availability {
 }
 
 .ani.ng-enter {
-  -webkit-animation: fadeInLeft 0.2s;
-  animation: fadeInLeft 0.2s;
+  -webkit-animation: fadeIn 0.6s;
+  animation: fadeIn 0.6s;
 }
 
 .ani.ng-enter-stagger {
-  -webkit-animation-delay: 100ms;
-  animation-delay: 100ms;
+  -webkit-animation-delay: 50ms;
+  animation-delay: 50ms;
 
   /* override to make sure it's not inherited from other styles */
   -webkit-animation-duration: 0;

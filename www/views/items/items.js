@@ -49,7 +49,7 @@ angular.module('App.items', [])
 
     function updateResults() {
       $http({
-        url: backend + "/p",
+        url: backend + "/products",
         method: 'GET',
         headers: {
           'Start': $scope.start,
