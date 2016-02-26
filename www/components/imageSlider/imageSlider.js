@@ -103,6 +103,7 @@ angular.module('App.imageSlider', ['App.config'])
             if (data.total < $scope.numbertoshow) {
               $scope.nomoreright = true;
             }
+            console.log(data)
             //$scope.$apply();
 
             //$timeout(function() {
@@ -118,7 +119,7 @@ angular.module('App.imageSlider', ['App.config'])
             $scope.error = true;
           }).finally(function() {
             busy = false;
-            console.log("done loading")
+            //console.log("done loading")
             $scope.$broadcast('scroll.infiniteScrollComplete');
           });
         }

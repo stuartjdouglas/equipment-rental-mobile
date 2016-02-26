@@ -1,6 +1,6 @@
-<span ng-hide="isDate">
+<span ng-hide="isDate" ng-class="thisclass">
   {{availability}}
 </span>
-<span ng-show="isDate">
+<span ng-show="isDate" ng-class="thisclass">
   Due {{availability | amCalendar}}
 </span>

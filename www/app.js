@@ -1,6 +1,7 @@
 angular.module('App', [
     'ionic',
     'ngCordova',
+    'ngAnimate',
     'ionic.service.core',
     'App.pushCtrl',
     'App.currentRentalCtrl',
@@ -39,7 +40,7 @@ angular.module('App', [
     'App.nfcHandler',
 
     // Filters
-
+    'App.Filters',
 
     // Components | Directives
     'App.availability',

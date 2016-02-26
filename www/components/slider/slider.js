@@ -12,7 +12,7 @@ angular.module('App.Slider', ['App.config'])
       },
       templateUrl: 'components/slider/slider.html',
       controller: function ($scope, $http, $timeout) {
-        console.log($scope.numbertoshow)
+        //console.log($scope.numbertoshow)
         $scope.domain = domain;
         var imagewidth = window.innerWidth * 1 / $scope.numbertoshow;
         var images;
@@ -109,7 +109,7 @@ angular.module('App.Slider', ['App.config'])
             $scope.error = true;
           }).finally(function() {
             busy = false;
-            console.log("done loading")
+            //console.log("done loading")
             $scope.$broadcast('scroll.infiniteScrollComplete');
           });
         }

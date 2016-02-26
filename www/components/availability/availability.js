@@ -10,6 +10,7 @@ angular.module('App.availability', ['App.config'])
       },
       templateUrl: 'components/availability/availability.html',
       controller: function($scope, $http, $rootScope, $location, $attrs) {
+        $scope.thisclass = 'unavailable';
         $scope.message = 'hello';
         $scope.datasource =  $attrs.datasource;
         $scope.availability = "Loading...";
@@ -32,6 +33,7 @@ angular.module('App.availability', ['App.config'])
                   console.log(data)
                   if (data.available) {
                     $scope.availability = "Available";
+                    $scope.thisclass = 'available';
                     $scope.isDate = false;
                   } else {
                     $scope.isDate = true;
@@ -40,6 +42,7 @@ angular.module('App.availability', ['App.config'])
                 }).
                 error(function(data, status, headers, config) {
                   console.log(data)
+                  $scope.thisclass = 'error';
                   $scope.error = true;
                 });
               } else {
@@ -49,8 +52,10 @@ angular.module('App.availability', ['App.config'])
                 }).success(function(data, status, headers, config) {
                   if (data.available) {
                     $scope.availability = "Available";
+                    $scope.thisclass = 'available';
                   } else {
                     $scope.availability = "Unavailable";
+                    $scope.thisclass = 'unavailable';
                   }
                 }).
                 error(function(data, status, headers, config) {

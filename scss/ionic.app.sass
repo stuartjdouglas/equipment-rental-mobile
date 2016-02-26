@@ -18,12 +18,31 @@
 // The path for our ionicons font files, relative to the built CSS in www/css
 $ionicons-font-path: "../lib/ionic/fonts" !default
 
+
+html, body, ion-content
+  background: #F2F1EF!important
+  min-height: 100%
 //Overrides
 
 $calm: #2C3E50 !default
 .bar-calm
   background: $calm!important
 
+
+$primaryColour: #333
+$hoverColour: #ECEFF1
+
+$statusOK: #33C3F0
+$statusError: #df2029
+$statusUnknown: #FFEB3B
+$statusUnavailable: #E91E63
+$statusGreen: #4CAF50
+
+$content-background: #fefefe
+
+$bordercolour: #e3e3e3
+$main-border: 1.4px solid $bordercolour
+$main-border-radius: 5px
 
 //
 //    Mixins
@@ -85,6 +104,7 @@ $calm: #2C3E50 !default
 // Home screen (not logged in)
 .home
   width: 100%
+  background: transparent!important
   .scroll
     height: 100%
   .title
@@ -110,6 +130,7 @@ $calm: #2C3E50 !default
   position: absolute
   top: 0
   left: 0
+  overflow: hidden
 
 .sliderBase
   z-index: -4
@@ -145,14 +166,15 @@ $calm: #2C3E50 !default
 //
 
 .login
-  width: 100%
-  height: 100%
-  position: relative
+  //width: 100%
+  //height: 100%
+  //position: relative
+  background: transparent!important
   .scroll
     height: 100%
-    margin-top: -44px
+    //margin-top: -44px
   .title
-    margin-top: 44px
+    //margin-top: 44px
     text-align: center
     width: 100%
     color: white
@@ -167,12 +189,12 @@ $calm: #2C3E50 !default
   .bottom
     //margin-top: -50px
     position: absolute
-    bottom: 50px
+    bottom: 0
     left: 0
     right: 0
 .register
+  background: transparent!important
   .scroll
-    height: 100%
     //margin-top: -44px
   .title
     h1
@@ -209,13 +231,235 @@ $calm: #2C3E50 !default
     margin-left: -50px
   .infintite
     max-height: 0px
+  .search-bar
+    position: relative
+    width: 100%
+    .reveal-button
+      text-align: right
+      color: white
+      font-size: 2rem
+      position: fixed
+      top: 5px
+      right: 15px
+    .inputs
+      display: flex
+
+      .cancel-button
+        margin-left: 10px
+        border-radius: 5px
+        background: transparent
+        border: 1px solid #e3e3e3
+        color: #e3e3e3
+        @include center-center
+        padding-left: 8px
+        padding-right: 10px
+      .search-input
+        flex-grow: 2
+        input
+          border-radius: 5px
+          padding-left: 10px
+          padding-right: 10px
+          width: 100%
+    .search-input.enter
+      animation-name: fadeIn
+      animation-duration: 0.6s
+    .search-input.away
+      animation-name: fadeIn
+      animation-duration: 0.1s
+    .cancel-button.enter
+      animation-name: fadeIn
+      animation-duration: 0.6s
+    .cancel-button.away
+      animation-name: fadeIn
+      animation-duration: 0.1s
+    .reveal-button.enter
+      display: none
+    .reveal-button.away
+      display: inline
+      animation-name: fadeIn
+      animation-duration: 0.6s
+  .filter-row
+    margin-top: 30px
+  .filters
+    display: flex
+    width: 100%
+    padding-left: 20px
+    .scroll
+      display: flex
+      min-height: 50px
+    .filter
+      @include center-center
+      border: 1px solid $calm
+      border-radius: 5px
+      white-space: nowrap
+      padding: 2px
+      padding-left: 6px
+      padding-right: 6px
+      margin: 2px
+      margin-top: 15px
+
+    .filter.active
+      border: 1px solid #e74c3c
+      background: #e74c3c
+      color: white
+
+
+.p-items
+  margin-top: 15px
+.p-item.ng-enter
+  //-webkit-transition-delay: 0.2s
+  //transition-delay: 0.2s
+  animation-name: fadeIn
+  animation-duration: 0.6s
+.p-item.ng-enter-stagger
+  -webkit-animation-delay: 0.05s
+  animation-delay: 0.05s
+  -webkit-animation-duration: 0s
+  animation-duration: 0s
+.p-item
+  padding: 20px
+  padding-top: 5px
+  padding-bottom: 5px
+  position: relative
+  //margin-bottom: 0px
+  width: 100%
+  @include center-center
+  overflow: hidden
+  border-radius: 5px
+
+  a
+    overflow: hidden
+    border-radius: 5px
+    background: white
+    position: relative
+    color: #333
+    width: 100%
+    text-decoration: none
+    //min-height: 100px
+    .p-image-round
+      height: 200px
+      width: 200px
+      border-radius: 100%
+      margin: 0 auto
+    .p-image
+      height: 200px
+      width: 100%
+      margin: 0 auto
+
+
+    .p-title
+      text-align: center
+    .p-description
+      width: 100%
+    .p-tag
+      background: #e3e3e3
+      width: auto
+      //position: absolute
+      //right: 0
+      //top: 200px
+    .p-title-tag
+      width: 100%
+      min-height: 60px
+      display: flex
+
+      padding: 5px
+      .title
+        //position: absolute
+        font-size: 1.4rem
+        //background: red
+        //left: 0
+        flex-grow: 2
+        @include center-left
+      .tag
+        flex-grow: 1
+        font-size: 1rem
+        @include center-right
+        .available
+          color: $statusGreen
+        .unavailable
+          color: $statusError
+        //position: absolute
+        //right: 0
+        //background: blue
+    .p-spacer
+      border-bottom: 1px solid #e3e3e3
+      margin-left: 10px
+      margin-right: 10px
+      //padding-top: 5px
+      //padding-bottom: 5px
+    .p-footer-items
+      width: 100%
+      padding-left: 5px
+      padding-right: 5px
+      padding-top: 5px
+      padding-bottom: 5px
+      color: #919DA4
+      display: flex
+      .p-footer-item
+        text-align: center
+        flex-grow: 1
+  .p-heart-button
+    position: absolute
+    top: 20px
+    left: 35px
+    background: $calm
+    width: 40px
+    height: 40px
+    border-radius: 5px
+    z-index: 100
+    @include center-center
+    i
+      font-size: 1.4rem
+      color: white
+    .liked
+      color: $statusError
+    .liked.reveal
+      animation-name: fadeIn
+      animation-duration: 0.3s
+    .liked.hide
+      animation-name: fadeIn
+      animation-duration: 0.3s
+    .unliked.hide
+      display: inline
+      animation-name: fadeIn
+      animation-duration: 0.3s
+    .unliked.reveal
+      display: none
+.p-full-screen
+  //float: left
+  position: fixed
+  //top: -60px
+  margin-top: -100vh
+  left: 0
+  background: #000000
+  height: 200vh
+  width: 100%
+  z-index: 300
+  display: flex
+  align-items: center
+  .p-full-screen-image img
+    //float: left
+    position: absolute
+    top: 100vh
+    width: 100%
+    height: auto
+    //height: 100px
+
+
+      //background-size: contain
 
 //
 // Misc
 //
 
+.title-center
+  font-weight: 600!important
+  letter-spacing: 1px
+  font-size: 1.5rem!important
+
 .bar-subheader
-  margin-top: -40px
+  margin-top: -44px
+  background: $calm
 
 .on-top
   z-index: 900!important

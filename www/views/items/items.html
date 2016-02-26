@@ -1,15 +1,22 @@
 <ion-view view-title="Listing">
   <ion-content class="listing" has-bouncing="true">
     <div class="bar bar-subheader item-input-inset">
-      <!-- <form ng-submit="search(term)"> -->
-      <label class="item-input-wrapper">
-        <i class="icon ion-ios-search placeholder-icon"></i>
-        <input type="search" ng-model="term" placeholder="Search" ng-enter="search(term)">
-      </label>
-      <button class="button button-clear" ng-click="search(term)">
-        Search
-      </button>
-      <!-- </form> -->
+      <form class="search-bar" ng-submit="search(term)">
+
+        <div class="inputs">
+          <div class="search-input" ng-class="SearchClass" ng-hide="!showSearch">
+            <input type="text" ng-model="term" placeholder="Enter tags">
+          </div>
+          <div class="cancel-button" ng-class="SearchClass" ng-hide="!showSearch">
+            <div class="cancel" ng-click="hideSearch()">Cancel</div>
+          </div>
+          <div class="reveal-button" ng-class="SearchClass" ng-hide="showSearch">
+            <i class="ion-search" ng-click="revealSearch()"></i>
+          </div>
+        </div>
+
+
+      </form>
     </div>
 
 
@@ -26,24 +33,92 @@
                    on-refresh="doRefresh()">
     </ion-refresher>
 
-
-    <div class="ion-items ani" ng-repeat="product in products.items">
-      <a class="item item-avatar transparent large-avatar" href="#/app/item/{{product.id}}">
-        <div class="item-icon"
-             ng-style="{'background':'url({{domain}}{{product.images[0].size.thumb}}) no-repeat center center', 'background-size': 'cover', 'overflow':'hidden'}"></div>
-        <div class="item-content">
-          <h2 class="white"><b>{{product.title}}</b></h2>
-          <p class="white">{{product.description}}</p>
-          <div class="tags">
-            <availability datasource={{product.id}} class="tag"></availability>
-          </div>
+    <div>
+      <!--<h3>Filters</h3>-->
+      <ion-scroll direction="x" class="filters">
+        <div class="filter" ng-class="filter.active" ng-repeat="filter in filters"
+             ng-click="getFilteredResults(filter.path, $index)">
+          {{filter.title}}
         </div>
-      </a>
+      </ion-scroll>
+    </div>
+
+    <div class="p-items">
+      <div class="p-item" ng-repeat="product in products.items">
+        <!--<div class="p-full-screen" ng-show="product.fullscreenenabled">-->
+        <!--<div class="p-full-screen-image">-->
+        <!--<img ng-src="{{domain}}{{product.images[0].size.small}}"/>-->
+        <!--</div>-->
+        <!--</div>-->
+        <!--<div class="holder">-->
+          <div class="p-heart-button" ng-click="like($index, product.id, product.likes.liked)">
+            <i class="ion-ios-heart-outline unliked" ng-class="product.heartClass" ng-hide="product.likes.liked"></i>
+            <i class="ion-ios-heart liked" ng-class="product.heartClass" ng-show="product.likes.liked"></i>
+          </div>
+          <a href="#/app/item/{{product.id}}">
+            <div on-hold="holdImage($index)" on-release="releaseImage($index)" class="p-image"
+                 ng-style="{'background':'url({{domain}}{{product.images[0].size.small}}) no-repeat center center', 'background-size': 'cover', 'overflow':'hidden'}"></div>
+            <!--<div class="p-title">-->
+            <!--<h2><b>{{product.title}}</b></h2>-->
+            <!--</div>-->
+            <!--<div class="p-title-tag">-->
+            <!--<availability datasource={{product.id}} class="tag"></availability>-->
+            <!--</div>-->
+            <div class="p-title-tag">
+              <div class="title">
+                {{product.title | limitchars: 19}}
+              </div>
+              <div class="tag">
+                <availability datasource={{product.id}}></availability>
+              </div>
+            </div>
+            <div class="p-spacer"></div>
+            <div class="p-footer-items">
+              <div class="p-footer-item">
+                <i class="ion-ios-heart"></i> {{product.likes.likes}} <span
+                ng-if="product.likes.likes > 1 || product.likes.likes == 0">likes</span><span
+                ng-if="product.likes.likes == 1">like</span>
+              </div>
+              <div class="p-footer-item">
+                <i class="ion-chatbox"></i> {{product.comments.length}} <span
+                ng-if="product.comments.length > 1 || product.comments.length == 0">comments</span><span
+                ng-if="product.comments.length == 1">comment</span>
+              </div>
+            </div>
+        <!--</div>-->
+
+
+        <!--<div class="p-description">-->
+        <!--{{product.description}}-->
+        <!--</div>-->
+        <!--<div class="p-likes">-->
+        <!--{{product.likes.likes}} <span ng-if="product.likes.likes > 1 || product.likes.likes == 0">likes</span><span ng-if="product.likes.likes == 1">like</span>-->
+        <!--</div>-->
+        <!--<div class="p-description">-->
+        <!--<p>{{product.description}}</p>-->
+        <!--</div>-->
+
+        <!--</div>-->
+        </a>
+      </div>
     </div>
     <ion-infinite-scroll class="scroll infintite" ng-if="!noMoreData" icon="ion-loading-c"
                          on-infinite="loadMore()" distance="1%"></ion-infinite-scroll>
-
-
+    <!--<div class="ion-items ani" ng-repeat="product in products.items">-->
+    <!--<a class="item item-avatar transparent large-avatar" href="#/app/item/{{product.id}}">-->
+    <!--<div class="item-icon"-->
+    <!--ng-style="{'background':'url({{domain}}{{product.images[0].size.thumb}}) no-repeat center center', 'background-size': 'cover', 'overflow':'hidden'}"></div>-->
+    <!--<div class="item-content">-->
+    <!--<h2 class="white"><b>{{product.title}}</b></h2>-->
+    <!--<p class="white">{{product.description}}</p>-->
+    <!--<div class="tags">-->
+    <!--<availability datasource={{product.id}} class="tag"></availability>-->
+    <!--</div>-->
+    <!--</div>-->
+    <!--</a>-->
+    <!--</div>-->
+    <!--<ion-infinite-scroll class="scroll infintite" ng-if="!noMoreData" icon="ion-loading-c"-->
+    <!--on-infinite="loadMore()" distance="1%"></ion-infinite-scroll>-->
 
 
   </ion-content>
