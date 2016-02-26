@@ -1,0 +1,221 @@
+
+//To customize the look and feel of Ionic, you can override the variables
+//in ionic's _variables.scss file.
+//
+//For example, you might change some of the default colors:
+//
+//$light:                           #fff !default;
+//$stable:                          #f8f8f8 !default;
+//$positive:                        #387ef5 !default;
+//$calm:                            #11c1f3 !default;
+//$balanced:                        #33cd5f !default;
+//$energized:                       #ffc900 !default;
+//$assertive:                       #ef473a !default;
+//$royal:                           #886aea !default;
+//$dark:                            #444 !default;
+//
+
+// The path for our ionicons font files, relative to the built CSS in www/css
+$ionicons-font-path: "../lib/ionic/fonts" !default
+
+//Overrides
+
+$calm: #2C3E50 !default
+.bar-calm
+  background: $calm!important
+
+
+//
+//    Mixins
+//
+@mixin center-center
+  display: flex
+  align-items: center
+  justify-content: center
+
+@mixin center-right
+  display: flex
+  align-items: center
+  justify-content: flex-end
+
+@mixin center-left
+  display: flex
+  align-items: center
+  justify-content: flex-start
+@mixin bottom-center
+  display: flex
+  align-items: flex-end
+  justify-content: center
+
+@mixin center-text
+  text-align: center
+
+@mixin center-children
+  display: flex
+  justify-content: center
+
+@mixin center-tag
+  display: flex
+  justify-content: stretch
+
+@mixin center-tags
+  display: flex
+  justify-content: left
+  flex-wrap: wrap
+
+@mixin tags-right
+  display: -webkit-flex
+  display: flex
+  -webkit-flex-direction: row
+  flex-direction: row
+  -webkit-justify-content: flex-end
+  justify-content: flex-end
+
+@mixin tags-bottom-right
+  display: -webkit-flex
+  display: flex
+  -webkit-flex-direction: row
+  flex-direction: row
+  height: 100%
+  -webkit-justify-content: flex-end
+  justify-content: flex-end
+  align-items: flex-end
+  align-self: flex-end
+
+// Home screen (not logged in)
+.home
+  width: 100%
+  .scroll
+    height: 100%
+  .title
+    width: 100%
+    color: white
+    text-align: center
+  .bottom
+    position: absolute
+    bottom: 0
+    //@include bottom-center
+  //z-index: 1
+  //background: black
+.cover-grey
+  position: absolute
+  top: 0
+  left: 0
+  height: 100%
+  width: 100%
+  background: rgba(30, 30, 30, 0.5)
+  z-index: 0
+
+.background
+  position: absolute
+  top: 0
+  left: 0
+
+.sliderBase
+  z-index: -4
+.sliderBase img
+  height: 50rem
+  width: auto
+  margin-top: 0%
+  margin-left: -20%
+  @include center-center
+  //height: 120vh
+  //margin-left: -50%
+  //margin-top: -1%
+  //width: auto
+  //-webkit-filter: blur(0px)
+
+
+
+// Include all of Ionic
+//@import "www/lib/ionic/scss/ionic";
+
+//.listings
+
+//.product h2 {
+//  color: pink
+//}
+
+.product ion-slides
+  height: 200px
+
+
+//
+// Login
+//
+
+.login
+  width: 100%
+  height: 100%
+  position: relative
+  .scroll
+    height: 100%
+    margin-top: -44px
+  .title
+    margin-top: 44px
+    text-align: center
+    width: 100%
+    color: white
+    h1
+      text-align: center
+      color: white
+      font-weight: 600
+  .form
+    margin-top: 100px
+    .submit
+      margin-top: 30px
+  .bottom
+    //margin-top: -50px
+    position: absolute
+    bottom: 50px
+    left: 0
+    right: 0
+.register
+  .scroll
+    height: 100%
+    //margin-top: -44px
+  .title
+    h1
+      text-align: center
+      color: white
+  .form
+    width: 100%
+    height: 100%
+    .image
+      margin-top: 40px
+      @include center-center
+    .subtext
+      color: white
+      margin-top: 10px
+      text-align: center
+    .input
+      margin-top: 40px
+    .submit
+      //margin-top: -120px
+      margin-top: 40px
+
+//
+// Listing
+//
+
+.listing
+  .item-icon
+    position: absolute
+    left: 10px
+    height: 70px
+    width: 70px
+    border-radius: 100%
+  .item-content
+    margin-left: -50px
+  .infintite
+    max-height: 0px
+
+//
+// Misc
+//
+
+.bar-subheader
+  margin-top: -40px
+
+.on-top
+  z-index: 900!important

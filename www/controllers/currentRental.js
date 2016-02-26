@@ -1,10 +1,10 @@
 angular.module('App.currentRentalCtrl', [])
   .controller('currentRentalCtrl', function ($scope, $cordovaPush, $cordovaDialogs, $cordovaMedia, $cordovaToast, $ionicPlatform, $http, $cordovaLocalNotification, $rootScope) {
-    console.log("current rental");
+    //console.log("current rental");
     $scope.count = 15;
     $scope.start = 0;
     $scope.imagedataurl = $rootScope.data;
-    console.log($scope.imagedataurl)
+    //console.log($scope.imagedataurl)
     function getRentals() {
       $http({
         url: backend + "/p/rent/current",

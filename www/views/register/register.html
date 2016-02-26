@@ -1,13 +1,22 @@
 <ion-view view-title="Register">
-  <ion-content class="register wrapper" has-bouncing="true">
-    <form ng-submit="register(user)" ng-hide="processing" class="login form">
+  <div class="background">
+    <slider-image endpoint="/products/random" numbertoshow="1"></slider-image>
+  </div>
+  <div class="cover-grey"></div>
+  <ion-content class="register" has-bouncing="true">
+
+    <form ng-submit="register(user)" ng-hide="processing" class="form">
+      <div class="title">
+        <h1>Register</h1>
+      </div>
       <div class="image register">
-        <img ng-cloak height="100%" width="auto" ng-src="https://secure.gravatar.com/avatar/{{gravatar}}?s=90&d=identicon" width="100%" height="auto"/>
+        <img ng-cloak height="100%" width="auto"
+             ng-src="https://secure.gravatar.com/avatar/{{gravatar}}?s=90&d=identicon" width="100%" height="auto"/>
       </div>
       <div class="register subtext">
         <i>Profile Image (powered by Gravatar)</i>
       </div>
-      <div class="login input">
+      <div class="input">
         <div class="register error" ng-show="error.global.active">
           <i>{{error.global.text}}</i>
         </div>
@@ -34,12 +43,11 @@
         </label>
       </div>
 
-      <div class="login submit">
+      <div class="submit">
         <button class="button button-block button-positive">
           Register
         </button>
       </div>
-
 
 
     </form>

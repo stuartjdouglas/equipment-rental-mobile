@@ -1,9 +1,13 @@
 <ion-view view-title="Login">
+  <div class="background">
+    <slider-image endpoint="/products/random" numbertoshow="1"></slider-image>
+  </div>
+  <div class="cover-grey"></div>
   <ion-content class="login wrapper" has-bouncing="true">
 
     <div class="container">
       <div class="title">
-        <h1 class="centerstage">Login</h1>
+        <h1>Login</h1>
         <div class="error" ng-show="error" ng-cloak>
           <p>{{error}}</p>
         </div>
@@ -26,9 +30,11 @@
             </button>
           </div>
         </form>
-        <button class="button" ng-click="forgotPassword()">
-          Forgotten Password
-        </button>
+        <div class="bottom">
+          <button class="button" ng-click="forgotPassword()">
+            Forgotten Password
+          </button>
+        </div>
       </div>
     </div>
 

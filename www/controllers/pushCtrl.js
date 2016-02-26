@@ -1,6 +1,5 @@
 angular.module('App.pushCtrl', [])
   .controller('pushCtrl', function ($scope, $cordovaPush, $cordovaDialogs, $cordovaMedia, $cordovaToast, $ionicPlatform, $http, $cordovaLocalNotification, $rootScope) {
-    console.log("hello from push");
     var settings = $rootScope.settings;
 
     if (window.localStorage.settings != undefined) {
@@ -18,8 +17,8 @@ angular.module('App.pushCtrl', [])
       settings = defaultSettings;
     }
 
-    console.log("notifications are enabled: " + settings.notification.enable)
-    console.log("notifications are muted: " + settings.notification.mute)
+    //console.log("notifications are enabled: " + settings.notification.enable)
+    //console.log("notifications are muted: " + settings.notification.mute)
 
     //var
 
@@ -28,11 +27,11 @@ angular.module('App.pushCtrl', [])
       var deviceInformation = ionic.Platform.device();
       var isWebView = ionic.Platform.isWebView();
 
-      console.warn(deviceInformation)
+      //console.warn(deviceInformation)
 
 
       if (isWebView) {
-        console.warn('not mobile')
+        //console.warn('not mobile')
         if (settings.notification.enable) {
           registerDevice();
         }

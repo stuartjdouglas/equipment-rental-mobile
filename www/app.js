@@ -47,6 +47,7 @@ angular.module('App', [
     'App.rentbutton',
     'App.image',
     'App.imageSlider',
+    'App.Slider',
 
     //Dependencies
     'angularMoment',

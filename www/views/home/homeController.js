@@ -8,8 +8,8 @@ angular.module('App.home', [])
 
       $state.go('app.timeline');
     } else {
-      console.warn("not logged in" +
-        "")
+      //console.warn("not logged in" +
+      //  "")
       $scope.viewSplash = true;
     }
 
