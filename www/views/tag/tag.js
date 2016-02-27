@@ -1,6 +1,6 @@
 angular.module('App.tag', [])
   .controller('tagCtrl', function ($scope, $http, $rootScope, $stateParams) {
-
+    $scope.domain = domain;
     $scope.count = 15;
     $scope.start = 0;
 
@@ -54,6 +54,7 @@ angular.module('App.tag', [])
           'Count': $scope.count
         }
       }).success(function (data, status, headers, config) {
+        console.log(data)
         $scope.products = data;
       }).error(function (data, status, headers, config) {
         $scope.error = true;

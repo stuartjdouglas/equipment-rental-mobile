@@ -1,30 +1,34 @@
 <ion-view view-title="{{message}}">
-  <ion-content has-bouncing="true" scroll="true">
-    <div class="home title padding-vertical">
-      <h2>Current Rentals</h2>
-      <image-slider class="newest scrollsection" endpoint="/p/rent/current" numbertoshow="3"
-                    limit="3" type="holding"></image-slider>
-      <h2>Recently Updates</h2>
-      <image-slider class="newest scrollsection" endpoint="/products/updated/newest" numbertoshow="3"
-                    limit="3"></image-slider>
-      <h2>Recently added</h2>
-      <image-slider class="newest scrollsection" endpoint="/products/added/newest" numbertoshow="4"
-                    limit="4"></image-slider>
-      <h2>Most Popular (by likes)</h2>
-      <image-slider class="newest scrollsection" endpoint="/products/likes/most" numbertoshow="4"
-                    limit="4"></image-slider>
-      <!--<ul class="list">-->
-      <!--<li class="item">-->
-      <!--<div class="row">-->
-      <!--<div class="col">Ipad Air 2</div>-->
-      <!--<div class="col">Return in: 12 days</div>-->
-      <!--<div class="col">.col</div>-->
-      <!--</div>-->
+  <ion-content class="home" has-bouncing="true" scroll="true">
+    <div class="timeline title padding-vertical">
+      <div class="slice">
+        <h2 class="animated fadeIn">Current Rentals</h2>
+        <image-slider class="newest scrollsection" endpoint="/p/rent/current" numbertoshow="3"
+                      limit="3" type="holding"></image-slider>
 
-      <!--</li>-->
-      <!--</ul>-->
+      </div>
+      <div class="spacer"></div>
+      <div class="slice">
+        <h2 class="animated fadeIn">Recently Updated</h2>
+        <image-slider class="newest scrollsection" endpoint="/products/updated/newest" numbertoshow="3"
+                      limit="3"></image-slider>
+      </div>
+      <div class="spacer"></div>
+      <div class="slice">
+        <h2>Recently added</h2>
+        <image-slider class="newest scrollsection" endpoint="/products/added/newest" numbertoshow="4"
+                      limit="4"></image-slider>
 
-      <!--<h2>New Arrvals</h2>-->
+      </div>
+      <div class="spacer"></div>
+      <div class="slice">
+        <h2 class="animated fadeIn">Most Popular (by likes)</h2>
+        <image-slider class="newest scrollsection" endpoint="/products/likes/most" numbertoshow="4"
+                      limit="4"></image-slider>
+      </div>
+
+      <div class="spacer"></div>
+      <!--<h1>Hello</h1>-->
     </div>
 
   </ion-content>

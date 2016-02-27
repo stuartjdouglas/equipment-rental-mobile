@@ -101,22 +101,33 @@ $main-border-radius: 5px
   align-items: flex-end
   align-self: flex-end
 
+
 // Home screen (not logged in)
 .home
   width: 100%
+  padding: 20px
+  //position: relative
   background: transparent!important
-  .scroll
-    height: 100%
+  //padding-bottom: 80px
+  overflow: visible!important
+  overflow-y: scroll!important
+  .timeline
+    padding-bottom: 60px
+    background: white
   .title
     width: 100%
     color: white
     text-align: center
   .bottom
     position: absolute
-    bottom: 0
-    //@include bottom-center
-  //z-index: 1
-  //background: black
+    bottom: 50px
+  .slice
+    margin-top: 10px
+    margin-bottom: 10px!important
+  h2
+    margin-left: 10px
+    @include center-left
+
 .cover-grey
   position: absolute
   top: 0
@@ -135,7 +146,7 @@ $main-border-radius: 5px
 .sliderBase
   z-index: -4
 .sliderBase img
-  height: 50rem
+  height: 70rem
   width: auto
   margin-top: 0%
   margin-left: -20%
@@ -189,7 +200,7 @@ $main-border-radius: 5px
   .bottom
     //margin-top: -50px
     position: absolute
-    bottom: 0
+    bottom: 50px
     left: 0
     right: 0
 .register
@@ -289,7 +300,8 @@ $main-border-radius: 5px
       min-height: 50px
     .filter
       @include center-center
-      border: 1px solid $calm
+      border: 1px solid #e3e3e3
+      background: #e3e3e3
       border-radius: 5px
       white-space: nowrap
       padding: 2px
@@ -397,7 +409,13 @@ $main-border-radius: 5px
       display: flex
       .p-footer-item
         text-align: center
+        @include center-center
         flex-grow: 1
+        i
+          padding-right: 10px
+        span
+          padding-left: 2px
+          padding-right: 2px
   .p-heart-button
     position: absolute
     top: 20px
@@ -449,8 +467,249 @@ $main-border-radius: 5px
       //background-size: contain
 
 //
+// Product / Item
+//
+
+.product
+  margin-top: 20px
+  min-height: 100%
+  .overlay-icon
+    .unavailable, .available
+      position: absolute
+      right: 30px
+      top: -10px
+      z-index: 300
+      font-size: 1.1rem
+      overflow: visible
+      border-radius: 5px
+      padding: 5px
+      color: white
+    .unavailable
+      background: $statusError
+    .available
+      background: $statusGreen
+  .swiper-container
+    overflow: visible
+  .boxes
+    overflow: visible
+    margin-top: 50px
+    height: 300px
+    .box
+      height: 270px
+      @include center-center
+  .content
+    padding: 20px
+    background: white
+    width: 100%
+    height: 100%
+    .content-container
+      display: flex
+      min-height: 150px
+      height: 100%
+      .icon
+        height: 150px
+        @include center-center
+    .tags
+      overflow: visible
+      height: 30px
+      padding-top: 10px
+
+      .tag
+        min-height: 20px
+        padding: 2px
+        padding-left: 10px
+        padding-right: 10px
+        background: #e3e3e3
+        border-radius: 5px
+        color: #333
+        margin-left: 10px
+        text-decoration: none
+    .owner-card
+      color: #333333
+      display: flex
+      text-decoration: none
+      .content
+        @include center-left
+        font-size: 1.2rem
+      .image
+        @include center-left
+        img
+          border-radius: 100%
+          height: 50px
+    .comment-input
+
+      .input
+        display: flex
+        .media
+          flex-grow: 2
+          @include center-center
+        .submit
+          padding-left: 10px
+        input
+          background: #fafafa
+          padding-left: 10px
+          padding-right: 10px
+          border: 1px solid #e3e3e3
+          border-radius: 5px
+          width: 100%
+    .comments
+      .comment
+        display: flex
+        margin-top: 20px
+        .profile-image
+          @include center-left
+          img
+            height: 50px
+            border-radius: 100%
+        .comment
+          @include center-left
+          padding-left: 20px
+          flex-grow: 2
+        .date-commented
+          @include center-right
+          padding-left: 5px
+
+  margin-bottom: 50px
+//
+// Description
+//
+
+.description
+  background: white!important
+  height: 100%
+  width: 100%
+  padding: 20px
+  .scroll
+    margin-bottom: 50px
+
+//
+//  Profile | User
+//
+
+.profile
+  background: $calm!important
+  height: 100%
+  width: 100%
+  color: #333
+  .scroll
+    height: 100%
+  .profile-image
+    margin-top: 50px
+    @include center-center
+    img
+      height: 150px
+      width: auto
+      border-radius: 100%
+  .profile-username
+    @include center-center
+    font-size: 2rem
+    font-weight: 600
+    color: #fff
+    height: 100px
+  .profile-content
+    @include center-center
+  .profile-qr
+    @include center-center
+    img
+      margin-top: 20px
+      max-width: 200px
+  .profile-paper
+    padding: 30px
+    background: white
+    height: 100%
+    h3
+      margin-bottom: 20px
+    //padding-bottom: 200px
+
+//
+//  Menu
+//
+
+.l-menu
+  background: #2c3e50!important
+  color: #fff!important
+
+  .item-content
+    width: 100%
+    display: flex
+
+    background: #2C3E50* 0.9
+  .item-content:active, .item-content:hover, .item-content.activated
+    background: #2C3E50* 0.8
+  .l-menu-item-user .item-content
+    background: #2C3E50
+  .l-menu-item-bad .item-content
+    background: $statusError * 0.8
+  .l-menu-item-bad .item-content:active, .l-menu-item-bad .item-content:hover, .l-menu-item-bad .item-content.activated
+    background: $statusError* 0.6
+  .l-menu-item-user, .item
+    border: none!important
+    //padding: 20px
+
+    display: flex
+    .image
+      @include center-center
+      img
+        height: 50px
+        width: 50px
+        border-radius: 100%
+    .username
+      flex-grow: 1
+      padding: 20px
+      @include center-left
+  .l-menu-item, .item
+    width: 100%
+  i
+    padding-right: 10px
+  .l-menu-item.active , .item
+    background: pink
+    width: 100%
+  .l-menu-bottom
+    //position: absolute
+    //bottom: 0
+  a
+    color: #fff!important
+  .item
+    background: inherit!important
+    color: #fff
+
+//
+//  About
+//
+
+.about
+  .scroll
+    margin-bottom: 80px
+  //background: white!important
+  padding: 20px
+  .important
+    width: 100%
+    background: white
+    padding: 20px
+    border-radius: 5px
+  h3
+    padding-top: 30px
+  .info
+    //border: 1px solid $calm
+    padding: 10px
+    border-radius: 5px
+    margin-bottom: 30px
+    background: white
+
+
+//
 // Misc
 //
+
+.button-row
+  @include center-center
+  button
+    flex-grow: 1
+
+.spacer
+  border-bottom: 1px solid #e3e3e3
+  padding-top: 10px
+  margin-bottom: 10px
 
 .title-center
   font-weight: 600!important

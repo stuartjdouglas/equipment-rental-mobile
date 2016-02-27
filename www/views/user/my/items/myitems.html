@@ -1,72 +1,66 @@
 <ion-view view-title="My Items">
-  <ion-content class="dark" has-bouncing="true">
-        <div class="bar bar-subheader item-input-inset">
-          <label class="item-input-wrapper">
-            <i class="icon ion-ios-search placeholder-icon"></i>
-            <input type="search" placeholder="Search">
-          </label>
-          <button class="button button-clear">
-            Cancel
-          </button>
-        </div>
-
-
-        <div class="no results" ng-show="noResults">
-          <div class="text">
-            No Results :(
+  <ion-content class="listing" has-bouncing="true">
+    <div class="bar bar-subheader item-input-inset">
+      <form class="search-bar" ng-submit="search(term)">
+        <div class="inputs">
+          <div class="search-input" ng-class="SearchClass" ng-hide="!showSearch">
+            <input type="text" ng-model="term" placeholder="Enter tags">
+          </div>
+          <div class="cancel-button" ng-class="SearchClass" ng-hide="!showSearch">
+            <div class="cancel" ng-click="hideSearch()">Cancel</div>
+          </div>
+          <div class="reveal-button" ng-class="SearchClass" ng-hide="showSearch">
+            <i class="ion-search" ng-click="revealSearch()"></i>
           </div>
         </div>
-      <div class="row ">
-        <div class="col">
-          <i>
-            Showing results {{start}} - {{start + count}} from {{products.total}}.
-          </i>
-        </div>
+      </form>
+    </div>
+
+    <div class="row">
+      <div class="col">
+        <i>
+          Showing results {{start}} - {{start + count}} from {{products.total}}.
+        </i>
       </div>
+    </div>
 
-      <ion-refresher
-        pulling-text="Pull to refresh..."
-        on-refresh="doRefresh()">
-      </ion-refresher>
+    <ion-refresher class="on-top"
+                   pulling-text="Pull to refresh..."
+                   on-refresh="doRefresh()">
+    </ion-refresher>
 
-      <div class="list ani block" ng-repeat="product in products.items">
-           <!--ng-style="{'background-image':'url({{data}}{{product.image.size.large}})'}"-->
-        <!--<img class="background" ng-src="{{data}}{{product.image.size.small}}">-->
-        <a class="item item-avatar transparent border large-avatar" href="#/app/item/{{product.id}}">
-          <img ng-src="{{data}}{{product.images[0].size.thumb}}">
-          <h2 class="white">{{product.title}}</h2>
-          <p class="white">{{product.description}}</p>
 
-          <p class="status"> Due {{product.due | amCalendar}}</p>
+    <div class="p-items">
+      <div class="p-item" ng-show="noData">
+        <h1><i class="ion-information-circled"></i> No Items</h1>
+      </div>
+      <div class="p-item" ng-show="noData">
+        <a class="button" href="#/app/items">View listings</a>
+      </div>
+      <div class="p-item" ng-repeat="product in products.items">
+
+        <a href="#/app/item/{{product.id}}">
+          <div on-hold="holdImage($index)" on-release="releaseImage($index)" class="p-image"
+               ng-style="{'background':'url({{domain}}{{product.images[0].size.small}}) no-repeat center center', 'background-size': 'cover', 'overflow':'hidden'}"></div>
+
+          <div class="p-title-tag">
+            <div class="title">
+              {{product.title | limitchars: 19}}
+            </div>
+            <div class="tag">
+              <availability datasource={{product.id}}></availability>
+            </div>
+          </div>
+          <div class="p-spacer"></div>
+          <div class="p-footer-items">
+            <div class="p-footer-item">
+              <i class="ion-clock"></i> Due {{product.due | amCalendar}}
+            </div>
+          </div>
         </a>
       </div>
-
-    <div class="itempadding">
-
     </div>
-
+    <ion-infinite-scroll class="scroll infintite" ng-if="!noMoreData" icon="ion-loading-c"
+                         on-infinite="loadMore()" distance="1%"></ion-infinite-scroll>
   </ion-content>
-
-
-  <div class="row row-bottom background white">
-    <div class="col">
-      <a class="tab-item" ng-click="back()" ng-hide="noResults">
-        <i class="icon ion-arrow-left-c"></i>
-        Previous Page
-      </a>
-    </div>
-    <div class="col">
-      <a class="tab-item" href="#/app/admin/item/add">
-        <i class="icon ion-plus-circled"></i>
-        Add Product
-      </a>
-    </div>
-    <div class="col">
-      <a class="tab-item" ng-click="forward()" ng-hide="noResults">
-        <i class="icon ion-arrow-right-c"></i>
-        Next Page
-      </a>
-    </div>
-  </div>
-
 </ion-view>

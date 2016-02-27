@@ -1,24 +1,28 @@
 <ion-view view-title="Profile">
-  <ion-content has-bouncing="true">
-    <div class="list card">
-
-      <div class="item item-avatar">
-        <img ng-cloak ng-src="https://secure.gravatar.com/avatar/{{profile.gravatar}}?s=90&d=identicon" width="100%" height="auto"/>
-        <h2>@{{profile.username}}</h2>
-      </div>
-
-      <div class="item">
-        <p><b>Name</b> {{profile.first_name}} {{profile.last_name}}</p>
-        <p><b>Location</b> {{profile.location}}</p>
-        <p><b>Email</b> {{profile.email}}</p>
-        <p><b>Registered</b> <span am-time-ago="profile.date_registered"></span></p>
-      </div>
-
-      <div class="item">
-        <img ng-src="data:image/JPEG;base64,{{qr}}" width="100%" height="auto"/>
-
-      </div>
-
+  <ion-content has-bouncing="true" class="profile">
+    <div class="profile-image animated fadeIn">
+      <img ng-cloak ng-src="https://secure.gravatar.com/avatar/{{profile.gravatar}}?s=90&d=identicon" width="100%" height="auto"/>
     </div>
+    <div class="profile-username animated fadeIn">
+      @{{profile.username}}
+    </div>
+
+    <div class="profile-paper animated slideInUp">
+      <h3>Profile Details</h3>
+      <div class="profile-content">
+        <ul>
+          <li><b>Name:</b> {{profile.first_name}} {{profile.last_name}}</li>
+          <li><b>Location:</b> {{profile.location}}</li>
+          <li><b>Email:</b> {{profile.email}}</li>
+          <li><b>Registered:</b> {{profile.date_registered | amCalendar}}</li>
+        </ul>
+      </div>
+
+      <div class="profile-qr">
+        <img ng-src="data:image/JPEG;base64,{{qr}}" width="100%" height="auto"/>
+      </div>
+    </div>
+
+
   </ion-content>
 </ion-view>

@@ -6,7 +6,9 @@ angular.module('App.availability', ['App.config'])
       restrict: 'AEC',
       scope: {
         datasource: '@',
-        isowner: '@'
+        isowner: '@',
+        showdays: '@',
+        days: '@'
       },
       templateUrl: 'components/availability/availability.html',
       controller: function($scope, $http, $rootScope, $location, $attrs) {
@@ -14,6 +16,7 @@ angular.module('App.availability', ['App.config'])
         $scope.message = 'hello';
         $scope.datasource =  $attrs.datasource;
         $scope.availability = "Loading...";
+        $scope.showdays = Boolean($attrs.showdays)
         $scope.$watch(
           "datasource",
           function handleFooChange( ) {
@@ -22,7 +25,6 @@ angular.module('App.availability', ['App.config'])
               $scope.datasource =  $attrs.datasource;
               //console.log($attrs.isowner);
               if ($attrs.isowner === 'true') {
-                console.log("weee owner")
                 $http({
                   url: backend + '/owner/products/' + $attrs.datasource + '/availability',
                   method: 'GET',

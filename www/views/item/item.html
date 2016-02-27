@@ -8,175 +8,151 @@
     </ion-refresher>
 
     <div class="product">
-      <ion-slides class="boxes" options="options" slider="data.slider">
-        <ion-slide-page ng-repeat="image in product.images">
-          <!--<imageview image={{image.size.medium}}></imageview>-->
-          <imagepreview image={{image.size.large}}></imagepreview>
+
+      <ion-slides class="boxes animated fadeIn" options="options" slider="data.slider">
+
+        <div class="overlay-icon">
+          <availability datasource={{product.id}} ng-hide="owner" showdays="true"
+                        days={{product.product_rental_period_limit}}></availability>
+        </div>
+        <ion-slide-page class="box" ng-repeat="image in product.images">
+          <img src="{{domain}}{{image.size.medium}}">
         </ion-slide-page>
-
-
       </ion-slides>
-      <!--<imagepreview image={{product.image[0].size.large}}></imagepreview>-->
-      <div class="status" id="status">
-        <div class="message">
-          <availability datasource={{product.id}}></availability>
-        </div>
-      </div>
+
       <div class="content">
-        <h2>{{product.title}}</h2>
-        <!--<ion-scroll direction="x" zooming="false" delegate-handle="horizontal" horizontal-scroll-fix="mainScroll" has-bouncing="true">-->
-        <!--<div class="image-views">-->
-        <!--<div ng-repeat="image in product.image">-->
-        <!--<imageview class="itemimage" image={{image.size.medium}}></imageview>-->
-        <!--</div>-->
-        <!--</div>-->
-
-        <!--</ion-scroll>-->
-
-
-        <div class="row">
-
-          <div class="col">
-            <h4><b>Description</b></h4>
-            <div class="row">
-              <p>{{product.description}}</p>
-            </div>
-            <h4><b>Condition</b></h4>
-            <div class="row">
-              <p>{{product.condition}}</p>
-            </div>
-
-            <h4><b>Availability</b></h4>
-            <div class="row">
-              <p>Available for {{product.product_rental_period_limit}} days.</p>
-            </div>
-          </div>
+        <div class="title animated fadeIn">
+          <h1>{{product.title}}</h1>
         </div>
+        <div class="spacer"></div>
 
-        <div class="button-bar" ng-hide="owner">
-          <button class="button" ng-class="rentbuttonclass" ng-click="rentbuttonclick()" ng-show="loggedIn"
-                  ng-hide="hasRequested || isOwner">{{availability}}
-          </button>
-          <button class="button" ng-class="rentbuttonclass" ng-show="hasRequested">Awaiting approval</button>
-          <button class="button button-assertive" ng-click="cancelRequest()" ng-show="hasRequested">Cancel Request
-          </button>
-          <button class="button" ng-hide="loggedIn">{{status}}</button>
+        <div class="button-row" ng-hide="owner">
+          <span ng-if="auth.username != product.owner.username">
+            <button class="button" ng-click="rentbuttonclick()" ng-show="loggedIn" ng-hide="hasRequested"
+                    ng-class="rentbuttonclass">Rent this
+            </button>
+            <!--<button class="button" ng-class="rentbuttonclass" ng-click="rentbuttonclick()" ng-show="loggedIn"-->
+            <!--ng-hide="hasRequested || isOwner">{{availability}}-->
+            <!--</button>-->
+            <button class="button" ng-class="button" ng-show="hasRequested">Awaiting approval</button>
+            <button class="button button-assertive" ng-click="cancelRequest()" ng-show="hasRequested">Cancel Request
+            </button>
+          </span>
+          <span ng-if="auth.username == product.owner.username">
+            <a class="button" href="#/app/user/{{ownerAva.owner}}" ng-show="ownerAva.owner != 'null'">Currently held by
+              {{ownerAva.owner}}</a>
+            <a href="#/app/request/{{product.id}}" class="button" ng-hide="ownerAva.owner != 'null'">
+              {{requestData.num_of_request}}
+              <span ng-show="requestData.num_of_request === 1"> request</span>
+              <span ng-hide="requestData.num_of_request === 1"> requests</span>
+            </a>
+            <span ng-show="ownerAva.owner != 'null'">
+              <button class="button" ng-click="return()">
+                Mark returned
+              </button>
+            </span>
+
+
+          </span>
+
+          <!--<button class="button" ng-hide="loggedIn">{{status}}</button>-->
         </div>
-        <div class="ownerplane" ng-show="owner">
-          <h4><b>You currently hold this</b></h4>
-          <div class="row">
-            <div class="col">
-
-
+        <div class="button-row" ng-show="owner">
+          <span ng-show="owner">
+              <h4><b>You currently hold this</b></h4>
               <p><b>Due: </b>{{ava.date_due | amCalendar}}</p>
 
-            </div>
-          </div>
-
+          </span>
         </div>
-        <br>
-
-
-        <div class="row">
-
-          <h4><b>Tags</b></h4>
+        <div class="spacer"></div>
+        <div ng-if="product.content.length == 1897 || product.content.length == 0 || product.content.includes('undefined')">
+          {{product.description}}
         </div>
-        <div class="row">
-
-          <ion-scroll direction="x" scrollbar-y="false" scrollbar-x="false" has-bouncing="true">
-            <div class="tags">
-              <a class="tag" href="#/app/tag/{{tag.tag}}" ng-repeat="tag in product.tags">{{tag.tag}}</a>
-            </div>
-          </ion-scroll>
-        </div>
-        <div class="button-bar">
-
-          <button class="button icon-right ion-ios-barcode-outline" ng-click="openModal(product)">QR</button>
-          <button class="button icon-right ion-share" ng-click="showAction()">Share</button>
-        </div>
-
-        <div class="ownerplane" ng-show="isOwner">
-          <h4><b>Owner Panel</b></h4>
-          <h3>Requests</h3>
-          <div class="row">
-            <div class="col">
-              <p class="label label-pill label-info">{{requestData.num_of_request}} <span
-                ng-show="requestData.num_of_request === 1"> request</span><span
-                ng-hide="requestData.num_of_request === 1"> requests</span>
-              </p>
-            </div>
-            <div class="col">
-              <a href="#/app/request/{{product.id}}" class="button">
-                View
-                <span ng-show="requestData.num_of_request === 1"> request</span>
-                <span ng-hide="requestData.num_of_request === 1"> requests</span>
-              </a>
-            </div>
-          </div>
-          <div class="row">
-            <div class="col" ng-hide="!ownerAvail.available">
-              <p>Current holding by {{ownerAva.owner}}</p>
-
-              <p><b>Issued: </b>{{ownerAva.date_taken | amCalendar}}</p>
-              <p><b>Due: </b>{{ownerAva.date_due | amCalendar}}</p>
-            </div>
+        <div class="content-container animated fadeIn" ng-if="product.content.length != 1897 || product.content.length != 0" ng-hide="product.content.includes('undefined')" ng-click="goTo('app.item.description', product)">
+          <div class="description" ng-bind-html="product.content | limitchars: 250">
 
           </div>
-          <div class="row">
-            <div class="button-bar">
-              <button class="button button-minor" ng-click="return()">Mark Available</button>
-              <button class="button button-assertive icon-right ion-trash-a" ng-click="deleteItem()">Delete</button>
-              <!--<button class="button button-assertive icon-right ion-android-cloud-outline" ng-click="writeToNFC({{product.id}})">Write NFC</button>-->
-            </div>
-          </div>
-
-        </div>
-
-        <br>
-
-
-        <div class="owner">
-          <div class="item item-avatar">
-            <img ng-cloak ng-src="https://secure.gravatar.com/avatar/{{product.owner.gravatar}}?s=90&d=identicon"
-                 width="100%" height="auto"/>
-            <h2>
-              <a href="#/app/user/{{product.owner.username}}">@{{product.owner.username}}</a>
-              <h3><b>Date Added:</b> <span am-time-ago="product.date_added"></span></h3>
-              <h3><b>Date Updated:</b> <span am-time-ago="product.date_updated"></span></h3>
-            </h2>
+          <div class="icon">
+            <i class="ion-chevron-right"></i>
           </div>
         </div>
-      </div>
+        <div class="spacer"></div>
+        <h3>
+          Product Details
+        </h3>
+        <ul>
+          <li><b>Description:</b> {{product.description}}</li>
+          <li><b>Condition:</b> {{product.condition}}</li>
+          <li><b>Days Available:</b> {{product.product_rental_period_limit}}</li>
+          <li><b>Date Added:</b> {{product.date_added | amCalendar}}</li>
+          <li><b>Date Update:</b> {{product.date_updated | amCalendar}}</li>
+        </ul>
 
-      <div class="content">
-        <form ng-submit="addComment(comment)">
-          <div class="item item-input-inset commentadd">
-            <label class="item-input-wrapper">
+        <div class="spacer"></div>
+        <h3>
+          Tags
+        </h3>
+
+        <ion-scroll direction="x">
+          <div class="tags">
+            <a class="tag" href="#/app/tag/{{tag.tag}}" ng-repeat="tag in product.tags">{{tag.tag}}</a>
+          </div>
+        </ion-scroll>
+
+        <div class="spacer"></div>
+
+        <div class="item-model">
+          <button class="button" ng-click="openModal(product)">Display QR Code</button>
+        </div>
+
+
+        <div class="spacer"></div>
+        <h3>
+          Owner Details
+        </h3>
+        <a href="#/app/user/{{product.owner.username}}" class="owner-card">
+          <div class="image">
+            <img ng-cloak ng-src="https://secure.gravatar.com/avatar/{{product.owner.gravatar}}?s=90&d=identicon">
+          </div>
+          <div class="content">
+            @{{product.owner.username}}
+          </div>
+        </a>
+
+        <div class="spacer"></div>
+        <h3>
+          Comments
+        </h3>
+        <form ng-submit="addComment(comment)" class="comment-input">
+          <div class="input">
+            <div class="media">
+
               <input type="text" ng-model="comment.message" placeholder="Comment">
-            </label>
-            <button class="button button-small">
-              Add Comment
-            </button>
+            </div>
+            <div class="submit">
 
+              <button class="button">
+                Comment
+              </button>
+            </div>
           </div>
         </form>
-
-        <h3>Comments</h3>
-        <div class="item item-avatar comment" ng-repeat="comment in product.comments | orderBy:'-date_added'">
-          <img ng-cloak ng-src="https://secure.gravatar.com/avatar/{{comment.author.gravatar}}?s=90&d=identicon"
-               width="100%" height="auto"/>
-          <h2>
-            <a href="#/app/user/{{comment.author.username}}">@{{comment.author.username}}</a>
-          </h2>
-          <p>{{comment.message}}</p>
+        <div class="comments">
+          <div class="comment" ng-repeat="comment in product.comments | orderBy:'-date_added'">
+            <div class="profile-image">
+              <img ng-cloak ng-src="https://secure.gravatar.com/avatar/{{comment.author.gravatar}}?s=90&d=identicon">
+            </div>
+            <div class="comment">
+              {{comment.message}}
+            </div>
+            <div class="date-commented">
+              {{comment.date_added | amCalendar}}
+            </div>
+          </div>
         </div>
       </div>
-
     </div>
-
-
   </ion-content>
-
 </ion-view>
 
 

@@ -1,6 +1,14 @@
-<span ng-hide="isDate" ng-class="thisclass">
+<!--<span ng-hide="isDate" ng-class="thisclass" ng-hide="showdays">-->
+  <!--{{availability}}-->
+<!--</span>-->
+<span ng-hide="isDate" ng-class="thisclass" ng-show="showdays">
   {{availability}}
+  <span ng-if="showdays == 'true' && availability == 'Available'"> {{days}}
+    <span ng-if="days > 1 || days == 0">Days</span>
+    <span ng-if="days == 1">Day</span>
+  </span>
 </span>
+
 <span ng-show="isDate" ng-class="thisclass">
   Due {{availability | amCalendar}}
 </span>

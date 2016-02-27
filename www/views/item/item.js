@@ -1,5 +1,5 @@
 angular.module('App.item', [])
-  .controller('itemCtrl', function ($scope, $http, $rootScope, $stateParams, $timeout, $ionicActionSheet, $cordovaSocialSharing, $ionicModal, $ionicPopup, nfcService) {
+  .controller('itemCtrl', function ($state, $scope, $http, $rootScope, $stateParams, $timeout, $ionicActionSheet, $cordovaSocialSharing, $ionicModal, $ionicPopup, nfcService) {
     $scope.message = {
       'processing': false
     }
@@ -8,7 +8,7 @@ angular.module('App.item', [])
       'processing': false
     }
     var background = angular.element(document.getElementById('itembackground'));
-    $scope.domain = $rootScope.domain;
+    $scope.domain = domain;
     //$scope.options = {
     //  direction: 'horizontal',
     //  loop: true,
@@ -24,11 +24,6 @@ angular.module('App.item', [])
     };
 
     $scope.data = {};
-
-    $scope.$watch('data.slider',function(slider){
-      console.log('My slider object is ', slider);
-      // Your custom logic here
-    });
 
     function getItem() {
       $http({
@@ -172,14 +167,14 @@ angular.module('App.item', [])
       }
     };
 
-    //$scope.return = function () {
-    //  console.log("returning");
-    //  if ($scope.isOwner) {
-    //    ownerReturn();
-    //  } else {
-    //    returnItem();
-    //  }
-    //}
+    $scope.return = function () {
+      console.log("returning");
+      if ($scope.isOwner) {
+        ownerReturn();
+      } else {
+        //returnItem();
+      }
+    }
 
     function ownerReturn() {
       $http({
@@ -290,7 +285,7 @@ angular.module('App.item', [])
         } else {
           if (!data.available) {
             if ($scope.gotRes) {
-              //  console.log(data.owner);
+                console.log(data.owner);
               if (data.owner) {
                 $scope.avail = false;
                 $scope.owner = true;
@@ -333,6 +328,8 @@ angular.module('App.item', [])
     }
 
     $scope.doRefresh = function () {
+      getRequestStatus();
+      getItem();
       checkAva();
     }
 
@@ -442,5 +439,12 @@ angular.module('App.item', [])
     $scope.$on('modal.removed', function () {
       // Execute action
     });
+
+    $scope.goTo = function(path, product) {
+      console.log(product)
+      console.log(path)
+
+      $state.go('app.itemdescription', {'product': product});
+    }
 
   });

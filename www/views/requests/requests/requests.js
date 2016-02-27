@@ -3,67 +3,58 @@ angular.module('App.requests', [])
 
     $scope.count = 15;
     $scope.start = 0;
-    
-    if ($rootScope.loggedIn) {
-      // updateResults();
-    } else {
-      $scope.view = false;
-    }
+    $scope.domain = domain;
+    resetProducts();
+    $scope.start += $scope.count;
+    updateResults();
+
+    console.log("hello")
 
     $scope.doRefresh = function () {
       updateResults();
-    }
+    };
 
-    $scope.$watch("count", function (newValue) {
-      window.localStorage.setItem("product_count", newValue);
-      updateResults();
-    });
-
-    $scope.back = function () {
-      if ($scope.start - $scope.count < 0) {
-        $scope.viewResults = false;
-      } else {
-        $scope.viewResults = true;
-        $scope.start = $scope.start - $scope.count;
-        updateResults();
-      }
-    }
-
-    $scope.forward = function () {
-      if ($scope.start >= $scope.products.total - $scope.count) {
-        $scope.viewResults = false;
-      } else {
-        $scope.viewResults = true;
-        $scope.start = $scope.start + $scope.count;
-        updateResults();
-      }
-    }
-
-    $scope.search = function (term) {
-      console.log('>' + term)
+    function resetProducts() {
+      $scope.noMoreData = false;
+      $scope.start = -$scope.count;
+      $scope.products = {
+        items: [],
+        total: 0
+      };
     }
 
     function updateResults() {
       var url = backend + "/owner/requests";
-      $http({
-        url: url,
-        method: 'GET',
-        headers: {
-          'Start': $scope.start,
-          'Count': $scope.count,
-          'token': window.localStorage.token
-        }
-      }).success(function (data, status, headers, config) {
-        //console.log(data)
-        if (data.total === 0) {
-          $scope.noRequests = true;
-        }
-        $scope.products = data;
-      }).error(function (data, status, headers, config) {
-        $scope.error = true;
-      }).finally(function () {
-        $scope.$broadcast('scroll.refreshComplete');
-      });
+      if (!$scope.noMoreData) {
+        $http({
+          url: url,
+          method: 'GET',
+          headers: {
+            'Start': $scope.start,
+            'Count': $scope.count,
+            'token': window.localStorage.token
+          }
+        }).success(function (data, status, headers, config) {
+          //$scope.products = data;
+          console.log(data)
+          $scope.products.total += data.total;
+          for (var i = 0; i < data.total; i++) {
+            $scope.products.items.push(data.items[i])
+          }
+          var urls = [];
+          $scope.busy = false;
+          if (data.total === 0) {
+            $scope.noMoreData = true;
+          }
+
+        }).error(function (data, status, headers, config) {
+          console.log(data);
+          $scope.error = true;
+        }).finally(function () {
+          $scope.$broadcast('scroll.infiniteScrollComplete');
+          $scope.$broadcast('scroll.refreshComplete');
+        });
+      }
     }
 
   });

@@ -150,7 +150,7 @@ angular.module('App.items', [])
       sortByUrl = '/search/' + term;
       updateResults();
 
-    }
+    };
 
 
     $scope.loadMore = function () {
@@ -159,7 +159,7 @@ angular.module('App.items', [])
       if (!$scope.noMoreData) {
         updateResults()
       }
-    }
+    };
 
     function resetProducts() {
       $scope.noMoreData = false;
@@ -174,14 +174,14 @@ angular.module('App.items', [])
     $scope.releaseImage = function (index) {
       //$scope.holding = false;
       $scope.products.items[index].fullscreenenabled = false;
-    }
+    };
 
     $scope.holdImage = function (index) {
       $scope.products.items[index].fullscreenenabled = true;
       //$scope.holding = true;
       //console.log("product")
       //$scope.fullscreenImage = product.images.size.large
-    }
+    };
 
 
     function like(index, id) {

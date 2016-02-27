@@ -82,6 +82,19 @@ image-slider {
 }
 
 
+.productSliderBase .thumb.ng-enter {
+  animation-name: fadeIn;
+  animation-duration: 0.6s;
+}
+
+.productSliderBase .thumb.ng-enter-stagger {
+
+  -webkit-animation-delay: 0.05s;
+  animation-delay: 0.05s;
+  -webkit-animation-duration: 0s;
+  animation-duration: 0s;
+}
+
 
 
 .productSliderBase .scroll {

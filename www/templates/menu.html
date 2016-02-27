@@ -1,4 +1,4 @@
-<ion-side-menus enable-menu-with-back-views="false">
+<ion-side-menus enable-menu-with-back-views="false" expose-aside-when="large">
   <ion-side-menu-content edge-drag-threshold="true" drag-content="true">
 
     <ion-nav-bar class="bar bar-header bar-calm" ng-show="loggedIn">
@@ -13,7 +13,8 @@
         </ion-nav-buttons>
 
         <ion-nav-buttons side="right">
-          <button class="button button-icon button-clear ion-qr-scanner" ng-click="scan()" ng-show="loggedIn"> Scan
+          <button class="button button-icon button-clear ion-ios-barcode-outline" ng-click="scan()" ng-show="loggedIn">
+            Scan
           </button>
         </ion-nav-buttons>
       </div>
@@ -26,120 +27,53 @@
   <ion-side-menu side="left">
 
 
-    <ion-content has-bouncing="true">
-      <div class="item item-avatar darkbk" ng-click="profiletoggle = !profiletoggle">
-
-        <img ng-src="https://secure.gravatar.com/avatar/{{auth.gravatar}}?s=90&d=identicon" width="100%" height="auto"/>
-        <h2>@{{auth.username}}</h2>
-        <i class="ion-ios-gear status icon"></i>
-      </div>
-
-      <div class="navi" ng-show="profiletoggle" class="animated bounceOutLeft">
-        <ion-list>
-          <ion-item menu-close href="#/app/user/profile" ng-show="loggedIn" class="animated fadeIn"
-                    ng-click="profileToggle = false">
-            View profile
-          </ion-item>
-          <ion-item menu-close href="#/app/account/settings" ng-show="loggedIn" class="animated fadeIn"
-                    ng-click="profileToggle = false">
-            Account Settings
-          </ion-item>
-          <ion-item menu-close href="#/app/settings" ng-show="loggedIn" class="animated fadeIn"
-                    ng-click="profileToggle = false">
-            Application Settings
-          </ion-item>
-          <ion-item menu-close href="#/app/logout" ng-show="loggedIn" class="animated fadeIn"
-                    ng-click="profileToggle = false">
-            Logout
-          </ion-item>
-        </ion-list>
-      </div>
-
-      <ion-list>
-        <ion-item menu-close href="#/app/home" class="item-icon-left" ng-hide="loggedIn">
-          <i class="icon ion-home"></i>Home
-        </ion-item>
-        <ion-item menu-close href="#/app/timeline" class="item-icon-left" ng-show="loggedIn">
-          <i class="icon ion-home"></i>Home
-        </ion-item>
-        <ion-item menu-close href="#/app/items" class="item-icon-left" ng-show="loggedIn">
-          <i class="icon ion-ios-pricetag"></i>Listing
-        </ion-item>
-        <ion-item menu-close href="#/app/my/items" class="item-icon-left" ng-show="loggedIn">
-          <i class="icon ion-android-folder"></i>My Items
-        </ion-item>
-        <ion-item menu-close href="#/app/my/requests" class="item-icon-left" ng-show="loggedIn">
-          <i class="icon ion-ios-folder"></i>My Requests
-        </ion-item>
-        <div ng-click="ownerToggle = !ownerToggle">
-          <ion-item ng-show="loggedIn" class="item-icon-right">
-            <i class="icon ion-android-arrow-dropdown" ng-hide="ownerToggle"></i>
-            <i class="icon ion-android-arrow-dropup" ng-show="ownerToggle">
-            </i>Owner Menu
-          </ion-item>
+    <ion-content has-bouncing="true" class="l-menu">
+      <ion-item menu-close href="#/app/user/profile" class="l-menu-item l-menu-item-user">
+        <div class="image">
+          <img ng-src="https://secure.gravatar.com/avatar/{{auth.gravatar}}?s=90&d=identicon" width="100%"
+               height="auto"/>
         </div>
-
-        <div class="navi" ng-show="ownerToggle" class="animated bounceOutLeft">
-          <ion-list>
-            <ion-item menu-close href="#/app/owner/items" class="animated fadeIn" ng-show="loggedIn"
-                      ng-click="ownerToggle = false">
-              My items
-            </ion-item>
-            <ion-item menu-close href="#/app/owner/requests" class="animated fadeIn" ng-show="loggedIn"
-                      ng-click="ownerToggle = false">
-              Requests
-            </ion-item>
-          </ion-list>
+        <div class="username">
+          @{{auth.username}}
         </div>
-        <!--<ion-item menu-close href="#/app/scanner"  ng-show="loggedIn">-->
-        <!--Scan-->
-        <!--</ion-item>-->
-        <!--<ion-item menu-close href="#/app/users"  ng-show="loggedIn">-->
-        <!--Users-->
-        <!--</ion-item>-->
-        <!--<ion-item menu-close href="#/app/upload/image"  ng-show="loggedIn">-->
-        <!--Upload Image-->
-        <!--</ion-item>-->
-        <!--<ion-item menu-close href="#/app/user/profile"  ng-show="loggedIn">-->
-        <!--My Profile-->
-        <!--</ion-item>-->
+      </ion-item>
 
-        <ion-item menu-close href="#/app/login" ng-hide="loggedIn">
-          Login
+      <div ng-show="loggedIn">
+        <ion-item menu-close href="#/app/timeline" class="l-menu-item">
+          <i class="ion-android-apps"></i> Dashboard
         </ion-item>
-
-        <ion-item menu-close href="#/app/about">
-          About
+        <ion-item menu-close href="#/app/items" class="l-menu-item">
+          <i class="icon ion-ios-pricetag"></i> Listing
         </ion-item>
-      </ion-list>
-    </ion-content>
-  </ion-side-menu>
-
-  <ion-side-menu side="right" ng-controller="currentRentalCtrl">
-
-
-    <ion-content class="holding">
-      <h1>Holding</h1>
-      <p class="subtitle">Items your currently hold</p>
-      <div>
-        <ul class="timeline">
-          <li ng-repeat="product in products.items" menu-close>
-            <a href="#/app/item/{{product.id}}">
-              <div class="tmicon tmicon-calm"><img src="{{imagedataurl}}{{product.images[0].size.thumb}}"></div>
-              <div class="tmlabel tmlabel-calm">
-                <h4><b>{{product.title}}</b></h4>
-                <br>
-                <p>
-                  <medium><i class="icon ion-ios-clock"></i> {{product.due | amCalendar}}</medium>
-                </p>
-                <img class="timelineimg" ng-if='item.img' src="{{item.img}}"/>
-              </div>
-            </a>
-          </li>
-        </ul>
+        <ion-item menu-close href="#/app/my/items" class="l-menu-item">
+          <i class="ion-ios-paper-outline"></i> My Items
+        </ion-item>
+        <ion-item menu-close href="#/app/my/requests" class="l-menu-item">
+          <i class="ion-android-radio-button-off"></i> My Requests
+        </ion-item>
+        <ion-item menu-close href="#/app/owner/items" class="l-menu-item">
+         <i class="ion-ios-pricetag-outline"></i> Owner Items
+        </ion-item>
+        <ion-item menu-close href="#/app/owner/requests" class="l-menu-item">
+          <i class="ion-android-checkmark-circle"></i>Owner Requests
+        </ion-item>
+        <ion-item menu-close href="#/app/user/profile" class="l-menu-item">
+          <i class="ion-android-person"></i> Profile
+        </ion-item>
+        <ion-item menu-close href="#/app/about" class="l-menu-item">
+          <i class="ion-ios-information-outline"></i> About
+        </ion-item>
       </div>
-    </ion-content>
+      <div class="l-menu-bottom">
+        <ion-item menu-close href="#/app/login" ng-show="!loggedIn" class="l-menu-item">
+          <i class="ion-log-in"></i> Login
+        </ion-item>
+        <ion-item menu-close href="#/app/logout" ng-show="loggedIn" class="l-menu-item l-menu-item-bad">
+          <i class="ion-log-in"></i> Logout
+        </ion-item>
+      </div>
 
+    </ion-content>
   </ion-side-menu>
 </ion-side-menus>
 

@@ -28,6 +28,7 @@ angular.module('App', [
     'App.requests',
     'App.request',
     'App.userrequests',
+    'App.itemDescription',
 
 
     // Owner views
@@ -156,6 +157,21 @@ angular.module('App', [
             templateUrl: 'views/item/item.html',
             controller: 'itemCtrl'
           }
+        }
+      })
+      .state('app.itemdescription', {
+        url: '/item/:item/description',
+        views: {
+          'menuContent': {
+            templateUrl: 'views/item/itemDescription/itemDescription.html',
+            controller: 'itemDescriptionCtrl'
+
+
+          }
+
+        },
+        params: {
+          'product': 'none'
         }
       })
 

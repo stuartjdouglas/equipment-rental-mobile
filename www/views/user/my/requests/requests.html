@@ -1,99 +1,77 @@
-<ion-view view-title="Showing requests">
-  <ion-content class="dark" has-bouncing="true">
-    <div class="row" ng-show="!noRequests">
+<ion-view view-title="My Items">
+  <ion-content class="listing" has-bouncing="true">
+    <div class="bar bar-subheader item-input-inset">
+      <form class="search-bar" ng-submit="search(term)">
+        <div class="inputs">
+          <div class="search-input" ng-class="SearchClass" ng-hide="!showSearch">
+            <input type="text" ng-model="term" placeholder="Enter tags">
+          </div>
+          <div class="cancel-button" ng-class="SearchClass" ng-hide="!showSearch">
+            <div class="cancel" ng-click="hideSearch()">Cancel</div>
+          </div>
+          <div class="reveal-button" ng-class="SearchClass" ng-hide="showSearch">
+            <i class="ion-search" ng-click="revealSearch()"></i>
+          </div>
+        </div>
+      </form>
+    </div>
+
+    <div class="row">
       <div class="col">
         <i>
-          Showing results {{start}} - {{start + count}} from {{requests.total}}.
+          Showing results {{start}} - {{start + count}} from {{products.total}}.
         </i>
       </div>
     </div>
 
-    <ion-refresher
-      pulling-text="Pull to refresh..."
-      on-refresh="doRefresh()">
+    <ion-refresher class="on-top"
+                   pulling-text="Pull to refresh..."
+                   on-refresh="doRefresh()">
     </ion-refresher>
 
-
-    <div class="errormessage" ng-show="noRequests">
-      <i class="ion-ios-information-outline"></i>
-      <p>
-        Sorry, there seems to be no requests.
-      </p>
-      <p>
-        Refresh and try again later.
-      </p>
-    </div>
-
-    <ion-list>
-      <ion-item ng-repeat="product in products.requests" ng-show="!noRequests">
-        <div class="item-avatar ani">
-          <img ng-src="{{data}}{{product.images[0].size.thumb}}">
-          <h2>{{product.title}}</h2>
-          <p>Created {{product.date_requested | amCalendar}}</p>
+    <div>
+      <ion-scroll direction="x" class="filters">
+        <div class="filter" ng-class="filter.active" ng-repeat="filter in filters"
+             ng-click="getFilteredResults(filter.path, $index)">
+          {{filter.title}}
         </div>
-
-        <p></p>
-        <ion-option-button class="button-assertive" ng-click="cancel(product.id, $index)">Cancel Request</ion-option-button>
-        <!--<ion-option-button class="button-balanced" ng-click="approve(request.username, $index)">Approve-->
-        <!--</ion-option-button>-->
-      </ion-item>
-    </ion-list>
-
-
-    <ion-item class="listinfo" ng-show="!noRequests">
-      <i class="ion-ios-information-outline"></i>
-      <p>
-      <p>Swipe left on a user to accept or deny there request</p>
-      </p>
-    </ion-item>
-    <!--<div class="ion-item ani" ng-repeat="request in requests.requests">-->
-    <!--&lt;!&ndash;ng-style="{'background-image':'url({{data}}{{product.image.size.large}})'}"&ndash;&gt;-->
-    <!--&lt;!&ndash;<img class="background" ng-src="{{data}}{{product.image.size.small}}">&ndash;&gt;-->
-
-
-    <!--<h2 class="white"><img ng-cloak ng-src="https://secure.gravatar.com/avatar/{{request.gravatar}}?s=90&d=identicon" width="50px"-->
-    <!--height="auto"/><b> {{request.username}}</b></h2>-->
-    <!--<div class="button-row">-->
-    <!--<button class="button">-->
-    <!--Accept-->
-    <!--</button>-->
-    <!--<button class="button">-->
-    <!--Disapprove-->
-    <!--</button>-->
-    <!--</div>-->
-
-    <!--&lt;!&ndash;<div class="tags" ng-show="{{product.tags.length > 0}}">&ndash;&gt;-->
-    <!--&lt;!&ndash;<span class="tag" ng-repeat="tag in product.tags | limitTo:3">{{tag.tag}}</span>&ndash;&gt;-->
-    <!--&lt;!&ndash;</div>&ndash;&gt;-->
-    <!--</a>-->
-
+      </ion-scroll>
     </div>
 
-    <div class="itempadding">
+    <div class="p-items">
+      <div class="p-item" ng-show="noData">
+        <h1><i class="ion-information-circled"></i> No Requests</h1>
+      </div>
+      <div class="p-item" ng-show="noData">
+        <a class="button" href="#/app/items">View listings</a>
+      </div>
+      <div class="p-item" ng-repeat="product in products.items">
 
+        <a href="">
+          <div on-hold="holdImage($index)" on-release="releaseImage($index)" class="p-image"
+               ng-style="{'background':'url({{domain}}{{product.images[0].size.small}}) no-repeat center center', 'background-size': 'cover', 'overflow':'hidden'}"></div>
+
+          <div class="p-title-tag">
+            <div class="title">
+              {{product.title | limitchars: 19}}
+            </div>
+            <div class="tag">
+              <availability datasource={{product.id}}></availability>
+            </div>
+          </div>
+          <div class="p-spacer"></div>
+          <div class="p-footer-items">
+            <div class="p-footer-item">
+              <i class="ion-clock"></i> Requested {{product.date_requested | amCalendar}}
+            </div>
+            <div class="p-footer-item">
+              <button class="button button-assertive" ng-click="cancel(product.id, $index)">Cancel</button>
+            </div>
+          </div>
+        </a>
+      </div>
     </div>
-
-
+    <ion-infinite-scroll class="scroll infintite" ng-if="!noMoreData" icon="ion-loading-c"
+                         on-infinite="loadMore()" distance="1%"></ion-infinite-scroll>
   </ion-content>
-  <div class="row row-bottom background white">
-    <div class="col">
-      <a class="tab-item" ng-click="back()">
-        <i class="icon ion-arrow-left-c"></i>
-        Previous Page
-      </a>
-    </div>
-    <div class="col">
-      <a class="tab-item" href="#/app/admin/item/add">
-        <i class="icon ion-plus-circled"></i>
-        Add Product
-      </a>
-    </div>
-    <div class="col">
-      <a class="tab-item" ng-click="forward()">
-        <i class="icon ion-arrow-right-c"></i>
-        Next Page
-      </a>
-    </div>
-  </div>
-
 </ion-view>

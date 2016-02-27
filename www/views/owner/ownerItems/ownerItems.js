@@ -1,7 +1,7 @@
 angular.module('App.ownerItems', [])
 
 .controller('ownerItemsCtrl', function($scope, $http, $rootScope) {
-  console.log("hello")
+  $scope.domain = domain;
   $scope.count = 15;
 
 
