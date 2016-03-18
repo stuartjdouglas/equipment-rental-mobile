@@ -54,7 +54,8 @@ angular.module('App', [
     //Dependencies
     'angularMoment',
     'base64',
-    'ngColorThief'
+    'ngColorThief',
+    'ionic-ratings'
   ])
 
   .run(function ($ionicPlatform, $window) {
@@ -131,6 +132,7 @@ angular.module('App', [
 
       .state('app.timeline', {
         url: '/timeline',
+        cache: false,
         views: {
           'menuContent': {
             templateUrl: 'views/timeline/timeline.html',

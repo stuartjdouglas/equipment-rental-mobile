@@ -147,7 +147,7 @@ angular.module('App.item', [])
       });
     }
 
-    $scope.cancelRequest = function() {
+    $scope.cancelRequest = function () {
       if ($rootScope.loggedIn) {
         cancelRequest();
       }
@@ -271,7 +271,7 @@ angular.module('App.item', [])
         },
       }).success(function (data, status, headers, config) {
         $scope.ava = data;
-          console.log(data);
+        console.log(data);
         $scope.gotRes = true;
 
 
@@ -285,7 +285,7 @@ angular.module('App.item', [])
         } else {
           if (!data.available) {
             if ($scope.gotRes) {
-                console.log(data.owner);
+              console.log(data.owner);
               if (data.owner) {
                 $scope.avail = false;
                 $scope.owner = true;
@@ -337,37 +337,34 @@ angular.module('App.item', [])
 
       console.log(comment)
       $scope.message.processing = true;
-      if (comment.message.length > 5) {
-        $scope.product.comments.push({
-          "message": comment.message,
-          "date_added": Date(),
-          'author' : {
-            'username': $scope.auth.username,
-            'gravatar': $scope.auth.gravatar,
-          }
-        });
+      // if (comment.message.length > 5) {
 
-        sendComment(comment.message);
 
-        $scope.comment.message = "";
-      }
+      sendComment(comment.message);
+
+      // $scope.comment.message = "";
+      // }
     };
 
-    $scope.deleteComment = function(cid, index) {
+    $scope.deleteComment = function (cid, index) {
       deleteComment(cid, index);
     }
 
     function sendComment(comment) {
       //    /product/:pid/comment
+      debugger
       $http({
         url: backend + "/product/" + $stateParams.item + '/comment',
         method: 'POST',
         headers: {
           'token': window.localStorage.token,
-          'comment': comment
+          'comment': comment,
+          'rating': Number($scope.newrating)
         }
       }).success(function (data, status, headers, config) {
         //$scope.comment.success = true;
+        console.log(data)
+        $scope.product.comments.reviews.shuffle(data);
       }).error(function (data, status, headers, config) {
         console.log('error');
         //$scope.comment.success = true;
@@ -395,8 +392,6 @@ angular.module('App.item', [])
         $scope.message.processing = false;
       });
     }
-
-
 
 
     $ionicModal.fromTemplateUrl('my-modal.html', {
@@ -440,11 +435,57 @@ angular.module('App.item', [])
       // Execute action
     });
 
-    $scope.goTo = function(path, product) {
+    $scope.goTo = function (path, product) {
       console.log(product)
       console.log(path)
 
       $state.go('app.itemdescription', {'product': product});
-    }
+    };
+
+
+    $scope.ratingsObject = {
+      iconOn: 'ion-ios-star',    //Optional
+      iconOff: 'ion-ios-star-outline',   //Optional
+      iconOnColor: 'rgb(200, 200, 100)',  //Optional
+      iconOffColor: 'rgb(200, 100, 100)',    //Optional
+      rating: 2, //Optional
+      minRating: 1,    //Optional
+      readOnly: true, //Optional
+      callback: function (rating) {    //Mandatory
+        $scope.ratingsCallback(rating);
+      }
+    };
+
+    $scope.ratingsCallback = function (rating) {
+      // console.log('Selected rating is : ', rating);
+      $scope.newrating = rating;
+    };
+
+
+    $ionicModal.fromTemplateUrl('review-model.html', {
+      scope: $scope,
+      animation: 'slide-in-up'
+    }).then(function (modal) {
+      $scope.reviewModal = modal;
+    });
+    $scope.showReviewWrite = function () {
+      $scope.reviewModal.show();
+    };
+    $scope.closeReviewWrite = function () {
+      $scope.reviewModal.hide();
+    };
+    //Cleanup the modal when we're done with it!
+    $scope.$on('$destroy', function () {
+      $scope.reviewModal.remove();
+    });
+    // Execute action on hide modal
+    $scope.$on('modal.hidden', function () {
+      // Execute action
+    });
+    // Execute action on remove modal
+    $scope.$on('modal.removed', function () {
+      // Execute action
+    });
+
 
   });

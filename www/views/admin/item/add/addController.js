@@ -22,7 +22,7 @@ angular.module('App.adminItemAdd', [])
             console.log('Image URI: ' + results[i]);
             url = results[0];
           }
-
+          $scope.imageLoading = true;
           var img = new Image();
           img.crossOrigin = 'Anonymous';
           img.onload = function () {
@@ -32,9 +32,16 @@ angular.module('App.adminItemAdd', [])
             canvas.width = this.width;
             ctx.drawImage(this, 0, 0);
             dataURL = canvas.toDataURL('jpg');
-            $scope.product.image = dataURL;
-            $scope.imageready = true;
-            canvas = null;
+
+            setTimeout(function() {
+
+              $scope.product.image = dataURL;
+              $scope.imageready = true;
+              canvas = null;
+              console.log('image is loaded')
+              $scope.imageLoading = false;
+              $scope.$apply();
+            }, 100)
           };
           img.src = url;
         }, function (error) {
@@ -48,7 +55,8 @@ angular.module('App.adminItemAdd', [])
 
         var fd = new FormData();
         fd.append('title', product.title);
-        fd.append('description', product.description);
+        fd.append('content', product.description);
+        fd.append('condition', product.condition);
         fd.append('rental_period_limit', product.days);
         fd.append('image', product.image);
         $http({
@@ -62,7 +70,7 @@ angular.module('App.adminItemAdd', [])
             'token': window.localStorage.token,
           }
         }).success(function (data, status, headers, config) {
-          // $scope.success = true;
+          $state.go('timeline');
         }).error(function (data, status, headers, config) {
 
           // $scope.success = false;

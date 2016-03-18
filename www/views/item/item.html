@@ -65,10 +65,13 @@
           </span>
         </div>
         <div class="spacer"></div>
-        <div ng-if="product.content.length == 1897 || product.content.length == 0 || product.content.includes('undefined')">
+        <div
+          ng-if="product.content.length == 1897 || product.content.length == 0 || product.content.includes('undefined')">
           {{product.description}}
         </div>
-        <div class="content-container animated fadeIn" ng-if="product.content.length != 1897 || product.content.length != 0" ng-hide="product.content.includes('undefined')" ng-click="goTo('app.item.description', product)">
+        <div class="content-container animated fadeIn"
+             ng-if="product.content.length != 1897 || product.content.length != 0"
+             ng-hide="product.content.includes('undefined')" ng-click="goTo('app.item.description', product)">
           <div class="description" ng-bind-html="product.content | limitchars: 250">
 
           </div>
@@ -121,24 +124,11 @@
 
         <div class="spacer"></div>
         <h3>
-          Comments
+          Reviews
         </h3>
-        <form ng-submit="addComment(comment)" class="comment-input">
-          <div class="input">
-            <div class="media">
-
-              <input type="text" ng-model="comment.message" placeholder="Comment">
-            </div>
-            <div class="submit">
-
-              <button class="button">
-                Comment
-              </button>
-            </div>
-          </div>
-        </form>
+        <button class="button" ng-click="showReviewWrite()" ng-show="!product.comments.reviewed">Write Review</button>
         <div class="comments">
-          <div class="comment" ng-repeat="comment in product.comments | orderBy:'-date_added'">
+          <div class="comment" ng-repeat="comment in product.comments.reviews | orderBy:'-date_added'">
             <div class="profile-image">
               <img ng-cloak ng-src="https://secure.gravatar.com/avatar/{{comment.author.gravatar}}?s=90&d=identicon">
             </div>
@@ -165,6 +155,33 @@
       <div class="QR padding">
         <img ng-src="data:image/JPEG;base64,{{qr}}" width="100%" height="auto"/>
       </div>
+    </ion-content>
+  </ion-modal-view>
+</script>
+
+
+<script id="review-model.html" type="text/ng-template">
+  <ion-modal-view>
+    <ion-header-bar ng-click="closeReviewWrite()">
+      <h1 class="title">Close Review Creator</h1>
+    </ion-header-bar>
+    <ion-content class="reviewModel">
+      <form ng-submit="addComment(comment)" class="comment-input">
+        <div class="input">
+          <h3>Review</h3>
+          <div class="review">
+            <textarea type="text" ng-model="comment.message" placeholder="Comment"></textarea>
+          </div>
+          <h3>Rating</h3>
+          <div class="rating">
+            <ionic-ratings ratingsobj='ratingsObject'></ionic-ratings>
+          </div>
+
+        </div>
+        <button class="button">
+          Comment
+        </button>
+      </form>
     </ion-content>
   </ion-modal-view>
 </script>

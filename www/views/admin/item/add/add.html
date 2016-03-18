@@ -34,8 +34,12 @@
           <input type="text" ng-model="product.description">
         </label>
         <label class="item item-input">
+          <span class="input-label">Condition</span>
+          <input type="text" ng-model="product.condition">
+        </label>
+        <label class="item item-input">
           <span class="input-label">Days limit</span>
-          <input type="text" ng-model="product.days">
+          <input type="number" ng-model="product.days">
         </label>
         <label class="item item-input">
           <span class="input-label">Image</span>
@@ -45,19 +49,20 @@
         </label>
 
 
-
-        <button class="button border fillwidth" ng-click="uploadProduct(product)">
+        <label class="item item-input">
+        <button class="button border fillwidth" ng-click="uploadProduct(product)" ng-show="imageready">
           Create
         </button>
-
+        </label>
       </form>
-      IMAGE READY: {{imageready}}
-      Title: {{product.title}}<br>
-      Description: {{product.description}}<br>
-      Days: {{product.days}}
+      <!--IMAGE READY: {{imageready}}-->
+      <!--Title: {{product.title}}<br>-->
+      <!--Description: {{product.description}}<br>-->
+      <!--Days: {{product.days}}-->
 
-      <!-- <img src="data:image/jpeg;base64,{{product.image}}" class="resImage"/> -->
-      <!--<img src="{{product.image}}" class="resImage"/>-->
+       <!--<img src="data:image/jpeg;base64,{{product.image}}" class="resImage"/>-->
+      <h2 ng-show="imageready">Image preview</h2>
+      <img ng-show="imageready" src="{{product.image}}" class="resImage"/>
     </div>
 
   </ion-content>
