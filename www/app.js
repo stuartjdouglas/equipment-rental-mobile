@@ -54,7 +54,8 @@ angular.module('App', [
     //Dependencies
     'angularMoment',
     'base64',
-    'ngColorThief'
+    'ngColorThief',
+    'ionic-ratings'
   ])
 
   .run(function ($ionicPlatform, $window) {
