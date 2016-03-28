@@ -31,7 +31,7 @@ angular.module('App.login', [])
 
         window.localStorage.token = data.token;
 
-
+        $scope.user = {};
         var auth = JSON.stringify({
           username: data.username,
           gravatar: data.gravatar,
