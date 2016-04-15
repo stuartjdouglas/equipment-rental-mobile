@@ -1,7 +1,6 @@
 angular.module('App.adminItemAdd', [])
   .controller('adminItemAddCtrl', function ($scope, $http, $cordovaFile, $rootScope, $ionicHistory, $state, $cordovaImagePicker) {
     $scope.title = "New item";
-    console.log("hello");
     $scope.product = {};
 
     $scope.loading = false;
@@ -33,7 +32,7 @@ angular.module('App.adminItemAdd', [])
             ctx.drawImage(this, 0, 0);
             dataURL = canvas.toDataURL('jpg');
 
-            setTimeout(function() {
+            setTimeout(function () {
 
               $scope.product.image = dataURL;
               $scope.imageready = true;

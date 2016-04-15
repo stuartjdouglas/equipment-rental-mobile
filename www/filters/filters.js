@@ -12,8 +12,8 @@ angular.module('App.Filters', ['App.config'])
       }
 
     }
-  }).filter('externalLinks', function() {
-  return function(text) {
+  }).filter('externalLinks', function () {
+  return function (text) {
     return String(text).replace(/href=/gm, "class=\"ex-link\" href=");
   }
 });

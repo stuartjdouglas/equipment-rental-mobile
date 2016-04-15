@@ -68,16 +68,11 @@ angular.module('App', [
 
       }
       if (window.StatusBar) {
-        // org.apache.cordova.statusbar required
-        //StatusBar.styleDefault();
         if (ionic.Platform.isAndroid()) {
-          // window.StatusBar.backgroundColorByHexString('#039BE5');
-          //window.localStorage.themeColour = '#3498DB'
           var colour = window.localStorage.themeColour;
           if (colour != "") {
             if (colour != "") {
               window.StatusBar.backgroundColorByHexString('#2C3E50');
-              // window.StatusBar.backgroundColorByHexString(colour);
             } else {
               window.StatusBar.backgroundColorByHexString('#2C3E50');
             }
@@ -85,29 +80,18 @@ angular.module('App', [
             window.localStorage.themeColour = '#2C3E50';
             window.StatusBar.backgroundColorByHexString('#2C3E50');
           }
-
-
         } else {
           StatusBar.styleLightContent();
         }
       }
-
-      $window.addEventListener('SamklUrl', function (e) {
-        if (e.detail.url === 'letskarite://') {
-          console.log(e)
-          alert('got url')
-        }
-      })
-
     });
   })
   .config(['$ionicAppProvider', function ($ionicAppProvider) {
     $ionicAppProvider.identify({
       app_id: 'db428b22',
       api_key: '22ee5b3d6e19516fce11a5d436715e9f20588a17e7268543',
-      dev_push: true,
+      dev_push: true
     })
-
   }])
 
   .config(function ($stateProvider, $urlRouterProvider, $httpProvider) {
@@ -366,7 +350,7 @@ angular.module('App', [
             controller: 'userRequestsCtrl'
           }
         }
-      })
+      });
 
 
     $urlRouterProvider.otherwise('/app/timeline');
@@ -412,12 +396,12 @@ angular.module('App', [
     // This function is called when we scan a nfc tag or access the app through the custom url
     $rootScope.NFCurlAccess = function (url) {
       $rootScope.NFCurl = url;
-      var type = $rootScope.NFCurl.split('/')[2]
-      var id = $rootScope.NFCurl.split('/')[3]
+      var type = $rootScope.NFCurl.split('/')[2];
+      var id = $rootScope.NFCurl.split('/')[3];
       if (type === 'product') {
         $location.path('app/item/' + id)
       }
-    }
+    };
 
 
     $ionicSideMenuDelegate.canDragContent(false);

@@ -12,9 +12,8 @@ angular.module('App.imageSlider', ['App.config'])
       },
       templateUrl: 'components/imageSlider/imageSlider.html',
       controller: function ($scope, $http, $timeout) {
-        console.log($scope.numbertoshow)
         $scope.domain = domain;
-        var imagewidth = window.innerWidth * 1 / $scope.numbertoshow;
+        var imagewidth = window.innerWidth / $scope.numbertoshow;
         var images;
         var busy;
         $scope.step = 0;
@@ -44,7 +43,6 @@ angular.module('App.imageSlider', ['App.config'])
 
         $scope.getClass = function (product) {
           var url = domain + product.images[0].size.medium;
-          //console.log(imagewidth)
           return {
             'background': 'url(' + url + ') no-repeat center center',
             'background-size': 'cover',
@@ -55,18 +53,11 @@ angular.module('App.imageSlider', ['App.config'])
         };
 
         $scope.loadMore = function () {
-          //if ($scope.products.total == parseInt($scope.numbertoshow)) {
-          //console.error(busy)
           if (!busy) {
             busy = true;
-            //debugger
-            //console.log("load more!!!!")
             $scope.step = $scope.step + parseInt($scope.numbertoshow);
             getResults();
           }
-          //} else {
-          //  $scope.nomoreright = true;
-          //}
         };
 
         function resetProducts() {
@@ -81,8 +72,6 @@ angular.module('App.imageSlider', ['App.config'])
 
 
         function getResults() {
-
-          //console.log($scope.step + ' : ' + $scope.numbertoshow)
           $http({
             url: backend + $scope.endpoint,
             method: 'GET',
@@ -93,8 +82,6 @@ angular.module('App.imageSlider', ['App.config'])
               'token': window.localStorage.token
             }
           }).success(function (data, status, headers, config) {
-            //$scope.products = {};
-            //console.log(data)
             $scope.products.total += data.total;
             for (var i = 0; i < data.total; i++) {
               $scope.products.items.push(data.items[i])
@@ -103,39 +90,13 @@ angular.module('App.imageSlider', ['App.config'])
             if (data.total < $scope.numbertoshow) {
               $scope.nomoreright = true;
             }
-            console.log(data)
-            //$scope.$apply();
-
-            //$timeout(function() {
-            //  //$scope.products = data;
-            //  //$scope.products += data.total;
-            //
-            //
-            //
-            //
-            //
-            //}, 1);
           }).error(function (data, status, headers, config) {
             $scope.error = true;
-          }).finally(function() {
+          }).finally(function () {
             busy = false;
-            //console.log("done loading")
             $scope.$broadcast('scroll.infiniteScrollComplete');
           });
         }
-      },
-      link: function (scope, elem, attrs) {
-        // Just for altering the DOM
-        //scope.watch($scope.availability, function() {
-        //  debugger;
-        //  if (scope.availability === 'Available') {
-        //    elem.addClass("available");
-        //  } else if (scope.availability === 'UnAvailable') {
-        //    elem.addClass("unavailable");
-        //  } else {
-        //    elem.addClass("error");
-        //  }
-        //})
       }
     };
   });

@@ -4,9 +4,9 @@ angular.module('App.request', [])
     $scope.requests = {};
     getRequests();
 
-    $scope.doRefresh = function() {
+    $scope.doRefresh = function () {
       getRequests();
-    }
+    };
 
 
     $scope.approve = function (username, index) {
@@ -25,14 +25,13 @@ angular.module('App.request', [])
     };
 
     $scope.deny = function (username, index) {
-      console.log(index)
       $http({
         url: backend + '/product/' + $stateParams.request + '/request/cancel',
         method: 'POST',
         headers: {
           'token': window.localStorage.token,
           'username': username
-        },
+        }
       }).success(function (data, status, headers, config) {
         $scope.requests.requests.splice(index, 1);
         $scope.hasRequest = false;
@@ -54,14 +53,13 @@ angular.module('App.request', [])
           'token': window.localStorage.token
         }
       }).success(function (data, status, headers, config) {
-        console.log(data);
         if (data.total === 0) {
           $scope.noRequests = true;
         }
         $scope.requests = data;
       }).error(function (data, status, headers, config) {
         $scope.error = true;
-      }).finally(function() {
+      }).finally(function () {
         $scope.$broadcast('scroll.refreshComplete');
       });
     }

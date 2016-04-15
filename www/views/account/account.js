@@ -1,5 +1,5 @@
 angular.module('App.account.settings', [])
-  .controller('accountSettingsCtrl', function($scope, $http, $rootScope, $ionicLoading) {
+  .controller('accountSettingsCtrl', function ($scope, $http, $rootScope, $ionicLoading) {
     $ionicLoading.show({
       template: '<ion-spinner></ion-spinner>'
     });
@@ -15,22 +15,20 @@ angular.module('App.account.settings', [])
           'Content-Type': 'multipart/form-data',
           'token': window.localStorage.token
         }
-      }).success(function(data, status, headers, config) {
+      }).success(function (data, status, headers, config) {
         $scope.profile = data.profile;
         $scope.view = true;
         console.log(data.profile);
-      }).
-        error(function(data, status, headers, config) {
-          $scope.error = true;
-        }).then(function() {
-            $ionicLoading.hide();
-        });
+      }).error(function (data, status, headers, config) {
+        $scope.error = true;
+      }).then(function () {
+        $ionicLoading.hide();
+      });
     }
 
 
+    $scope.hide = function () {
 
-  $scope.hide = function(){
-
-  };
+    };
 
   });

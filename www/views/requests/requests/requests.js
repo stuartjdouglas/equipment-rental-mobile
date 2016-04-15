@@ -7,9 +7,6 @@ angular.module('App.requests', [])
     resetProducts();
     $scope.start += $scope.count;
     updateResults();
-
-    console.log("hello")
-
     $scope.doRefresh = function () {
       updateResults();
     };
@@ -35,8 +32,6 @@ angular.module('App.requests', [])
             'token': window.localStorage.token
           }
         }).success(function (data, status, headers, config) {
-          //$scope.products = data;
-          console.log(data)
           $scope.products.total += data.total;
           for (var i = 0; i < data.total; i++) {
             $scope.products.items.push(data.items[i])
@@ -48,7 +43,6 @@ angular.module('App.requests', [])
           }
 
         }).error(function (data, status, headers, config) {
-          console.log(data);
           $scope.error = true;
         }).finally(function () {
           $scope.$broadcast('scroll.infiniteScrollComplete');

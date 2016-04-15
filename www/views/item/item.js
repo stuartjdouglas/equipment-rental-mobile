@@ -2,20 +2,13 @@ angular.module('App.item', [])
   .controller('itemCtrl', function ($state, $scope, $http, $rootScope, $stateParams, $timeout, $ionicActionSheet, $cordovaSocialSharing, $ionicModal, $ionicPopup, nfcService) {
     $scope.message = {
       'processing': false
-    }
+    };
 
     $scope.comment = {
       'processing': false
-    }
+    };
     var background = angular.element(document.getElementById('itembackground'));
     $scope.domain = domain;
-    //$scope.options = {
-    //  direction: 'horizontal',
-    //  loop: true,
-    //  effect: 'fade',
-    //  autoplay: 2000
-    //};
-
     $scope.options = {
       direction: 'horizontal',
       slidesPerView: '1',
@@ -34,10 +27,8 @@ angular.module('App.item', [])
           'Count': $scope.count
         }
       }).success(function (result, status, headers, config) {
-        console.log(result)
         $scope.product = result.items[0];
-        $scope.isOwner = (result.items[0].owner.username === $rootScope.auth.username)
-        console.log('owner: ' + $scope.isOwner)
+        $scope.isOwner = (result.items[0].owner.username === $rootScope.auth.username);
         background.css({
           'background-image': 'url(' + data + $scope.product.images[0].size.large + ')'
         });
@@ -71,7 +62,6 @@ angular.module('App.item', [])
             $cordovaSocialSharing
               .shareViaTwitter($scope.product.title, data + $scope.product.image.size.large, "http://lemondev.xyz:3000/#/listing/" + $scope.product.id)
               .then(function (result) {
-                // console.log(result);
               }, function (err) {
                 // An error occurred. Show a message to the user
               });
@@ -104,14 +94,11 @@ angular.module('App.item', [])
         method: 'GET',
         headers: {
           'token': window.localStorage.token
-        },
-      }).success(function (data, status, headers, config) {
+        }
+      }).success(function (data) {
         $scope.requestData = data;
-        console.log(data)
         $scope.hasRequested = data.requested;
-      }).error(function (data, status, headers, config) {
-        console.log(data)
-
+      }).error(function () {
         $scope.error = true;
       });
     }
@@ -122,10 +109,9 @@ angular.module('App.item', [])
         method: 'POST',
         headers: {
           'token': window.localStorage.token
-        },
+        }
       }).success(function (data, status, headers, config) {
         $scope.requestData = data;
-        console.log(data)
         $scope.hasRequested = data.requested;
       }).error(function (data, status, headers, config) {
         $scope.error = true;
@@ -138,7 +124,7 @@ angular.module('App.item', [])
         method: 'POST',
         headers: {
           'token': window.localStorage.token
-        },
+        }
       }).success(function (data, status, headers, config) {
         getRequestStatus();
         $scope.hasRequest = false;
@@ -157,24 +143,16 @@ angular.module('App.item', [])
     $scope.rentbuttonclick = function () {
       if ($scope.avail) {
         requestItem();
-        //rentItem();
-      } else {
-        if ($scope.availability !== "Unavailable") {
-          console.log("YOU OWN TIS")
-        } else {
-          console.log("Unavailable");
-        }
       }
     };
 
     $scope.return = function () {
-      console.log("returning");
       if ($scope.isOwner) {
         ownerReturn();
       } else {
         //returnItem();
       }
-    }
+    };
 
     function ownerReturn() {
       $http({
@@ -204,56 +182,17 @@ angular.module('App.item', [])
             method: 'DELETE',
             headers: {
               'token': window.localStorage.token
-            },
+            }
           }).success(function (data, status, headers, config) {
             $location.path('/owner/listing');
           }).error(function (data, status, headers, config) {
             $scope.error = true;
           });
-        } else {
-          console.log('You are not sure');
         }
       });
 
 
     };
-
-    //function returnItem() {
-    //  $http({
-    //    url: backend + '/p/' + $scope.product.id + '/return',
-    //    method: 'POST',
-    //    headers: {
-    //      'token': window.localStorage.token
-    //    },
-    //  }).success(function (data, status, headers, config) {
-    //    checkAva();
-    //    $scope.owner = false;
-    //  }).error(function (data, status, headers, config) {
-    //    $scope.error = true;
-    //  });
-    //}
-    //
-    //function rentItem() {
-    //  if ($scope.avail) {
-    //    $http({
-    //      url: backend + '/p/' + $scope.product.id + '/rent',
-    //      method: 'POST',
-    //      headers: {
-    //        'token': window.localStorage.token
-    //      },
-    //    }).success(function (data, status, headers, config) {
-    //      // console.log(data);
-    //      // Notification.success({message: '<i class="fa fa-paper-plane"></i> ' + $scope.product.title + ' has just been rented. :)', positionY: 'bottom', positionX: 'center'});
-    //      $scope.owner = true;
-    //      $scope.rentButtonClass = [];
-    //      checkAva();
-    //    }).error(function (data, status, headers, config) {
-    //      $scope.error = true;
-    //    });
-    //  } else {
-    //    alert("not available");
-    //  }
-    //}
 
     $scope.buttonstyles = {};
     $scope.rentbuttonclass = {};
@@ -268,10 +207,9 @@ angular.module('App.item', [])
         method: 'GET',
         headers: {
           'token': window.localStorage.token
-        },
+        }
       }).success(function (data, status, headers, config) {
         $scope.ava = data;
-        console.log(data);
         $scope.gotRes = true;
 
 
@@ -285,7 +223,6 @@ angular.module('App.item', [])
         } else {
           if (!data.available) {
             if ($scope.gotRes) {
-              console.log(data.owner);
               if (data.owner) {
                 $scope.avail = false;
                 $scope.owner = true;
@@ -317,10 +254,9 @@ angular.module('App.item', [])
           method: 'GET',
           headers: {
             'token': window.localStorage.token
-          },
+          }
         }).success(function (data, status, headers, config) {
           $scope.ownerAva = data;
-          console.log(data);
         }).error(function (data, status, headers, config) {
           $scope.error = true;
         });
@@ -331,28 +267,18 @@ angular.module('App.item', [])
       getRequestStatus();
       getItem();
       checkAva();
-    }
+    };
 
     $scope.addComment = function (comment) {
-
-      console.log(comment)
       $scope.message.processing = true;
-      // if (comment.message.length > 5) {
-
-
       sendComment(comment.message);
-
-      // $scope.comment.message = "";
-      // }
     };
 
     $scope.deleteComment = function (cid, index) {
       deleteComment(cid, index);
-    }
+    };
 
     function sendComment(comment) {
-      //    /product/:pid/comment
-      debugger
       $http({
         url: backend + "/product/" + $stateParams.item + '/comment',
         method: 'POST',
@@ -362,20 +288,15 @@ angular.module('App.item', [])
           'rating': Number($scope.newrating)
         }
       }).success(function (data, status, headers, config) {
-        //$scope.comment.success = true;
-        console.log(data)
         $scope.product.comments.reviews.shuffle(data);
       }).error(function (data, status, headers, config) {
         console.log('error');
-        //$scope.comment.success = true;
       }).finally(function () {
-        console.log("its over")
         $scope.message.processing = false;
       });
     }
 
     function deleteComment(cid, index) {
-      //    /product/:pid/comment
       $http({
         url: backend + "/product/" + $stateParams.item + '/comment/' + cid,
         method: 'DELETE',
@@ -388,7 +309,6 @@ angular.module('App.item', [])
         console.log('error');
         $scope.comment.success = true;
       }).finally(function () {
-        console.log("its over")
         $scope.message.processing = false;
       });
     }
@@ -400,8 +320,8 @@ angular.module('App.item', [])
     }).then(function (modal) {
       $scope.modal = modal;
     });
+
     $scope.openModal = function (product) {
-      console.log(product)
       $http({
         url: backend + "/identify/qr/product",
         method: 'GET',
@@ -436,28 +356,24 @@ angular.module('App.item', [])
     });
 
     $scope.goTo = function (path, product) {
-      console.log(product)
-      console.log(path)
-
       $state.go('app.itemdescription', {'product': product});
     };
 
 
     $scope.ratingsObject = {
-      iconOn: 'ion-ios-star',    //Optional
-      iconOff: 'ion-ios-star-outline',   //Optional
-      iconOnColor: 'rgb(200, 200, 100)',  //Optional
-      iconOffColor: 'rgb(200, 100, 100)',    //Optional
-      rating: 2, //Optional
-      minRating: 1,    //Optional
-      readOnly: true, //Optional
-      callback: function (rating) {    //Mandatory
+      iconOn: 'ion-ios-star',
+      iconOff: 'ion-ios-star-outline',
+      iconOnColor: 'rgb(200, 200, 100)',
+      iconOffColor: 'rgb(200, 100, 100)',
+      rating: 2,
+      minRating: 1,
+      readOnly: true,
+      callback: function (rating) {
         $scope.ratingsCallback(rating);
       }
     };
 
     $scope.ratingsCallback = function (rating) {
-      // console.log('Selected rating is : ', rating);
       $scope.newrating = rating;
     };
 

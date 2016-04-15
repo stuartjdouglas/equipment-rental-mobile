@@ -1,5 +1,5 @@
 angular.module('App.logout', [])
-  .controller('logoutCtrl', function($scope, $http, $rootScope, $location, $ionicHistory, $state) {
+  .controller('logoutCtrl', function ($scope, $http, $rootScope, $location, $ionicHistory, $state) {
 
     window.localStorage.removeItem("token");
     $rootScope.loggedIn = false;

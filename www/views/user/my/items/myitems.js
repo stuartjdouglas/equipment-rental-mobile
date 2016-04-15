@@ -7,19 +7,11 @@ angular.module('App.my.items', [])
     $scope.start += $scope.count;
     updateResults();
 
+    // Clears and get new data from api
     $scope.doRefresh = function () {
-
       resetProducts();
       $scope.start += $scope.count;
       updateResults();
-    };
-
-    $scope.loadMore = function () {
-      //console.log("gotta load more")
-      //$scope.start += $scope.count;
-      //if (!$scope.noMoreData) {
-      //  updateResults()
-      //}
     };
 
     function resetProducts() {
@@ -42,13 +34,12 @@ angular.module('App.my.items', [])
             'Count': $scope.count,
             'token': window.localStorage.token
           }
-        }).success(function (data, status, headers, config) {
-          //$scope.products = data;
-          console.log(data)
+        }).success(function (data) {
           $scope.products.total += data.total;
           for (var i = 0; i < data.total; i++) {
             $scope.products.items.push(data.items[i])
           }
+
           var urls = [];
           $scope.busy = false;
           if (data.total === 0) {

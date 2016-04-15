@@ -5,15 +5,13 @@ angular.module('App.tag', [])
     $scope.start = 0;
 
 
-    if ($rootScope.loggedIn) {
-      // updateResults();
-    } else {
+    if (!$rootScope.loggedIn) {
       $scope.view = false;
     }
 
     $scope.doRefresh = function () {
       updateResults();
-    }
+    };
 
     $scope.$watch("count", function (newValue) {
       window.localStorage.setItem("product_count", newValue);
@@ -28,7 +26,7 @@ angular.module('App.tag', [])
         $scope.start = $scope.start - $scope.count;
         updateResults();
       }
-    }
+    };
 
     $scope.forward = function () {
       if ($scope.start >= $scope.products.total - $scope.count) {
@@ -38,11 +36,11 @@ angular.module('App.tag', [])
         $scope.start = $scope.start + $scope.count;
         updateResults();
       }
-    }
+    };
 
     $scope.search = function (term) {
-      console.log('>' + term)
-    }
+      // console.log('>' + term)
+    };
 
     function updateResults() {
       var url = backend + "/tags/";
@@ -54,7 +52,6 @@ angular.module('App.tag', [])
           'Count': $scope.count
         }
       }).success(function (data, status, headers, config) {
-        console.log(data)
         $scope.products = data;
       }).error(function (data, status, headers, config) {
         $scope.error = true;

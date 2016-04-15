@@ -1,15 +1,11 @@
 angular.module('App.login', [])
-  .controller('loginCtrl', function($scope, $http, $rootScope, $location, $ionicHistory, $state) {
+  .controller('loginCtrl', function ($scope, $http, $rootScope, $location, $ionicHistory, $state) {
     $scope.processing = false;
-    $scope.login = function(user) {
+    $scope.login = function (user) {
       if (user != null) {
         performLogin(user);
-        //console.log(user.name + user.password);
-      } else {
-
       }
-
-    }
+    };
 
     function performLogin(user) {
       $scope.processing = true;
@@ -27,33 +23,32 @@ angular.module('App.login', [])
           'Content-Type': 'multipart/form-data'
 
         }
-      }).success(function(data, status, headers, config) {
+      }).success(function (data, status, headers, config) {
 
         window.localStorage.token = data.token;
 
         $scope.user = {};
+
         var auth = JSON.stringify({
           username: data.username,
           gravatar: data.gravatar,
           token: data.token
-        })
+        });
 
         window.localStorage.auth = auth;
         $rootScope.auth = JSON.parse(window.localStorage.auth);
         $scope.error = false;
         $scope.processing = false;
         $rootScope.loggedIn = true;
+
         $ionicHistory.nextViewOptions({
           disableBack: true
         });
 
         $state.go('app.timeline');
-      }).error(function(data, status, headers, config) {
-          $scope.error = data.message;
-          $scope.processing = false;
+      }).error(function (data, status, headers, config) {
+        $scope.error = data.message;
+        $scope.processing = false;
       });
     }
-
-
-
   });

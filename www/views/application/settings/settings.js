@@ -1,5 +1,5 @@
 angular.module('App.settings', [])
-  .controller('settingsCtrl', function($scope, $http, $rootScope, $cordovaStatusbar) {
+  .controller('settingsCtrl', function ($scope, $http, $rootScope, $cordovaStatusbar) {
     $scope.settings = {};
 
     if (window.localStorage.settings != undefined) {
@@ -17,24 +17,18 @@ angular.module('App.settings', [])
       $scope.settings = defaultSettings;
     }
 
-    $scope.$watch('settings', function(newval, oldval) {
+    $scope.$watch('settings', function (newval) {
       window.localStorage.settings = JSON.stringify(newval);
       $rootScope.setings = newval;
     }, true)
 
 
-
-
     $scope.themeColour = window.localStorage.themeColour;
-    $scope.updateColour = function(color) {
+    $scope.updateColour = function (color) {
 
       window.localStorage.themeColour = color;
       window.location.reload(true)
 
 
-
-
-
-
     }
-});
+  });

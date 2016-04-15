@@ -1,5 +1,6 @@
 angular.module('App.image.upload', [])
-  .controller('imageUploadCtrl', ['$scope', '$http', '$rootScope', '$cordovaImagePicker', '$base64', '$cordovaCamera', function($scope, $http, $rootScope, $cordovaImagePicker, $base64, $cordovaCamera) {
+  .controller('imageUploadCtrl', ['$scope', '$http', '$rootScope', '$cordovaImagePicker', '$base64', '$cordovaCamera',
+    function ($scope, $http, $rootScope, $cordovaImagePicker, $base64, $cordovaCamera) {
     if ($rootScope.loggedIn) {
       $scope.viewSplash = false;
 
@@ -23,26 +24,22 @@ angular.module('App.image.upload', [])
       };
 
 
-
       $scope.image;
-      $scope.openImage = function() {
-        $cordovaCamera.getPicture(options).then(function(imageData) {
+      $scope.openImage = function () {
+        $cordovaCamera.getPicture(options).then(function (imageData) {
           var image = document.getElementById('myImage');
 
           $scope.image = imageData;
-          //$scope.images = "data:image/jpeg;base64," + imageData;
 
-
-
-        }, function(err) {
+        }, function (err) {
           // error
         });
 
 
-      }
+      };
 
 
-      $scope.uploadImage = function(image) {
+      $scope.uploadImage = function (image) {
         debugger;
       }
 

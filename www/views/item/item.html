@@ -1,6 +1,4 @@
 <ion-view view-title="{{product.title}}">
-  <!--<div class="scroll itembackground" id="itembackground">-->
-  <!--</div>-->
   <ion-content has-bouncing="true">
     <ion-refresher
       pulling-text="Pull to refresh..."
@@ -55,7 +53,6 @@
 
           </span>
 
-          <!--<button class="button" ng-hide="loggedIn">{{status}}</button>-->
         </div>
         <div class="button-row" ng-show="owner">
           <span ng-show="owner">
@@ -126,7 +123,7 @@
         <h3>
           Reviews
         </h3>
-        <button class="button" ng-click="showReviewWrite()" ng-show="!product.comments.reviewed">Write Review</button>
+        <button class="button" ng-click="showReviewWrite()" ng-show="product.comments.reviewed">Write Review</button>
         <div class="comments">
           <div class="comment" ng-repeat="comment in product.comments.reviews | orderBy:'-date_added'">
             <div class="profile-image">

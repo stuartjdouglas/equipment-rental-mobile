@@ -11,36 +11,33 @@ angular.module('App.items', [])
       title: 'Updated: newest first',
       path: 'updated: newest first',
       active: 'active'
-    },{
+    }, {
       title: 'Added: newest first',
       path: 'added: newest first',
       active: 'inactive'
-    },{
+    }, {
       title: 'added: oldest first',
       path: 'added: oldest first',
       active: 'inactive'
-    },{
+    }, {
       title: 'Updated: oldest first',
       path: 'updated: oldest first',
       active: 'inactive'
-    },{
+    }, {
       title: 'Likes: Most likes',
       path: 'Likes: Most likes',
       active: 'inactive'
-    }]
-    //updateResults();
-
+    }];
     $scope.revealSearch = function () {
       $scope.showSearch = true;
       $scope.SearchClass = 'inputs animated enter';
-      //$scope.doRefresh();
-    }
+    };
+
     $scope.hideSearch = function () {
       $scope.SearchClass = 'inputs animated away';
 
-      //setTimeout(function() {
       $scope.showSearch = false;
-      //}, 300)
+
       if (sortByUrl != previousURL) {
 
         sortByUrl = previousURL;
@@ -49,7 +46,7 @@ angular.module('App.items', [])
         $scope.start = $scope.start + $scope.count;
         updateResults();
       }
-    }
+    };
 
     $scope.getFilteredResults = function (filter, index) {
       resetProducts();
@@ -64,7 +61,6 @@ angular.module('App.items', [])
 
       $scope.filters[index].active = 'active';
 
-      console.log(filter)
       $scope.start = $scope.start + $scope.count;
       switch (filter) {
         case 'added: newest first':
@@ -96,11 +92,10 @@ angular.module('App.items', [])
           break;
       }
       updateResults();
-    }
+    };
 
 
     if ($rootScope.loggedIn) {
-      // updateResults();
     } else {
       $scope.view = false;
     }
@@ -109,7 +104,7 @@ angular.module('App.items', [])
       resetProducts();
       $scope.start = $scope.start + $scope.count;
       updateResults();
-    }
+    };
 
     $scope.$watch("count", function (newValue) {
       // console.log(newValue);
@@ -125,7 +120,7 @@ angular.module('App.items', [])
         $scope.start = $scope.start + $scope.count;
         updateResults();
       }
-    }
+    };
 
     $scope.forward = function () {
       if ($scope.start >= $scope.products.total - $scope.count) {
@@ -135,14 +130,13 @@ angular.module('App.items', [])
         $scope.start = $scope.start + $scope.count;
         updateResults();
       }
-    }
+    };
 
     $scope.search = function (term) {
-      console.log('>' + term)
       resetProducts();
       $scope.start += $scope.count;
 
-      console.log(previousURL.split('/')[0])
+      console.log(previousURL.split('/')[0]);
       if (previousURL.split('/')[0] == 'products') {
         previousURL = sortByUrl;
 
@@ -154,7 +148,6 @@ angular.module('App.items', [])
 
 
     $scope.loadMore = function () {
-      console.log("gotta load more")
       $scope.start += $scope.count;
       if (!$scope.noMoreData) {
         updateResults()
@@ -178,9 +171,6 @@ angular.module('App.items', [])
 
     $scope.holdImage = function (index) {
       $scope.products.items[index].fullscreenenabled = true;
-      //$scope.holding = true;
-      //console.log("product")
-      //$scope.fullscreenImage = product.images.size.large
     };
 
 
@@ -229,9 +219,7 @@ angular.module('App.items', [])
         like(index, id)
 
       }
-    }
-
-    console.log($scope.auth)
+    };
 
     function updateResults() {
       var url = backend + sortByUrl;
@@ -245,8 +233,6 @@ angular.module('App.items', [])
             'token': window.localStorage.token
           }
         }).success(function (data, status, headers, config) {
-          //$scope.products = data;
-          console.log(data)
           $scope.products.total += data.total;
           for (var i = 0; i < data.total; i++) {
             $scope.products.items.push(data.items[i])

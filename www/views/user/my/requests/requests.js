@@ -24,33 +24,30 @@ angular.module('App.userrequests', [])
       };
     }
 
-
-
     function cancelRequest(id, index) {
-    console.log(id);
+      console.log(id);
       $http({
         url: backend + '/product/' + id + '/request/cancel',
         method: 'POST',
         headers: {
           'token': window.localStorage.token
-        },
+        }
       }).success(function (data, status, headers, config) {
-        //getRequestStatus();
         $scope.products.requests.splice(index, 1);
         $scope.hasRequest = false;
 
       }).error(function (data, status, headers, config) {
         $scope.error = true;
-      }).then(function() {
+      }).then(function () {
         $scope.doRefresh();
       });
     }
 
-    $scope.cancel = function(id, index) {
+    $scope.cancel = function (id, index) {
       if ($rootScope.loggedIn) {
         cancelRequest(id, index);
       }
-    }
+    };
 
 
     function updateResults() {
@@ -64,13 +61,13 @@ angular.module('App.userrequests', [])
             'Count': $scope.count,
             'token': window.localStorage.token
           }
-        }).success(function (data, status, headers, config) {
-          //$scope.products = data;
-          console.log(data)
+        }).success(function (data) {
+
           $scope.products.total += data.total;
           for (var i = 0; i < data.total; i++) {
             $scope.products.items.push(data.requests[i])
           }
+
           var urls = [];
           $scope.busy = false;
           if (data.total === 0) {
@@ -79,8 +76,6 @@ angular.module('App.userrequests', [])
               $scope.noData = true;
             }
           }
-
-
         }).error(function (data, status, headers, config) {
           console.log(data);
           $scope.error = true;
@@ -90,5 +85,4 @@ angular.module('App.userrequests', [])
         });
       }
     }
-
   });

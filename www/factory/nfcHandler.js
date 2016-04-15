@@ -2,29 +2,7 @@
 
   angular.module('App.nfcHandler', [])
 
-    .factory('NFCHandler', ['$q', function ($q) {
-      var _url = undefined;
 
-      function checkInviteURL(inviteURL) {
-        var parser = document.createElement('a');
-        parser.href = inviteURL;
-        var res = parser.pathname.split("/");
-        if (res[0] === 'invite' && res[1]) {
-          _url = res[1];
-          return true;
-        }
-        else {
-          return false;
-        }
-      }
-
-      return {
-        checkURL: checkInviteURL,
-        get: function () {
-          return _url;
-        }
-      }
-    }])
     .factory('nfcService', function ($rootScope, $ionicPlatform, $location, $ionicHistory, $timeout) {
 
       var tag = {};
@@ -34,7 +12,7 @@
 
         if (isWebView) {
 
-          $timeout(function() {
+          $timeout(function () {
             var message = [
               ndef.textRecord(" letskarite://user/" + $rootScope.auth.username),
               ndef.uriRecord("https://karite.xyz/#/user/" + $rootScope.auth.username)
@@ -48,21 +26,7 @@
           }, 4000);
 
 
-
           nfc.addNdefListener(function (nfcEvent) {
-
-            //console.log($ionicHistory.currentView())
-            /*
-
-             we can get the statename by doing
-             $ionicHistory.currentView().stateName
-
-             We will want to do this to give this factory independent behaviours such as reading in the
-             username for a rent or something
-
-
-             */
-
             $rootScope.$apply(function () {
               angular.copy(nfcEvent.tag, tag);
               nfc_string_data = nfc.bytesToString(tag.ndefMessage[0]["payload"]);
@@ -76,9 +40,9 @@
                 }
               }
 
-              split = split.filter(Boolean)
-              if (split[0].localeCompare('letskarite:') == 0 || split[0].localeCompare('en letskarite:') == 0 ) {
-                console.log("its our tag")
+              split = split.filter(Boolean);
+              if (split[0].localeCompare('letskarite:') == 0 || split[0].localeCompare('en letskarite:') == 0 ||
+                split[0].localeCompare('enletskarite:') == 0) {
                 if (split.length === 3) {
                   switch (split[1]) {
                     case 'product':
@@ -116,9 +80,9 @@
             ndef.uriRecord("https://karite.xyz/listings/" + value)
           ];
 
-          nfc.write(message, function(msg) {
+          nfc.write(message, function (msg) {
             console.log(msg)
-          } , function(msg) {
+          }, function (msg) {
             console.log(msg)
           });
 

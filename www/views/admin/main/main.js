@@ -1,5 +1,5 @@
 angular.module('App.admin', [])
-  .controller('admiCtrl', function($scope, $http, $rootScope, $ionicHistory, $state) {
+  .controller('admiCtrl', function ($scope, $http, $rootScope, $ionicHistory, $state) {
     if ($rootScope.loggedIn) {
       $ionicHistory.nextViewOptions({
         disableBack: true

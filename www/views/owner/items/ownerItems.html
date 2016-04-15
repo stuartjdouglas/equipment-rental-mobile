@@ -1,47 +1,44 @@
 <ion-view view-title="My Listings">
   <ion-content class="dark" has-bouncing="true">
-        <div class="bar bar-subheader item-input-inset">
-          <label class="item-input-wrapper">
-            <i class="icon ion-ios-search placeholder-icon"></i>
-            <input type="search" placeholder="Search">
-          </label>
-          <button class="button button-clear">
-            Cancel
-          </button>
-        </div>
+    <div class="bar bar-subheader item-input-inset">
+      <label class="item-input-wrapper">
+        <i class="icon ion-ios-search placeholder-icon"></i>
+        <input type="search" placeholder="Search">
+      </label>
+      <button class="button button-clear">
+        Cancel
+      </button>
+    </div>
 
 
-
-      <div class="row ">
-        <div class="col">
-          <i>
-            Showing results {{start}} - {{start + count}} from {{products.total}}.
-          </i>
-        </div>
+    <div class="row ">
+      <div class="col">
+        <i>
+          Showing results {{start}} - {{start + count}} from {{products.total}}.
+        </i>
       </div>
+    </div>
 
-      <ion-refresher
-        pulling-text="Pull to refresh..."
-        on-refresh="doRefresh()">
-      </ion-refresher>
+    <ion-refresher
+      pulling-text="Pull to refresh..."
+      on-refresh="doRefresh()">
+    </ion-refresher>
 
-      <div class="list ani block" ng-repeat="product in products.items">
-           <!--ng-style="{'background-image':'url({{data}}{{product.image.size.large}})'}"-->
-        <!--<img class="background" ng-src="{{data}}{{product.image.size.small}}">-->
-        <a class="item item-avatar transparent border large-avatar" href="#/app/item/{{product.id}}">
-          <img ng-src="{{data}}{{product.images.size.thumb}}">
-          <h2 class="white">{{product.title}}</h2>
-          <p class="white">{{product.description}}</p>
+    <div class="list ani block" ng-repeat="product in products.items">
+      <!--ng-style="{'background-image':'url({{data}}{{product.image.size.large}})'}"-->
+      <!--<img class="background" ng-src="{{data}}{{product.image.size.small}}">-->
+      <a class="item item-avatar transparent border large-avatar" href="#/app/item/{{product.id}}">
+        <img ng-src="{{data}}{{product.images.size.thumb}}">
+        <h2 class="white">{{product.title}}</h2>
+        <p class="white">{{product.description}}</p>
 
-          <availability datasource={{product.id}} class="status"></availability>
-        </a>
-      </div>
+        <availability datasource={{product.id}} class="status"></availability>
+      </a>
+    </div>
 
     <div class="itempadding">
 
     </div>
-
-
 
 
   </ion-content>
