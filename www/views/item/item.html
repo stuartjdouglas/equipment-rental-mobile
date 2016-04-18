@@ -123,7 +123,7 @@
         <h3>
           Reviews
         </h3>
-        <button class="button" ng-click="showReviewWrite()" ng-show="product.comments.reviewed">Write Review</button>
+        <button class="button" ng-click="showReviewWrite()" ng-show="!product.comments.reviewed">Write Review</button>
         <div class="comments">
           <div class="comment" ng-repeat="comment in product.comments.reviews | orderBy:'-date_added'">
             <div class="profile-image">
@@ -176,7 +176,7 @@
 
         </div>
         <button class="button">
-          Comment
+          Submit Review
         </button>
       </form>
     </ion-content>
