@@ -2,3 +2,5 @@
 # equipment-rental-mobile
 
 Ionic mobile client for equipment rental platform
+
+Please go to [https://github.com/remony/Equipment-Rental-API](https://github.com/remony/Equipment-Rental-API) for more information.
