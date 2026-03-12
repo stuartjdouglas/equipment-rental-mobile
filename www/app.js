@@ -88,8 +88,8 @@ angular.module('App', [
   })
   .config(['$ionicAppProvider', function ($ionicAppProvider) {
     $ionicAppProvider.identify({
-      app_id: 'db428b22',
-      api_key: '22ee5b3d6e19516fce11a5d436715e9f20588a17e7268543',
+      app_id: '',
+      api_key: '',
       dev_push: true
     })
   }])
