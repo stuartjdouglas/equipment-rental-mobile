@@ -31,7 +31,7 @@ angular.module('App.pushCtrl', [])
       var config = null;
       if (ionic.Platform.isAndroid()) {
         config = {
-          "senderID": "885655955576"
+          "senderID": ""
         };
       }
       else if (ionic.Platform.isIOS()) {
